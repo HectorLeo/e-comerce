@@ -14,7 +14,7 @@ class CrearTablaPantallas extends Migration
     public function up()
     {
         Schema::create('pantallas', function (Blueprint $table) {
-            $table->Increments('id');
+            $table->Increments('id_pantalla');
             $table->string('nom_pantalla', 40);
             $table->string('descripcion', 20);
             $table->boolean('agregar');
