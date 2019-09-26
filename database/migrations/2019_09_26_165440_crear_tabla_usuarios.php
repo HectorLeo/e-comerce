@@ -14,7 +14,8 @@ class CrearTablaUsuarios extends Migration
     public function up()
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->string('correo', 100)->unique();
+            $table->string('correo', 100);
+            $table->primary('correo');
             $table->string('contrasena', 20);
             $table->timestamps();
         });
