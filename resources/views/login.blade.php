@@ -28,7 +28,7 @@
             <div class="card-body login-card-body">
               <p class="login-box-msg">Iniciar Sesión</p>
         
-              <form action="../../index3.html" method="post">
+              <form  method="post">
                 <div class="input-group mb-3">
                   <input type="email" class="form-control" placeholder="Correo">
                   <div class="input-group-append">
@@ -48,7 +48,7 @@
                 <div class="row">
                   
                   <!-- /.col -->
-                  <div class="col-4">
+                  <div class="col-12">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar</button>
                   </div>
                   <!-- /.col -->
