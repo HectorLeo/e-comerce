@@ -12,7 +12,10 @@
 */
 
 Route::get('/index', 'PaginasController@contenido' );
+//Route::group([])
 
-Route::get('/login', function () {
+Route::get('/admin', 'Admin\AdminController@index' );
+
+/*Route::get('/login', function () {
     return view('login');
-});
+});*/

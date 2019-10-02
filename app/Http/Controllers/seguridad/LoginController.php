@@ -4,9 +4,12 @@ namespace App\Http\Controllers\seguridad;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
+    use AuthenticatesUsers;
+    protected $redirectTo = '/home';
     /**
      * Display a listing of the resource.
      *
