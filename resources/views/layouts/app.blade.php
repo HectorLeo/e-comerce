@@ -42,7 +42,7 @@
                           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                         </li>
                         <li class="nav-item d-none d-sm-inline-block">
-                          <a href="index3.html" class="nav-link">Inicio</a>
+                          <a href="{{ route('index')}}" class="nav-link">Inicio</a>
                         </li>
                         <li class="nav-item d-none d-sm-inline-block">
                           <a href="#" class="nav-link">Contacto</a>
@@ -183,7 +183,7 @@
                           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class
                                  with font-awesome or any other icon font library -->
-                            <li class="nav-item ">
+                            <li class= "@yield('activeCatalogo','nav-item')">
                               <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -193,7 +193,7 @@
                               </a>
                               <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                  <a href="{{ route('routeName', ['id'=>1]) }}" class="nav-link">
+                                  <a href="{{ route('producto')}}" class="@yield('activeProducto','nav-link')">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Producto</p>
                                   </a>
