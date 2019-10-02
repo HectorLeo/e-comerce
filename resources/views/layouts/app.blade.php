@@ -42,10 +42,10 @@
                           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                         </li>
                         <li class="nav-item d-none d-sm-inline-block">
-                          <a href="index3.html" class="nav-link">Home</a>
+                          <a href="index3.html" class="nav-link">Inicio</a>
                         </li>
                         <li class="nav-item d-none d-sm-inline-block">
-                          <a href="#" class="nav-link">Contact</a>
+                          <a href="#" class="nav-link">Contacto</a>
                         </li>
                       </ul>
                   
@@ -183,7 +183,7 @@
                           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class
                                  with font-awesome or any other icon font library -->
-                            <li class="nav-item has-treeview menu-open">
+                            <li class="nav-item ">
                               <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -193,9 +193,9 @@
                               </a>
                               <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                  <a href="./index.html" class="nav-link active">
+                                  <a href="{{ route('routeName', ['id'=>1]) }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p></p>
+                                    <p>Producto</p>
                                   </a>
                                 </li>
                                 <li class="nav-item">
@@ -626,12 +626,13 @@
                         <div class="container-fluid">
                           <div class="row mb-2">
                             <div class="col-sm-6">
-                              <h1 class="m-0 text-dark">Dashboard</h1>
+                              @yield('titulohome')
+                              
                             </div><!-- /.col -->
                             <div class="col-sm-6">
                               <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v1</li>
+                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                                @yield('titulonavegacion')
                               </ol>
                             </div><!-- /.col -->
                           </div><!-- /.row -->

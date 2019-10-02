@@ -16,6 +16,8 @@ Route::get('/index', 'PaginasController@contenido' );
 
 Route::get('/admin', 'Admin\AdminController@index' );
 
+Route::post('/admin', 'Admin\AdminController@index' );
+
 /*Route::get('/login', function () {
     return view('login');
 });*/
