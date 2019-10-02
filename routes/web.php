@@ -13,6 +13,6 @@
 
 Route::get('/index', 'PaginasController@login' );
 
-/*Route::get('/login', function () {
+Route::get('/login', function () {
     return view('login');
-});*/
+});
