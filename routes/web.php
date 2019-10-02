@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/index', 'PaginasController@login' );
+Route::get('/index', 'PaginasController@contenido' );
 
-/*Route::get('/login', function () {
+Route::get('/login', function () {
     return view('login');
-});*/
+});

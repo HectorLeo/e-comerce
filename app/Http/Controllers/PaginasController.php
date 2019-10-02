@@ -8,8 +8,8 @@ use App\User;
 class PaginasController extends Controller
 {
     
-    public function login()
+    public function contenido()
     {
-      return view('login');
+      return view('contenido1');
     }
 }
