@@ -23,7 +23,7 @@ Route::get('/producto', 'Admin\ProductosController@agregar' )->name('producto');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth' ], function(){
     Route::get('', 'AdminController@index');
-});*/
+});
 
 
 /*Route::get('/login', function () {

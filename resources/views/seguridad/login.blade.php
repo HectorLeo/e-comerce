@@ -22,7 +22,7 @@
     <body class="hold-transition login-page">
         <div class="login-box">
           <div class="login-logo">
-            <a href="#"><b>Crystal Mediaaa</b>Admin</a>
+            <a href="#"><b>Crystal Media</b>Admin</a>
           </div>
           <!-- /.login-logo -->
           <div class="card">
@@ -41,7 +41,7 @@
               <form action=" {{route('login_post')}} "method="POST">
                 @csrf
                 <div class="input-group mb-3">
-                  <input type="email" name="correo" class="form-control" placeholder="Correo">
+                <input type="email" name="correo" id="correo" value="{{old('correo')}}" class="form-control" placeholder="Correo">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-envelope"></span>
@@ -49,7 +49,7 @@
                   </div>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="password" name="contrasena" class="form-control" placeholder="Contraseña">
+                  <input type="password" name="contrasena" id="contrasena" class="form-control" placeholder="Contraseña">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-lock"></span>
