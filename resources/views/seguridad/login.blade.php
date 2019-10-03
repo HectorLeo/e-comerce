@@ -28,20 +28,11 @@
           <div class="card">
             <div class="card-body login-card-body">
               <p class="login-box-msg">Iniciar Sesión</p>
-              @if ($errors->any())
-              <div class="alert alert-danger alert-dismissable">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                          <div class="alert-tex">
-                            @foreach ($errors->all() as $error)
-                                <span>{{$error}}</span>
-                            @endforeach
-                          </div>
-              </div>
-              @endif
-              <form action=" {{route('login_post')}} "method="POST">
-                @csrf
+              <form method="POST" action=" {{route('login')}}">
+                {{{{ csrf_field() }}}}
                 <div class="input-group mb-3">
-                <input type="email" name="correo" id="correo" value="{{old('correo')}}" class="form-control" placeholder="Correo">
+                <input type="email" name="email" class="form-control" placeholder="Correo">
+                {!! $errors->first('email','<span class="help-block">:message</span>') !!}
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-envelope"></span>
@@ -49,7 +40,8 @@
                   </div>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="password" name="contrasena" id="contrasena" class="form-control" placeholder="Contraseña">
+                  <input type="password" name="password" id="contrasena" class="form-control" placeholder="Contraseña">
+                  {!! $errors->first('password','<span class="help-block">:message</span>') !!}
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-lock"></span>
@@ -57,7 +49,6 @@
                   </div>
                 </div>
                 <div class="row">
-                  
                   <!-- /.col -->
                   <div class="col-12">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar</button>
