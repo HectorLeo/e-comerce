@@ -3,12 +3,26 @@
 namespace App\Http\Controllers\seguridad;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+//use Illuminate\Http\Request;
+//use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
+    public function login(){
+        $credentials = $this->validate(request(),[
+            'email' => 'email|required|string',
+            'password' => 'required|string'
+        ]);
+    }
+    
+    if(Auth::attempt($credentials)){
+        return redirect()->route('admin');
+    }
+    return back()
+    ->withErrors(['email' => trans(auth.failed)]);
+    ->withInput(request(['email']));
+
+    /*use AuthenticatesUsers;
     protected $redirectTo = '/admin';
     public function __construct()
     {
@@ -23,5 +37,5 @@ class LoginController extends Controller
     {
         return'correo';
     }
-    //protected $guard = 'admins';
+    //protected $guard = 'admins';*/
 }
