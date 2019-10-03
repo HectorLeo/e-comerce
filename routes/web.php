@@ -14,11 +14,14 @@
 //Route::get('/index', 'PaginasController@contenido' );
 Route::get('/login', 'seguridad\LoginController@index')->name('login');
 Route::post('/login', 'seguridad\LoginController@index')->name('login_post');
+
+Route::get('/index', 'PaginasController@contenido' )->name('index');
+
+/*Route::get('/login', 'seguridad\LoginController@index')->name('login');
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth' ], function(){
     Route::get('', 'AdminController@index');
-});
-
-Route::post('/admin', 'Admin\AdminController@index' );
+});*/
 
 /*Route::get('/login', function () {
     return view('login');
