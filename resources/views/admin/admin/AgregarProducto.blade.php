@@ -8,6 +8,9 @@
     <li class="breadcrumb-item active">Agregar Producto</li>
 @endsection
 
+@section('ActiveCatalogo') nav-item has-treeview menu-open @endsection
+@section('ActiveProducto') nav-link active @endsection
+
 @section('content')
     <form  method="">
         <div class="input-group mb-3">
