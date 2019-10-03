@@ -17,7 +17,9 @@
 
 Route::get('/index', 'PaginasController@contenido' )->name('index');
 
-Route::get('/producto', 'Admin\ProductosController@agregar' )->name('producto');
+Route::get('/producto', 'Admin\ProductosController@interfaceagregar' )->name('producto');
+
+Route::post('producto', 'Admin\ProductosController@agregarbd' )->name('producto');
 
 /*Route::get('/login', 'seguridad\LoginController@index')->name('login');
 
