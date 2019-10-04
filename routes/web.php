@@ -17,14 +17,8 @@ Route :: get ('/',function(){
 
 Route::post('login', 'Auth\LoginController@login')->name('login');
 
-//Route::get('/login', 'seguridad\LoginController@login')->name('login');
-//Route::post('login', 'seguridad\LoginController@login')->name('login');
-//Route::get('/producto', 'Admin\ProductosController@agregar' )->name('producto');
-//Route::group(['prefix' => 'admin', 'namespace' => 'Admin' ], function(){
-//    Route::get('', 'AdminController@index');
-//});
+Route::get('/index', 'PaginasController@contenido' )->name('index');
 
+Route::get('/producto', 'Admin\ProductosController@interfaceagregar' )->name('producto');
 
-/*Route::get('/login', function () {
-    return view('login');
-});*/
+Route::post('producto', 'Admin\ProductosController@agregarbd' )->name('producto');
