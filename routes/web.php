@@ -11,7 +11,6 @@
 |
 */
 
-<<<<<<< HEAD
 Route :: get ('/',function(){
     return view('seguridad.login');
 });
@@ -29,13 +28,3 @@ Route::post('login', 'Auth\LoginController@login')->name('login');
 /*Route::get('/login', function () {
     return view('login');
 });*/
-=======
-
-
-Route::get('/index', 'PaginasController@contenido' )->name('index');
-
-Route::get('/producto', 'Admin\ProductosController@interfaceagregar' )->name('producto');
-
-Route::post('producto', 'Admin\ProductosController@agregarbd' )->name('producto');
-
->>>>>>> 1f559e25f7b6e63b4766374f44754bba23c2e5db
