@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
+    public function mostrar(){
+        return view('');
+    }
     public function login(){
         $credentials = $this->validate(request(),[
             'email' => 'email|required|string',
@@ -15,14 +18,14 @@ class LoginController extends Controller
         ]);
     }
     
-    if(Auth::attempt($credentials)){
+   /* if(Auth::attempt($credentials)){
         return redirect()->route('admin');
     }
     return back()
     ->withErrors(['email' => trans(auth.failed)]);
     ->withInput(request(['email']));
 
-    /*use AuthenticatesUsers;
+use AuthenticatesUsers;
     protected $redirectTo = '/admin';
     public function __construct()
     {
