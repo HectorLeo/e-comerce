@@ -15,14 +15,14 @@ class LoginController extends Controller
         ]);
     }
     
-    if(Auth::attempt($credentials)){
+    /*if(Auth::attempt($credentials)){
         return redirect()->route('admin');
     }
     return back()
     ->withErrors(['email' => trans(auth.failed)]);
     ->withInput(request(['email']));
 
-    /*use AuthenticatesUsers;
+    use AuthenticatesUsers;
     protected $redirectTo = '/admin';
     public function __construct()
     {

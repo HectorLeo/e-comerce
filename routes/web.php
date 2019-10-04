@@ -12,9 +12,6 @@
 */
 
 
-//Route::get('/index', 'PaginasController@contenido' );
-//Route::get('/login', 'seguridad\LoginController@index')->name('login');
-//Route::post('/login', 'seguridad\LoginController@index')->name('login_post');
 
 Route::get('/index', 'PaginasController@contenido' )->name('index');
 
@@ -22,19 +19,3 @@ Route::get('/producto', 'Admin\ProductosController@interfaceagregar' )->name('pr
 
 Route::post('producto', 'Admin\ProductosController@agregarbd' )->name('producto');
 
-/*Route::get('/login', 'seguridad\LoginController@index')->name('login');
-
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth' ], function(){
-=======
-//Route::get('/login', 'seguridad\LoginController@login')->name('login');
-Route::post('login', 'seguridad\LoginController@login')->name('login');
-Route::get('/producto', 'Admin\ProductosController@agregar' )->name('producto');
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin' ], function(){
-
-    Route::get('', 'AdminController@index');
-});
-
-
-/*Route::get('/login', function () {
-    return view('login');
-});*/
