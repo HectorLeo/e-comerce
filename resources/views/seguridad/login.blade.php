@@ -28,10 +28,10 @@
           <div class="card">
             <div class="card-body login-card-body">
               <p class="login-box-msg">Iniciar Sesión</p>
-              <form method="POST" action=" {{route('login')}}">
-                {{{{ csrf_field() }}}}
-                <div class="input-group mb-3">
-                <input type="email" name="email" class="form-control" placeholder="Correo">
+              <form method="POST" action="{{ route('login') }}">
+                {{ csrf_field() }}
+                <div class="input-group mb-3 {{ $errors->has('email')? 'has-error' : ''}}">
+                <input type="email" name="email" id="email"  value="{{old('email')}}" class="form-control" placeholder="Correo">
                 {!! $errors->first('email','<span class="help-block">:message</span>') !!}
                   <div class="input-group-append">
                     <div class="input-group-text">
@@ -39,8 +39,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="input-group mb-3">
-                  <input type="password" name="password" id="contrasena" class="form-control" placeholder="Contraseña">
+                <div class="input-group mb-3 {{ $errors->has('password')? 'has-error' : ''}}">
+                <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña">
                   {!! $errors->first('password','<span class="help-block">:message</span>') !!}
                   <div class="input-group-append">
                     <div class="input-group-text">
