@@ -19,6 +19,6 @@ protected $table ='usuarios';
  * @var array
  */
 protected $remember_token = false;
-protected $fillable = ['email','password'];
-//protected $guarded = ['email'];
+protected $fillable = ['password'];
+protected $guarded = ['email'];
 }
