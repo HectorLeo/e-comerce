@@ -13,7 +13,7 @@
 @section('ActiveProducto') nav-link active @endsection
 
 @section('content')
-    <form role="form">
+<form method="POST" action="{{ route('producto') }}">
         @csrf
         <div class="row">
             
@@ -180,26 +180,37 @@
                     </div>
                     <div class="card-body">
                             <div class="form-group">
+                                    <label>transporte</label>
+                                    
+                                    <select id="lista_impuestos" name="lista_impuestos"  class="form-control">
+                                            @foreach ($datos as $item)
+                                                <option value="0" >{{ $item->nombre_transporte }}</option>
+                                            @endforeach
+                                        
+                                        
+                                    </select>
+                                </div>
+                            <div class="form-group">
                                 <label for="etiqueta_producto">Nombre del Producto</label>
-                                <input type="text" class="form-control" id="nombre_producto" name="nombre_producto" placeholder="Producto">
+                                <input type="text" class="form-control" id="nombre_producto" name="nombre_producto1" placeholder="Producto">
                             </div>
                             <div class="form-group">
                                 <label >Referencia</label>
-                                <input type="text" class="form-control" id="referencia_producto" name="referencia_producto" placeholder="Referencia">
+                                <input type="text" class="form-control" id="referencia_producto" name="referencia_producto1" placeholder="Referencia">
                             </div>
                             <div class="form-group">
                                 <label >Resumen</label>
-                                <input type="text" class="form-control" id="resumen_producto" name="resumen_producto" placeholder="Resumen">
+                                <input type="text" class="form-control" id="resumen_producto" name="resumen_producto1" placeholder="Resumen">
                             </div>
                             <div class="form-group">
                                 <label >Descripción</label>
-                                <textarea class="form-control" rows="3" id="descripcion_producto" name="descripcion_producto" placeholder="Descripción ..."></textarea>
+                                <textarea class="form-control" rows="3" id="descripcion_producto" name="descripcion_producto1" placeholder="Descripción ..."></textarea>
                                 
                             </div>
                             <div class="form-group">
                                 <label >Cantidad de productos existentes</label>
                                 <div class="col-lg-4">
-                                    <input type="number" class="form-control" id="cantidad_existencia" name="cantidad_existencia" value="0">
+                                    <input type="number" class="form-control" id="cantidad_existencia" name="cantidad_existencia1" value="0">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -221,7 +232,7 @@
             </div>
         
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Agregar Producto</button>
             
     </form>
 @endsection
