@@ -7,6 +7,15 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
+    public function __construct(){
+        $this->middleware('guest', ['only' => 'autlogin']);
+    }
+
+    public function autlogin(){
+        return view('admin.admin.contenido1'); 
+    }
+
+
     public function login(){
         $credentials = $this->validate(request(),[
             'email' => 'email|required|string',
@@ -14,11 +23,13 @@ class LoginController extends Controller
         ]);
         
         if(Auth::attempt($credentials)){
-            return 'Tu sesion ha iniciado correctamente';
+            $user_id = Auth::user()->email; 
+            //return $user_id;
+            return redirect()->route('producto');
         }
         return back()
-        ->withErrors(['email'=> trans('auth.failed')])
-        ->withInput(request(['email']));
+            ->withErrors(['email'=> trans('auth.failed')])
+            ->withInput(request(['email']));
     }
     /*
     |--------------------------------------------------------------------------
