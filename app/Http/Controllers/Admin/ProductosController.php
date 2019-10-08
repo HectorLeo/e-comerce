@@ -3,33 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use DB;
-use App\Producto;
-
+use Illuminate\Http\Request;
 
 class ProductosController extends Controller
 {
     
-    public function interfaceagregar()
+    public function agregar()
     {
-      $datos = DB::table('transportistas')->get();
-      //$datos = Producto::get();
-      return view('admin.admin.AgregarProducto', compact('datos'));
-    }
-    public function agregarbd()
-    {
-      $nombre = request('nombre_producto');
-      $nombre = request('nombre_producto');
-      $nombre = request('nombre_producto');
-      $nombre = request('nombre_producto');
-      $nombre = request('nombre_producto');
-      $nombre = request('nombre_producto');
-      $nombre = request('nombre_producto');
-      $nombre = request('nombre_producto');
-
-
-
-
-      return request('nombre_producto');
+      return view('admin.admin.AgregarProducto');
     }
 }

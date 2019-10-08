@@ -15,8 +15,8 @@ class CrearTablaComentarios extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->Increments('id_comentarios');
-            $table->string('correo', 100);
-            $table->foreign('correo', 'fk_comentarios_usuarios')->references('correo')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedInteger('id_usuario');
+            $table->foreign('id_usuario', 'fk_comentarios_usuarios')->references('id_usuario')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
             $table->string('comentario', 500);
             $table->timestamps();
         });

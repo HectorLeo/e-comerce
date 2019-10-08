@@ -11,12 +11,14 @@
 |
 */
 
-/*Route :: get ('/',function(){
-    return view('seguridad.login');
-});*/
-Route::get('/', 'Auth\LoginController@login')->name('login');
-
-Route::get('/inicio', 'Admin\AdminController@index' )->name('inicio');
+//
+Route::get('/', 'seguridad\LoginController@index')->name('login');
+Route::post('seguridad/login', 'seguridad\LoginController@login')->name('login_post');
+Route::get('seguridad/logout', 'seguridad\LoginController@logout')->name('logout');
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
+    Route::get('', 'AdminController@index')->name('index');
+    Route::get('/producto', 'ProductosController@agregar' )->name('producto');
+});
 
 Route::get('/index', 'PaginasController@contenido' )->name('index');
 
@@ -26,3 +28,4 @@ Route::post('producto', 'Admin\ProductosController@agregarbd' )->name('producto'
 Route::get('/categoria', 'Admin\CategoriasController@interfaceagregar')->name('categoria');
 Route::post('categoria', 'Admin\CategoriasController@agregarbd')->name('categoria');
 /** */
+
