@@ -19,17 +19,3 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::get('', 'AdminController@index')->name('index');
     Route::get('/producto', 'ProductosController@agregar' )->name('producto');
 });
-
-
-<<<<<<< HEAD
-/*Route::get('/login', function () {
-    return view('login');
-});*/
-=======
-Route::get('/index', 'PaginasController@contenido' )->name('index');
-
-Route::get('/producto', 'Admin\ProductosController@interfaceagregar' )->name('producto');
-
-Route::post('producto', 'Admin\ProductosController@agregarbd' )->name('producto');
-/** */
->>>>>>> 9809e309a3dac5a690e27989374932c18898dfe7
