@@ -15,8 +15,8 @@ class CrearTablaEmpresas extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->Increments('id_empresa');
-            $table->string('correo', 100);
-            $table->foreign('correo', 'fk_empresas_usuarios')->references('correo')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedInteger('id_usuario');
+            $table->foreign('id_usuario', 'fk_empresas_usuarios')->references('id_usuario')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
             $table->string('cuenta_bancaria_em', 50);
             $table->string('logotipo', 50);
 

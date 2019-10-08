@@ -21,8 +21,8 @@ class CrearTablaDirecciones extends Migration
             $table->string('ciudad', 50);
             $table->string('telefono', 10);
             $table->string('municipio', 50);
-            $table->string('correo', 100);
-            $table->foreign('correo', 'fk_direcciones_usuarios')->references('correo')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedInteger('id_usuario');
+            $table->foreign('id_usuario', 'fk_direcciones_usuarios')->references('id_usuario')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
             $table->string('numero_exterior_d', 3);
             $table->string('numero_interior', 3);
             $table->timestamps();
