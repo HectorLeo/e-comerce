@@ -21,6 +21,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 });
 
 
+<<<<<<< HEAD
 /*Route::get('/login', function () {
     return view('login');
 });*/
+=======
+Route::get('/index', 'PaginasController@contenido' )->name('index');
+
+Route::get('/producto', 'Admin\ProductosController@interfaceagregar' )->name('producto');
+
+Route::post('producto', 'Admin\ProductosController@agregarbd' )->name('producto');
+/** */
+>>>>>>> 9809e309a3dac5a690e27989374932c18898dfe7
