@@ -13,7 +13,7 @@
 @section('ActiveCategoria') nav-link active @endsection
 
 @section('content')
-<form method="POST" action="{{ route('categoria') }}">
+<form method="POST" action="{{ route('categoria') }}" enctype="multipart/form-data">
         @csrf
         <div class="row">
             
@@ -38,7 +38,7 @@
                                 
                                     <!-- checkbox -->
                                     <div class="form-group">
-                                        <select id="lista_impuestos" name="categoria_padre"  class="form-control">
+                                        <select id="categoria_padre" name="categoria_padre"  class="form-control">
                                             <option value="" >Selecione una opción</option>
                                             @foreach ($datoscategoria as $item)
                                                 <option value="{{$item->id_categoria}}" >{{$item->nombre_c}}</option>
@@ -56,15 +56,13 @@
                             </div>
                             
                             <div class="form-group">
-                                <label >Agrege una imagen del producto</label>
+                                <label >Agrege una imagen de la Categoría</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="imagen_producto">
-                                        <label class="custom-file-label" for="exampleInputFile">Elige una imagen</label>
+                                        <input type="file" class="custom-file-input" id="imagen_categoria" name="imagen_categoria">
+                                        <label class="custom-file-label" for="imagen_categoria">Elige una imagen</label>
                                     </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="">Upload</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             
@@ -91,14 +89,15 @@
                                 <div class="form-group">
                                     @foreach ($datosroles as $item)
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="customCheckbox1_{{$item->clave_rol}}" value="option1">
-                                            <label for="customCheckbox1_{{$item->clave_rol}}" class="custom-control-label">{{ $item->rol }}</label>
+                                            <input class="custom-control-input" type="checkbox" id="id_{{$item->rol}}" name="id{{$item->rol}}">
+                                            <label for="id_{{$item->rol}}" class="custom-control-label">{{ $item->rol }}</label>
                                         </div>
                                     @endforeach
                                 </div>
                             </div>
                         </div>
-                    </div>    
+                    </div>  
+                    <img width="100px" src="/storage/eezqmt8WKK6wwiwtkULzlxAqMMWDbiLownnPRhgP.png">
             </div>
             <!------------------------------------------------ fin roles  --------------------------------------->
             <!------------------------------------------------ inicio botones  ----------------------------------->
@@ -112,7 +111,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                                <input type="checkbox" class="custom-control-input" id="estado_categoria">
+                                                <input type="checkbox" class="custom-control-input" id="estado_categoria" name="estado_categoria">
                                                 <label class="custom-control-label" for="estado_categoria">Seleccione el estado de la categoría</label>
                                             </div>
                                         </div>

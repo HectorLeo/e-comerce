@@ -22,7 +22,7 @@ class CrearTablaClientes extends Migration
             $table->string('a_paterno', 30);
             $table->string('a_materno', 30);
             $table->string('telefono', 10);
-            $table->string('clave_rol', 10);
+            $table->unsignedInteger('clave_rol');
             $table->foreign('clave_rol', 'fk_clientes_rol')->references('clave_rol')->on('rol')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });

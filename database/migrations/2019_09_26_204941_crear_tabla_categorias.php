@@ -15,8 +15,6 @@ class CrearTablaCategorias extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->Increments('id_categoria');
-            $table->string('clave_rol', 10);
-            $table->foreign('clave_rol', 'fk_categorias_rol')->references('clave_rol')->on('rol')->onDelete('restrict')->onUpdate('restrict');
             $table->string('nombre_c', 50);
             $table->string('tipo-categoria', 50);
             $table->string('imagen_c', 100);
