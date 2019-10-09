@@ -24,6 +24,7 @@ class CrearTablaClientes extends Migration
             $table->string('telefono', 10);
             $table->unsignedInteger('clave_rol');
             $table->foreign('clave_rol', 'fk_clientes_rol')->references('clave_rol')->on('rol')->onDelete('restrict')->onUpdate('restrict');
+            $table->boolean('estado');
             $table->timestamps();
         });
     }
