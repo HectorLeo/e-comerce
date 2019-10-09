@@ -32,21 +32,21 @@
                 {{ csrf_field() }}
                 <div class="input-group mb-3">
                 <input type="email" name="email" class="form-control" value="{{old('email')}}" placeholder="Correo">
-                {!! $errors->first('email','<span class="help-block">:message</span>') !!}
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-envelope"></span>
                     </div>
                   </div>
+                  {!! $errors->first('email','<span class="alert alert-warning alert-dismissible">:message</span>') !!}
                 </div>
                 <div class="input-group mb-3">
                   <input type="password" name="password" id="contrasena" class="form-control" placeholder="Contraseña">
-                  {!! $errors->first('password','<span class="help-block">:message</span>') !!}
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-lock"></span>
                     </div>
                   </div>
+                  {!! $errors->first('password','<span class="help-block">:message</span>') !!}
                 </div>
                 <div class="row">
                   <!-- /.col -->
