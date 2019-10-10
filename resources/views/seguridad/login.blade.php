@@ -31,7 +31,7 @@
               <form method="POST" action=" {{route('login_post')}}">
                 {{ csrf_field() }}
                 <div class="input-group mb-3">
-                <input type="email" name="email" class="form-control" value="{{old('email')}}" placeholder="Correo">
+                <input type="email" name="email" class="form-control {!! $errors->first('email','is-invalid') !!}" value="{{old('email')}}" placeholder="Correo">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-envelope"></span>
@@ -40,7 +40,7 @@
                   {!! $errors->first('email','<span class="alert alert-warning alert-dismissible">:message</span>') !!}
                 </div>
                 <div class="input-group mb-3">
-                  <input type="password" name="password" id="contrasena" class="form-control" placeholder="Contraseña">
+                  <input type="password" name="password" id="contrasena" class="form-control {!! $errors->first('password','is-invalid') !!}" placeholder="Contraseña">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-lock"></span>
@@ -79,12 +79,12 @@
           </div>
         </div>
         <!-- /.login-box -->
+        </div>
         
-        <!-- jQuery -->
-        <script src="../../plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap 4 -->
-        <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         
         </body>
-    </div>
+    <!-- jQuery -->
+        <script src="\assets\lte\plugins\jquery\jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="\assets\lte\plugins\bootstrap\js\bootstrap.bundle.min.js"></script>
 </html>
