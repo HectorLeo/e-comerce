@@ -14,13 +14,13 @@ class CrearTablaPermisos extends Migration
     public function up()
     {
         Schema::create('permisos', function (Blueprint $table) {
-            $table->Increments('id');
+            $table->Increments('id_permiso');
 
-            $table->string('clave_rol', 10);
-            $table->foreign('clave_rol')->references('clave_rol')->on('rol')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedInteger('clave_rol');
+            $table->foreign('clave_rol', 'fk_permisos_usuarios')->references('clave_rol')->on('rol')->onDelete('restrict')->onUpdate('restrict');
             
             $table->unsignedInteger('id_pantalla');
-            $table->foreign('id_pantalla')->references('id_pantalla')->on('pantallas')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('id_pantalla', 'fk_permisos_pantallas')->references('id_pantalla')->on('pantallas')->onDelete('restrict')->onUpdate('restrict');
             
 
             $table->string('nom_pantalla', 40);
