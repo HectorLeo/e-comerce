@@ -10,6 +10,6 @@ class PaginasController extends Controller
     
     public function contenido()
     {
-      return view('admin.admin.contenido1');
+      return view('tienda.home');
     }
 }

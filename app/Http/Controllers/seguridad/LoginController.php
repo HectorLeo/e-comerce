@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/admin/admin';
 
     public function __construct()
     {
@@ -29,7 +29,16 @@ class LoginController extends Controller
             $request->session()->invalidate();
             return redirect('seguridad/logout')->withErrors(['Error' => 'Este usuario no tiene un rol activo']);
         }
-    }   
+    }
+    
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect('/admin');
+    }
     
    
 }

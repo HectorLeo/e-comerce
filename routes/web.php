@@ -12,12 +12,12 @@
 */
 
 //
-Route::get('/', 'seguridad\LoginController@index')->name('login');
+Route::get('admin', 'seguridad\LoginController@index')->name('login');
 Route::post('seguridad/login', 'seguridad\LoginController@login')->name('login_post');
 Route::get('seguridad/logout', 'seguridad\LoginController@logout')->name('logout');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'superadmin']], function(){
-    Route::get('', 'AdminController@index')->name('index');
+    Route::get('admin', 'AdminController@index')->name('index');
     Route::get('producto', 'ProductosController@interfaceagregar' )->name('producto');
     Route::post('producto', 'ProductosController@agregarbd' )->name('producto');
     
@@ -26,5 +26,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 });
 
 
-Route::get('/index', 'PaginasController@contenido' )->name('index');
+Route::get('/home', 'PaginasController@contenido' )->name('home');
 /** */
