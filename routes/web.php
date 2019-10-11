@@ -27,9 +27,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('producto', 'ProductosController@interfaceagregar' )->name('producto');
     Route::post('producto', 'ProductosController@agregarbd' )->name('producto');
     
-    Route::get('categoria', 'CategoriasController@interfaceagregar')->name('categoria');
-    Route::post('categoria', 'CategoriasController@agregarbd')->name('categoria');
+    Route::get('categoria', 'CategoriasController@consultar')->name('categoria');
+    Route::post('categoria', 'CategoriasController@consultar')->name('categoria');
+
+    Route::get('categoriaA', 'CategoriasController@interfaceagregar')->name('agregar');
+    Route::post('categoriaA', 'CategoriasController@agregarbd')->name('agregar');
 });
 
 
+<<<<<<< HEAD
+=======
+Route::get('/', 'PaginasController@contenido' )->name('home');
+>>>>>>> 80277467cb157b60942472743b57fc7ec8728031
 /** */

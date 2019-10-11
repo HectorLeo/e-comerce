@@ -5,7 +5,7 @@
 @endsection
 
 @section('titulonavegacion')
-    <li class="breadcrumb-item active"><a href="{{ route('producto') }}">Categorías</a></li>
+    <li class="breadcrumb-item "><a href="{{ route('producto') }}">Categorías</a></li>
     <li class="breadcrumb-item active">Agregar Categorías</li>
 @endsection
 
@@ -13,6 +13,11 @@
 @section('ActiveCategoria') nav-link active @endsection
 
 @section('content')
+
+@if(session()->has('info'))
+    <div class="alert alert-success">{{session('info')}}</div>
+@endif
+
 <form method="POST" action="{{ route('categoria') }}" enctype="multipart/form-data">
         @csrf
         <div class="row">
@@ -30,15 +35,22 @@
                         
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="etiqueta_producto">Nombre de la Categoría</label>
-                                <input type="text" class="form-control" id="nombre_Categoria" name="nombre_categoria" placeholder="Categoría">
+                                <label for="etiqueta_producto">Nombre de la Categoría*</label>
+                                <input type="text" class="form-control {!! $errors->first('nombre_categoria','is-invalid') !!}" id="nombre_Categoria" name="nombre_categoria" placeholder="Categoría" >
+                                
                             </div>
+                            {!! $errors->first('nombre_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Campo Obligatorio!</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>') !!}
                             <div class="form-group">
-                                <label >Categoría padre</label>
+                                <label >Categoría padre*</label>
                                 
                                     <!-- checkbox -->
                                     <div class="form-group">
-                                        <select id="categoria_padre" name="categoria_padre"  class="form-control">
+                                        <select id="categoria_padre" name="categoria_padre"  class="form-control {!! $errors->first('categoria_padre','is-invalid') !!}">
                                             <option value="" >Selecione una opción</option>
                                             @foreach ($datoscategoria as $item)
                                                 <option value="{{$item->id_categoria}}" >{{$item->nombre_c}}</option>
@@ -48,24 +60,39 @@
                                     </div>
                                 
                             </div>
-                            
+                            {!! $errors->first('categoria_padre','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Campo Obligatorio!</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>') !!}
                             <div class="form-group">
-                                <label >Descripción</label>
-                                <textarea class="form-control" rows="3" id="descripcion_categoria" name="descripcion_categoria" placeholder="Descripción ..."></textarea>
+                                <label >Descripción*</label>
+                                <textarea class="form-control {!! $errors->first('descripcion_categoria','is-invalid') !!}" rows="3" id="descripcion_categoria" name="descripcion_categoria" placeholder="Descripción ..."></textarea>
                                 
                             </div>
-                            
+                            {!! $errors->first('descripcion_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Campo Obligatorio!</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>') !!}
                             <div class="form-group">
-                                <label >Agrege una imagen de la Categoría</label>
+                                <label >Agrege una imagen de la Categoría*</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="imagen_categoria" name="imagen_categoria">
+                                        <input type="file" class="custom-file-input {!! $errors->first('imagen_categoria','is-invalid') !!}" id="imagen_categoria" name="imagen_categoria">
                                         <label class="custom-file-label" for="imagen_categoria">Elige una imagen</label>
                                     </div>
                                     
                                 </div>
                             </div>
-                            
+                            {!! $errors->first('imagen_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>:message</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>') !!}
                         </div>
                         <!-- /.card-body -->
 
@@ -89,15 +116,16 @@
                                 <div class="form-group">
                                     @foreach ($datosroles as $item)
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="id_{{$item->rol}}" name="id{{$item->rol}}">
+                                            <input class="custom-control-input" type="checkbox" id="id_{{$item->rol}}" name="id{{$item->rol}}" checked>
                                             <label for="id_{{$item->rol}}" class="custom-control-label">{{ $item->rol }}</label>
                                         </div>
                                     @endforeach
                                 </div>
                             </div>
                         </div>
+                        
                     </div>  
-                    <img width="100px" src="/storage/eezqmt8WKK6wwiwtkULzlxAqMMWDbiLownnPRhgP.png">
+                    
             </div>
             <!------------------------------------------------ fin roles  --------------------------------------->
             <!------------------------------------------------ inicio botones  ----------------------------------->

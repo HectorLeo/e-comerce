@@ -10,7 +10,9 @@ use App\Rol_Categoria;
 
 class CategoriasController extends Controller
 {
-    
+    public function consultar(){
+      return view('admin.admin.ConsultarCategoria');
+    }
     public function interfaceagregar()
     {
       $datoscategoria = DB::table('categorias')->get();
@@ -18,11 +20,15 @@ class CategoriasController extends Controller
       //$datos = Producto::get();
       return view('admin.admin.AgregarCategoria', compact('datoscategoria','datosroles'));
     }
+    
     public function agregarbd()
     {
-      /*request()->validate([
-        request('nombre_categoria') => 'required'
-      ]);*/
+      request()->validate([
+        'nombre_categoria' => 'required',
+        'categoria_padre' =>'required',
+        'descripcion_categoria' =>'required',
+        'imagen_categoria' =>'required|image',
+      ]);
 
       
       if(request('estado_categoria')){
