@@ -5,7 +5,7 @@
 @endsection
 
 @section('titulonavegacion')
-    <li class="breadcrumb-item ">Categorías</a></li>
+    <li class="breadcrumb-item active">Categorías</a></li>
 @endsection
 
 @section('ActiveCatalogo') nav-item has-treeview menu-open @endsection
@@ -25,10 +25,10 @@
         <h3 class="card-title">Projects</h3>
 
         <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-            <i class="fas fa-minus"></i></button>
-          <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-            <i class="fas fa-times"></i></button>
+        <a class="btn btn-info btn-sm" href="{{ route('agregarCategoria') }}"><i class="fas fa-plus-circle"></i>  Nueva Categoria</a>
+          <!--<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+            <i class="fas fa-minus"></i></button>-->
+           
         </div>
       </div>
       <div class="card-body p-0" style="display: block;">
@@ -36,85 +36,68 @@
             <thead>
                 <tr>
                     <th style="width: 1%">
-                        #
+                        ID
                     </th>
                     <th style="width: 20%">
-                        Project Name
+                        Nombre
                     </th>
                     <th style="width: 30%">
-                        Team Members
+                        Descripción
                     </th>
-                    <th>
-                        Project Progress
+                    <th style="width: 10%">
+                        Activo
                     </th>
-                    <th style="width: 8%" class="text-center">
-                        Status
-                    </th>
-                    <th style="width: 20%">
+                    
+                    <th style="width: 30%">
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        #
-                    </td>
-                    <td>
-                        <a>
-                            AdminLTE v3
-                        </a>
-                        <br>
-                        <small>
-                            Created 01.01.2019
-                        </small>
-                    </td>
-                    <td>
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <img alt="Avatar" class="table-avatar" src="../../dist/img/avatar.png">
-                            </li>
-                            <li class="list-inline-item">
-                                <img alt="Avatar" class="table-avatar" src="../../dist/img/avatar2.png">
-                            </li>
-                            <li class="list-inline-item">
-                                <img alt="Avatar" class="table-avatar" src="../../dist/img/avatar3.png">
-                            </li>
-                            <li class="list-inline-item">
-                                <img alt="Avatar" class="table-avatar" src="../../dist/img/avatar04.png">
-                            </li>
-                        </ul>
-                    </td>
-                    <td class="project_progress">
-                        <div class="progress progress-sm">
-                            <div class="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="100" style="width: 57%">
-                            </div>
-                        </div>
-                        <small>
-                            57% Complete
-                        </small>
-                    </td>
-                    <td class="project-state">
-                        <span class="badge badge-success">Success</span>
-                    </td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                
+                @foreach ($datoscategorias as $item)
+                    <tr>
+                        <td>
+                            {{$item->id_categoria}}
+                        </td>
+                        <td>
+                            <a>
+                                {{$item->nombre_c}}
+                            </a>
+                            
+                        </td>
+                        <td>
+                            <a>
+                                {{$item->descripcion}}
+                            </a>
+                        </td>
+                        <td class="project_progress">
+                                
+                            @if(($item->mostrado_c) == 1)
+                                <i class="fas fa-check"></i> <!-- activo -->
+                            @else
+                                <i class="fas fa-times"></i> <!-- desactivo -->
+                            @endif
+                            
+                            
+                        </td>
+                        <td class="project-actions text-right">
+                            <!--<a class="btn btn-primary btn-sm" href="#">
+                                <i class="fas fa-folder">
+                                </i>
+                                View
+                            </a>-->
+                        <a class="btn btn-info btn-sm" href="{{route('editarCategoria', ''.$item->id_categoria.'')}}">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Modificar
+                            </a>
+                            <a class="btn btn-danger btn-sm" href="#">
+                                <i class="fas fa-trash">
+                                </i>
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
       </div>
