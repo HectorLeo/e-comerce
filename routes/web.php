@@ -32,11 +32,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
     Route::get('categoriaA', 'CategoriasController@interfaceagregar')->name('agregar');
     Route::post('categoriaA', 'CategoriasController@agregarbd')->name('agregar');
+
+    Route::get('trasnporte', 'TransporteController@interfaceagregar' )->name('transporte');
+    Route::post('Transporte', 'TransporteController@agregarbd' )->name('transporte');
+
 });
-
-
-<<<<<<< HEAD
-=======
-Route::get('/', 'PaginasController@contenido' )->name('home');
->>>>>>> 80277467cb157b60942472743b57fc7ec8728031
-/** */

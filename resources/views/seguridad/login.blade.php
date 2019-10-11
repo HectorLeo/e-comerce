@@ -80,19 +80,10 @@
         </div>
         <!-- /.login-box -->
         </div>
-<<<<<<< HEAD
         </body>
         <!-- jQuery -->
         <script src="../../plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->
         <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-=======
-        
-        
-        </body>
-    <!-- jQuery -->
-        <script src="\assets\lte\plugins\jquery\jquery.min.js"></script>
-        <!-- Bootstrap 4 -->
-        <script src="\assets\lte\plugins\bootstrap\js\bootstrap.bundle.min.js"></script>
->>>>>>> 80277467cb157b60942472743b57fc7ec8728031
+
 </html>

@@ -20,6 +20,16 @@ class CrearTablaTransportistas extends Migration
             $table->boolean('estado_transporte', 50);
             $table->string('logotipo_transporte', 50);
             $table->string('retraso_transporte', 100);
+            $table->integer('facturacion');
+            $table->float('impuestos');
+            $table->boolean('fuera_rango');
+            $table->float('r_mayorigual');
+            $table->float('r_menor');
+            $table->float('anchura');
+            $table->float('altura');
+            $table->float('profundidad');
+            $table->float('peso');     
+
             $table->timestamps();
         });
     }

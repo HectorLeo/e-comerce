@@ -15,8 +15,8 @@ class CrearTablaPedidos extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->Increments('id_pedido');
-            $table->unsignedInteger('id_envio');
-            $table->foreign('id_envio', 'fk_pedidos_envios')->references('id_envio')->on('envios')->onDelete('restrict')->onUpdate('restrict');
+            //$table->unsignedInteger('id_envio');
+            //$table->foreign('id_envio', 'fk_pedidos_envios')->references('id_envio')->on('envios')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedInteger('id_transporte');
             $table->foreign('id_transporte', 'fk_pedidos_transportistas')->references('id_transporte')->on('transportistas')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedInteger('id_usuario');

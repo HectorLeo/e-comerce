@@ -16,9 +16,9 @@ class CrearTablaCategorias extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->Increments('id_categoria');
             $table->string('nombre_c', 50);
-            $table->string('tipo-categoria', 50);
+            $table->string('tipo_categoria', 50);
             $table->string('imagen_c', 100);
-            $table->string('decripcion', 300);
+            $table->string('descripcion', 300);
             $table->boolean('mostrado_c');
             $table->timestamps();
         });

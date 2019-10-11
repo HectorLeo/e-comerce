@@ -8,7 +8,7 @@
     <li class="breadcrumb-item active"><a href="{{ route('producto') }}">Producto</a></li>
     <li class="breadcrumb-item active">Agregar Producto</li>
 @endsection
-
+@section('ActiveCata') nav-link active @endsection
 @section('ActiveCatalogo') nav-item has-treeview menu-open @endsection
 @section('ActiveProducto') nav-link active @endsection
 
