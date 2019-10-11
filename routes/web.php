@@ -12,9 +12,15 @@
 */
 
 //
+Route::get('/', 'PaginasController@contenido' )->name('home');
+
 Route::get('admin', 'seguridad\LoginController@index')->name('login');
 Route::post('seguridad/login', 'seguridad\LoginController@login')->name('login_post');
 Route::get('seguridad/logout', 'seguridad\LoginController@logout')->name('logout');
+
+Route::get('loginC', 'cliente\LoginClienteController@index')->name('loginC');
+Route::post('cliente/login', 'cliente\LoginClienteController@login')->name('loginC_post');
+Route::get('cliente/logout', 'cliente\LoginClienteController@logout')->name('logout');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'superadmin']], function(){
     Route::get('admin', 'AdminController@index')->name('index');
@@ -26,5 +32,4 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 });
 
 
-Route::get('/home', 'PaginasController@contenido' )->name('home');
 /** */
