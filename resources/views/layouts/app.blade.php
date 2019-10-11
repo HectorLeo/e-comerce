@@ -13,7 +13,10 @@
         <link rel="stylesheet" href="\assets\lte\dist\css\adminlte.min.css">
   
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  
+      <!-- Boton-->
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet" />
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
         
@@ -184,7 +187,7 @@
                             <!-- Add icons to the links using the .nav-icon class
                                  with font-awesome or any other icon font library -->
                             <li class="@yield('ActiveCatalogo', 'nav-item' )">
-                              <a href="#" class="nav-link active">
+                              <a href="#" class="@yield('ActiveCata', 'nav-link')">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 
                                 <p>
@@ -417,32 +420,27 @@
                                 </li>
                               </ul>
                             </li>
-                            <li class="nav-header">EXAMPLES</li>
-                            <li class="nav-item has-treeview">
-                              <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-envelope"></i>
+                            <li class="nav-header">PERSONALIZAR</li>
+                    
+                            <li class="@yield('Activetransporte', 'nav-item')"> 
+                              <a href="#" class="@yield('ActiveTrans', 'nav-link')">
+                                <i class="fas fa-shuttle-van"></i>
                                 <p>
-                                  Mailbox
+                                  Transporte
                                   <i class="fas fa-angle-left right"></i>
                                 </p>
                               </a>
                               <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                  <a href="pages/mailbox/mailbox.html" class="nav-link">
+                                  <a href="{{ route('transporte') }}" class="@yield('Activetransportistas', 'nav-link')">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Inbox</p>
+                                    <p>Transportistas</p>
                                   </a>
                                 </li>
                                 <li class="nav-item">
-                                  <a href="pages/mailbox/compose.html" class="nav-link">
+                                  <a href="{{ route('producto') }}" class="@yield('Activepreferencias', 'nav-link')">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Compose</p>
-                                  </a>
-                                </li>
-                                <li class="nav-item">
-                                  <a href="pages/mailbox/read-mail.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Read</p>
+                                    <p>Preferencias</p>
                                   </a>
                                 </li>
                               </ul>
