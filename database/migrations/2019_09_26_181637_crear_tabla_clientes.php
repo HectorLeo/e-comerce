@@ -14,16 +14,16 @@ class CrearTablaClientes extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->Increments('id_usuario');
+            $table->Increments('usuario_id_usuario');
             //$table->integer('id_usuario');
-            $table->foreign('id_usuario', 'fk_clientes_usuarios')->references('id_usuario')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('usuario_id_usuario', 'fk_clientes_usuarios')->references('id_usuario')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
             //$table->primary('correo');
             $table->string('nombre', 30);
             $table->string('a_paterno', 30);
             $table->string('a_materno', 30);
             $table->string('telefono', 10);
-            $table->unsignedInteger('clave_rol');
-            $table->foreign('clave_rol', 'fk_clientes_rol')->references('clave_rol')->on('rol')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedInteger('rol_clave_rol');
+            $table->foreign('rol_clave_rol', 'fk_clientes_rol')->references('clave_rol')->on('rol')->onDelete('restrict')->onUpdate('restrict');
             $table->boolean('estado');
             $table->timestamps();
         });
