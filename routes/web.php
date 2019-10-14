@@ -29,6 +29,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     
     Route::get('categoria', 'CategoriasController@consultar')->name('categoria');
     Route::post('categoria', 'CategoriasController@consultar')->name('categoria');
+    Route::get('categoriaA', 'CategoriasController@interfaceagregar')->name('agregarCategoria');
+    Route::post('categoriaA', 'CategoriasController@agregarbd')->name('agregarCategoria');
+    Route::get('categoriaM/{id}', 'CategoriasController@interfacemodificar')->name('editarCategoria');
+    Route::post('categoriaM', 'CategoriasController@modificarbd')->name('agregarModificacion');
+
 
     Route::get('categoriaA', 'CategoriasController@interfaceagregar')->name('agregar');
     Route::post('categoriaA', 'CategoriasController@agregarbd')->name('agregar');

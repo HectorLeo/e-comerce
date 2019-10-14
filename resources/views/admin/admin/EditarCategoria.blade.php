@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('titulohome')
-    <h1 class="m-0 text-dark">Agregar Categorías</h1>
+    <h1 class="m-0 text-dark">Modificar Categoría</h1>
 @endsection
 
 @section('titulonavegacion')
     <li class="breadcrumb-item "><a href="{{ route('categoria') }}">Categorías</a></li>
-    <li class="breadcrumb-item active">Agregar Categorías</li>
+    <li class="breadcrumb-item active">Modificar Categorías</li>
 @endsection
 
 @section('ActiveCatalogo') nav-item has-treeview menu-open @endsection
@@ -18,8 +18,9 @@
     <div class="alert alert-success">{{session('info')}}</div>
 @endif
 
-<form method="POST" action="{{ route('agregarCategoria') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('agregarModificacion') }}" enctype="multipart/form-data">
         @csrf
+        
         <div class="row">
             
             <!-- left column -->
@@ -36,7 +37,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="etiqueta_producto">Nombre de la Categoría*</label>
-                                <input type="text" class="form-control {!! $errors->first('nombre_categoria','is-invalid') !!}" id="nombre_Categoria" name="nombre_categoria" placeholder="Categoría" >
+                            <input type="text" class="form-control {!! $errors->first('nombre_categoria','is-invalid') !!}" id="nombre_Categoria" name="nombre_categoria" value="{{$nombre_c}}" placeholder="Categoría" >
                                 
                             </div>
                             {!! $errors->first('nombre_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -53,8 +54,11 @@
                                         <select id="categoria_padre" name="categoria_padre"  class="form-control {!! $errors->first('categoria_padre','is-invalid') !!}">
                                             <option value="" >Selecione una opción</option>
                                             @foreach ($datoscategoria as $item)
-                                                <option value="{{$item->id_categoria}}" >{{$item->nombre_c}}</option>
-                                                
+                                                @if ($tipo_c==$item->id_categoria)
+                                                    <option value="{{$item->id_categoria}}" selected >{{$item->nombre_c}}</option>
+                                                @else
+                                                    <option value="{{$item->id_categoria}}" >{{$item->nombre_c}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
@@ -68,7 +72,7 @@
                               </div>') !!}
                             <div class="form-group">
                                 <label >Descripción*</label>
-                                <textarea class="form-control {!! $errors->first('descripcion_categoria','is-invalid') !!}" rows="3" id="descripcion_categoria" name="descripcion_categoria" placeholder="Descripción ..."></textarea>
+                            <textarea class="form-control {!! $errors->first('descripcion_categoria','is-invalid') !!}" rows="3" id="descripcion_categoria" name="descripcion_categoria"  placeholder="Descripción ...">{{$descripcion}}</textarea>
                                 
                             </div>
                             {!! $errors->first('descripcion_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -77,16 +81,17 @@
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>') !!}
+                            <label >Imagen </label>
                             <div class="form-group">
-                                <label >Agrege una imagen de la Categoría*</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input {!! $errors->first('imagen_categoria','is-invalid') !!}" id="imagen_categoria" name="imagen_categoria">
-                                        <label class="custom-file-label" for="imagen_categoria">Elige una imagen</label>
-                                    </div>
-                                    
-                                </div>
+                                
+                                <img src="{{Storage::url($imagen_c)}}" alt="Imagen de la categoria">
                             </div>
+                            <label >Agregar nueva imagen</label>
+                            <div class="custom-file">
+                                <input type="file" lang="es" class="custom-file-input {!! $errors->first('imagen_categoria','is-invalid') !!}" id="imagen_categoria" name="imagen_categoria" >
+                                <label class="custom-file-label" for="imagen_categoria">Elige una imagen</label>
+                            </div>
+                            
                             {!! $errors->first('imagen_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <strong>:message</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -115,10 +120,13 @@
                                 <!-- checkbox -->
                                 <div class="form-group">
                                     @foreach ($datosroles as $item)
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="id_{{$item->rol}}" name="id{{$item->rol}}" checked>
-                                            <label for="id_{{$item->rol}}" class="custom-control-label">{{ $item->rol }}</label>
-                                        </div>
+                                        @foreach ($roles as $rolactivo)
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" id="id_{{$item->rol}}" name="id{{$item->rol}}" checked>
+                                                <label for="id_{{$item->rol}}" class="custom-control-label">{{ $item->rol }}</label>
+                                            </div>
+                                        @endforeach
+                                        
                                     @endforeach
                                 </div>
                             </div>
@@ -139,7 +147,10 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                                <input type="checkbox" class="custom-control-input" id="estado_categoria" name="estado_categoria">
+                                                <input type="checkbox" class="custom-control-input" id="estado_categoria" name="estado_categoria" 
+                                                @if ($mostrado_c==1)
+                                                    checked
+                                                @endif>
                                                 <label class="custom-control-label" for="estado_categoria">Seleccione el estado de la categoría</label>
                                             </div>
                                         </div>
@@ -162,6 +173,5 @@
 
         </div>
         
-            
     </form>
 @endsection
