@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Models\Admin\Categoria;
-use App\Rol_Categoria;
+use App\Models\Admin\Rol_Categoria;
 
 
 class CategoriasController extends Controller
@@ -68,7 +68,8 @@ class CategoriasController extends Controller
           Rol_Categoria:: create([
             //'clave_rol'=>"aa1",
             'id_categoria'=> $id,
-            'clave_rol'=> $item
+            'clave_rol'=> $item,
+            'activo'=> 1
             
           ]);
         
@@ -93,63 +94,91 @@ class CategoriasController extends Controller
         $descripcion = $item->descripcion;
         $mostrado_c = $item->mostrado_c;
       }
-      $roles = DB::table('roles_categorias')->where('id_categoria','=',$id)->get();
       
+      /*$roles = DB::table('roles_categorias')->whereColumn([
+          ["id_categoria","=",(int)$id],
+          ['activo',1]
+        ])->get();*/
+      $roles = DB::select("select * from roles_categorias where (id_categoria = $id and activo = 1)");
+      //return $roles;
       $datoscategoria = DB::table('categorias')->get();
+      
       $datosroles = DB::table('rol')->where('clave_rol','!=','1')->get();
+      //return $roles ;
       //$datos = Producto::get();
-      return view('admin.admin.EditarCategoria', compact('datoscategoria','datosroles','nombre_c','tipo_c','imagen_c','descripcion','mostrado_c','roles'));
+      return view('admin.admin.EditarCategoria', compact('datoscategoria','datosroles','nombre_c','tipo_c','imagen_c','descripcion','mostrado_c','roles','id'));
     }
     
-    public function modificarbd()
+    public function modificarbd($id)
     {
       request()->validate([
         'nombre_categoria' => 'required',
         'categoria_padre' =>'required',
         'descripcion_categoria' =>'required',
-        'imagen_categoria' =>'required|image',
+        'imagen_categoria' =>'image',
       ]);
 
-      
+      //return request('imagen_categoria');
+      if(request('imagen_categoria')==""){
+        $url = request('imagen_actual');
+      }else{
+        $url = request()->file('imagen_categoria')->store('public');
+      }
       if(request('estado_categoria')){
         $estado = 1;
       }else{
         $estado = 0;
       }
-      request()->file('imagen_categoria')->store('public');
-
-      $url = request()->file('imagen_categoria')->store('public');
-      
-      Categoria:: create([
-        
+      $nombre_c=request('nombre_categoria');
+      $tipo_c = request('categoria_padre');
+      $imagen_c = $url;
+      $descripcion = request('descripcion_categoria');
+      $mostrado_c = $estado;
+      //request()->file('imagen_categoria')->store('public');
+      DB::update("update categorias set nombre_c = '$nombre_c', tipo_categoria = '$tipo_c', imagen_c ='$imagen_c', descripcion='$descripcion', mostrado_c=$mostrado_c   where id_categoria = $id"); 
+      /*$id->update([
         'nombre_c'=> request('nombre_categoria'),
         'tipo_categoria'=> request('categoria_padre'),
         'imagen_c'=> $url,
         'descripcion'=> request('descripcion_categoria'),
         'mostrado_c'=> $estado
-      ]);
-      $vector = array();
+      ]);*/
+
+      /*$categoriaAc = DB::table('categorias')->where('id_categoria','=',''.$id.'')->get();
+      
+      $categoriaAc->nombre_c = request('nombre_categoria');
+      $categoriaAc->tipo_categoria = request('categoria_padre');
+      $categoriaAc->imagen_c = request('nombre_categoria');
+      $categoriaAc->nombre_c = request('nombre_categoria');
+      $categoriaAc->nombre_c = request('nombre_categoria');
+      $categoriaAc->save();*/
+      //$id_categoria=$id;
+      //$rocat=Rol_Categoria::findOrFail($id_categoria);
+      //Rol_Categoria::destroy($id);
+      //$rocat->delete();
+
+      
       $datos = DB::table('rol')->where('clave_rol','!=','1')->get();
-      //return $datos;
-      foreach($datos as $item){
-        if(request('id'.$item->rol.'')){
-          $vector[] = $item->clave_rol;
-          
-        }
-      }
+     
+      
       $idCategoria = DB::table('categorias')->where('nombre_c','=',request('nombre_categoria'))->get('id_categoria');
-      $id="";
+      $idrol="";
       foreach($idCategoria as $item){
-        $id=$item->id_categoria;
+        $idrol=$item->id_categoria;
       }
-      //return $vector;
-      foreach($vector as $item){
-          Rol_Categoria:: create([
-            //'clave_rol'=>"aa1",
-            'id_categoria'=> $id,
-            'clave_rol'=> $item
-            
-          ]);
+      
+      foreach($datos as $item){
+          
+            if(request('id'.$item->rol.'')){
+              DB::table('roles_categorias')->updateOrInsert(
+                ['id_categoria' => $id, 'clave_rol' => $item->clave_rol],
+                ['activo' => '1']);
+            }else{
+              DB::table('roles_categorias')->updateOrInsert(
+                ['id_categoria' => $id, 'clave_rol' => $item->clave_rol],
+                ['activo' => '0']);
+              }
+         
         
       }
       return redirect()->route('categoria');

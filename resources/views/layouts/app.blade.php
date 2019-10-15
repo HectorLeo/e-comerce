@@ -11,10 +11,10 @@
         <link rel="stylesheet" href="\assets\lte\plugins\icheck-bootstrap\icheck-bootstrap.min.css">
   
         <link rel="stylesheet" href="\assets\lte\dist\css\adminlte.min.css">
-  
+        <link rel="stylesheet" href="\assets\lte\plugins\sweetalert2-theme-bootstrap-4\bootstrap-4.min.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-      <!-- Boton-->
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <!-- Boton-->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet" />
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
         <!-- Google Font: Source Sans Pro -->
@@ -544,4 +544,7 @@
      <script src="\assets\lte\dist\js\pages\dashboard.js"></script>
      <!-- AdminLTE for demo purposes -->
      <script src="\assets\lte\dist\js\demo.js"></script>
+     <script src="\assets\lte\plugins\sweetalert2\sweetalert2.min.js"></script>
+     <script src="\assets\lte\plugins\toastr\toastr.min.js"></script>
+     @yield('scripts');
 </html>

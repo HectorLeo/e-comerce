@@ -18,8 +18,8 @@
     <div class="alert alert-success">{{session('info')}}</div>
 @endif
 
-<form method="POST" action="{{ route('agregarModificacion') }}" enctype="multipart/form-data">
-        @csrf
+<form method="POST" action="{{ route('agregarModificacion', ''.$id.'') }}" enctype="multipart/form-data">
+        @csrf @method('PATCH')
         
         <div class="row">
             
@@ -83,12 +83,12 @@
                               </div>') !!}
                             <label >Imagen </label>
                             <div class="form-group">
-                                
-                                <img src="{{Storage::url($imagen_c)}}" alt="Imagen de la categoria">
+                                <img width="200px" src="{{Storage::url($imagen_c)}}" alt="Imagen de la categoria">
+                                <input type="hidden" id="imagen_actual" name="imagen_actual" value="{{$imagen_c}}">
                             </div>
                             <label >Agregar nueva imagen</label>
                             <div class="custom-file">
-                                <input type="file" lang="es" class="custom-file-input {!! $errors->first('imagen_categoria','is-invalid') !!}" id="imagen_categoria" name="imagen_categoria" >
+                                <input type="file"  lang="es" class="custom-file-input {!! $errors->first('imagen_categoria','is-invalid') !!}" id="imagen_categoria" name="imagen_categoria" >
                                 <label class="custom-file-label" for="imagen_categoria">Elige una imagen</label>
                             </div>
                             
@@ -119,14 +119,26 @@
                             <div class="col-sm-6">
                                 <!-- checkbox -->
                                 <div class="form-group">
+                                    
                                     @foreach ($datosroles as $item)
+                                        @php ($band=false)
                                         @foreach ($roles as $rolactivo)
-                                            <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" type="checkbox" id="id_{{$item->rol}}" name="id{{$item->rol}}" checked>
-                                                <label for="id_{{$item->rol}}" class="custom-control-label">{{ $item->rol }}</label>
-                                            </div>
+                                            @if (($item->clave_rol)==($rolactivo->clave_rol))
+                                                @php ($band=true)
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox" id="id_{{$item->rol}}" name="id{{$item->rol}}" checked>
+                                                    <label for="id_{{$item->rol}}" class="custom-control-label">{{ $item->rol }}</label>
+                                                </div>
+                                                
+                                            @endif
+                                            
                                         @endforeach
-                                        
+                                        @if ($band!=true)
+                                            <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox" id="id_{{$item->rol}}" name="id{{$item->rol}}" >
+                                                    <label for="id_{{$item->rol}}" class="custom-control-label">{{ $item->rol }}</label>
+                                                </div>
+                                        @endif
                                     @endforeach
                                 </div>
                             </div>

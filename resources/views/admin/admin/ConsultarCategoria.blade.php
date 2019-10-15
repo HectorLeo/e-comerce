@@ -90,11 +90,10 @@
                                 </i>
                                 Modificar
                             </a>
-                            <a class="btn btn-danger btn-sm" href="#">
-                                <i class="fas fa-trash">
-                                </i>
-                                Eliminar
-                            </a>
+                           
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-danger">
+                                <i class="fas fa-trash"></i> Eliminar
+                              </button>
                         </td>
                     </tr>
                 @endforeach
@@ -104,6 +103,50 @@
       <!-- /.card-body -->
     </div>
     <!-- /.card -->
-
+    <!---------------------------modal eliminar---------------------------------------->
+    <div class="modal fade" id="modal-danger" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content bg-danger">
+            <div class="modal-header">
+              <h4 class="modal-title">Danger Modal</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>One fine body…</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-outline-light">Save changes</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+    <!---------------------------------->
   </section>
+
+  
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    $(function() {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      $('.swalDefaultError').click(function() {
+        Toast.fire({
+          type: 'error',
+          title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+        })
+      });
+  
+    });
+  
+  </script>
 @endsection
