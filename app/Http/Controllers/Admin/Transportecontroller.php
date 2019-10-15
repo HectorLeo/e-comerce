@@ -3,11 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Transporte_Rol;
+use App\Models\Admin\Transportista;
 use  DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as IlluminateRequest;
 
 class Transportecontroller extends Controller
-{
+{ 
+  public function consultar(Request $request){
+    $id= $request->get('id');
+    $nombre= $request->get('nombre');
+    $retraso= $request->get('retraso');
+    $estado= $request->get('estado');
+    $envio= $request->get('envio');
+    $datostransportes = Transportista::orderBY('id_transporte', 'DESC')
+    ->id($id)
+    ->nombre($nombre)
+    ->retraso($retraso)
+    ->estado($estado)
+    ->envio($envio)
+    ->paginate(4);
+  //$datostransportes = DB::table('transportistas')->get();
+  return view('admin.admin.ConsultarTransporte', compact('datostransportes'));
+}
+
     public function interfaceagregar()
     {
       $datosroles = DB::table('rol')->where('clave_rol','!=','1')->get();
@@ -26,14 +46,7 @@ class Transportecontroller extends Controller
         'rango_comportamiento' =>'required',
 
       ]);
-        request()([
-          'rango_mayor',
-          'rango_menor',
-          'anchura',
-          'altura',
-          'profundidad',
-          'peso'
-        ]);
+       
       
       if(request('impuestos')){
         $impuestos = 1;
@@ -54,22 +67,22 @@ class Transportecontroller extends Controller
 
       $url = request()->file('imagen_logotipo')->store('public');
       
-      Categoria:: create([
+      Transportista:: create([
         
-        'nombre_t'=> request('nombre_transporte'),
-        'retraso'=> request('retraso_transporte'),
-        'facturacion'=> request('custom_radio'),
-        'lis_impuestos'=> request('lista_impuestos'),
-        'rango'=> request('rango_comportamiento'),
-        'mayor'=> request('rango_mayor'),
-        'menor'=> request('rango_menor'),
+        'nombre_transporte'=> request('nombre_transporte'),
+        'retraso_transporte'=> request('retraso_transporte'),
+        'facturacion'=> request('customRadio'),
+        'impuestos'=> request('lista_impuestos'),
+        'fuera_rango'=> request('rango_comportamiento'),
+        'r_mayorigual'=> request('rango_mayor'),
+        'r_menor'=> request('rango_menor'),
         'anchura'=> request('anchura'),
         'altura'=> request('altura'),
         'profundidad'=> request('profundidad'),
-        'peso'=> request('peso'),
-        'logotipo'=> $url,
+        'peso'=> request('peso_max'),
+        'logotipo_transporte'=> $url,
         'envio_gratis'=> $envio_g,
-        'mostrado_c'=> $estado,
+        'estado_transporte'=> $estado,
         //'mostrado_c'=> $estado
       ]);
       $vector = array();
@@ -81,22 +94,22 @@ class Transportecontroller extends Controller
           
         }
       }
-      $idCategoria = DB::table('categorias')->where('nombre_c','=',request('nombre_categoria'))->get('id_categoria');
+      $idTransporte = DB::table('transportistas')->where('nombre_transporte','=',request('nombre_transporte'))->get('id_transporte');
       $id="";
-      foreach($idCategoria as $item){
-        $id=$item->id_categoria;
+      foreach($idTransporte as $item){
+        $id=$item->id_transporte;
       }
       //return $vector;
       foreach($vector as $item){
-          Rol_Categoria:: create([
+          Transporte_Rol:: create([
             //'clave_rol'=>"aa1",
-            'id_categoria'=> $id,
+            'id_transporte'=> $id,
             'clave_rol'=> $item
             
           ]);
         
       }
-      return redirect()->route('categoria');
+      return redirect()->route('transporte');
      
     }
 }

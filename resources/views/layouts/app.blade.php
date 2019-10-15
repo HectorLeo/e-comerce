@@ -432,7 +432,7 @@
                               </a>
                               <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                  <a href="{{ route('transporte') }}" class="@yield('Activetransportistas', 'nav-link')">
+                                  <a href="{{ route('transporteC') }}" class="@yield('Activetransportistas', 'nav-link')">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Transportistas</p>
                                   </a>
