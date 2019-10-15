@@ -6,7 +6,7 @@
 @endsection
 
 @section('titulonavegacion')
-    <li class="breadcrumb-item active"><a href="{{ route('transporte') }}">Transporte</a></li>
+    <li class="breadcrumb-item active"><a href="{{ route('transporteC') }}">Transporte</a></li>
     <li class="breadcrumb-item active">Agregar transporte</li>
 @endsection
 @section('ActiveTrans') nav-link active @endsection
@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label >Tiempo de transito</label>
-                            <input type="text" class="form-control" id="retarso_transporte" name="retarso_transporte" placeholder="Tiempo de Transito">
+                            <input type="text" class="form-control" id="retraso_transporte" name="retraso_transporte" placeholder="Tiempo de Transito">
                         </div>
                         <div class="form-group">
                             <label >Logotipo</label>
@@ -102,7 +102,7 @@
                                 <label for="customRadio1" class="custom-control-label">En función del precio total.</label>
                         </div>
                         <div class="custom-control custom-radio">
-                                <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio"  value="1">
+                                <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio"  value="1" checked>
                                 <label for="customRadio2" class="custom-control-label">En función del peso total.</label>
                         </div>
                     </div>
@@ -111,8 +111,8 @@
                             <label>Impuestos</label>
                             <select id="lista_impuestos" name="lista_impuestos"  class="form-control">
                                 <option value="0"selected="selected" >Sin impuestos</option>
-                                <option value="1">MX Reduce Rate (11%)</option>
-                                <option value="2">MX Reduce Rate (16%)</option>
+                                <option value="11">MX Reduce Rate (11%)</option>
+                                <option value="16">MX Reduce Rate (16%)</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -129,9 +129,9 @@
                                     <label >Sera aplicado cuando el sea >=</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">$</span>
+                                            <span class="input-group-text">Kg</span>
                                         </div>
-                                        <input type="text" class="form-control" id="rango_mayor" name="rango_mayor" placeholder="0,000">
+                                        <input type="text" class="form-control" id="rango_mayor" name="rango_mayor" placeholder="0.000">
                                         <div class="input-group-append">
                                                 <span class="input-group-text">.00</span>
                                         </div>
@@ -143,9 +143,9 @@
                                         <label >Sera aplicado cuando el sea <</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">$</span>
+                                                <span class="input-group-text">Kg</span>
                                             </div>
-                                            <input type="text" class="form-control" id="rango_menor" name="rango_menor" readonly>
+                                            <input type="text" class="form-control" id="rango_menor" name="rango_menor" placeholder="0.000">
                                             <div class="input-group-append">
                                                     <span class="input-group-text">.00</span>
                                             </div>
@@ -203,7 +203,7 @@
     <div align="center" class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" data-toggle="toggle" name="estado">
+                    <input type="checkbox" data-toggle="toggle" name="estado" id="estado">
                     Activado
                 </label>
             </div>
