@@ -15,8 +15,6 @@ class CrearTablaProductos extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->Increments('id_producto');
-            $table->unsignedInteger('id_transporte');
-            $table->foreign('id_transporte', 'fk_productos_transportistas')->references('id_transporte')->on('transportistas')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedInteger('id_categoria');
             $table->foreign('id_categoria', 'fk_productos_categorias')->references('id_categoria')->on('categorias')->onDelete('restrict')->onUpdate('restrict');
             $table->string('nombre_p',30);

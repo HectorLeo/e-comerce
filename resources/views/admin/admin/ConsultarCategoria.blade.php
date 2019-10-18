@@ -106,19 +106,9 @@
     <!---------------------------modal eliminar---------------------------------------->
     <div class="modal fade" id="modal-danger" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
-            @php
-                @ $db = new mysqli(localhost, "root", "", "e-comerce");
-                if ($db->connect_error){
-                    die('Error de Conexion ('.$db->connect_errno.')'.$db->connect_error);
-                }else{
-                    
-                    $datoshijos= "entro";
-                }
-            @endphp
-           
           <div class="modal-content bg-danger">
               <div class="modal-header">
-              <h4 class="modal-title">Eliminar Categoría {{$datoshijos}}</h4>
+              <h4 class="modal-title">Eliminar Categoría</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span>
                 </button>
@@ -140,24 +130,4 @@
 @endsection
 @section('scripts')
 <script src="{{ asset('js/categorias.js') }}"></script>
-<!--script type="text/javascript">
-    $(function() {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000
-      });
-      $('.swalDefaultError').click(function() {
-        Toast.fire({
-          type: 'error',
-          title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-        })
-      });
-  
-    });
-  
-  </script-->
-
-  
 @endsection

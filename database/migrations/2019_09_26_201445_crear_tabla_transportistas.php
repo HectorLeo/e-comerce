@@ -18,7 +18,7 @@ class CrearTablaTransportistas extends Migration
             $table->boolean('envio_gratis');
             $table->string('nombre_transporte', 50);
             $table->boolean('estado_transporte');
-            $table->string('logotipo_transporte', 50);
+            $table->string('logotipo_transporte', 200);
             $table->string('retraso_transporte', 100);
             $table->integer('facturacion');
             $table->float('impuestos');
@@ -29,7 +29,7 @@ class CrearTablaTransportistas extends Migration
             $table->float('altura');
             $table->float('profundidad');
             $table->float('peso');     
-
+            $table->boolean('estado_impuesto');
             $table->timestamps();
         });
     }

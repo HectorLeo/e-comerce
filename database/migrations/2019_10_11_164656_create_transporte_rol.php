@@ -19,6 +19,7 @@ class CreateTransporteRol extends Migration
             $table->foreign('clave_rol', 'fk_transporte_rol_rol')->references('clave_rol')->on('rol')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedInteger('id_transporte');
             $table->foreign('id_transporte', 'fk_transporte_rol_transportistas')->references('id_transporte')->on('transportistas')->onDelete('restrict')->onUpdate('restrict');
+            $table->boolean('activo');
             $table->timestamps();
         });
     }

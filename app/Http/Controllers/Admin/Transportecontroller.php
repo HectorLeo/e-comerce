@@ -56,7 +56,7 @@ class Transportecontroller extends Controller
       if(request('envio_g')){
         $envio_g = 1;
       }else{
-        $envio_g = 0;
+        $envio_g = 2;
       }
       if(request('estado')){
         $estado = 1;
@@ -110,7 +110,7 @@ class Transportecontroller extends Controller
           ]);
         
       }
-      return redirect()->route('transporte');
+      return redirect()->route('transporteC');
      
     }
 
@@ -181,7 +181,7 @@ class Transportecontroller extends Controller
       if(request('envio_g')){
         $envio_g = 1;
       }else{
-        $envio_g = 0;
+        $envio_g = 2;
       }
       if(request('estado')){
         $estado = 1;
@@ -233,6 +233,30 @@ class Transportecontroller extends Controller
         
       }
       return redirect()->route('transporteC');
+     
+    }
+
+    public function eliminar(Request $request){
+      $id = $request->id;
+      $c_padre = DB::table('categorias')->where('tipo_categoria','=',$id)->get();
+      if(!$c_padre->isEmpty()){//checo si esta vacia la consulta
+        $guardado="1";
+        return response()->json(['guardado' => $guardado], 200);
+      }else{
+        $c_producto = DB::table('productos')->where('id_categoria','=',$id)->get();
+        if(!$c_producto->isEmpty()){//checo si esta vacia la consulta
+          $guardado="2";
+          return response()->json(['guardado' => $guardado], 200);
+        }else{
+          $eliminarrol = DB::delete("delete from roles_categorias where id_categoria = $id");
+          $eliminar = DB::delete("delete from categorias where id_categoria = $id");
+          $guardado="3";
+          return response()->json(['guardado' => $guardado], 200);
+        }
+        
+      }
+
+
      
     }
 
