@@ -7,11 +7,21 @@ use DB;
 use App\Models\Admin\Categoria;
 use App\Models\Admin\Rol_Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as IlluminateRequest;
 
 class CategoriasController extends Controller
 {
-    public function consultar(){
-      $datoscategorias = DB::table('categorias')->get();
+    public function consultar(Request $request){
+      $id= $request->get('id');
+      $nombre= $request->get('nombre');
+      $estado= $request->get('estado');
+      
+      $datoscategorias = Categoria::orderBY('id_categoria', 'ASC')
+      ->id($id)
+      ->nombre($nombre)
+      ->estado($estado)
+      ->paginate(3);
+      //$datoscategorias = DB::table('categorias')->get();
 
       return view('admin.admin.ConsultarCategoria', compact('datoscategorias'));
     }
@@ -200,8 +210,8 @@ class CategoriasController extends Controller
           $guardado="2";
           return response()->json(['guardado' => $guardado], 200);
         }else{
-          $eliminarrol = DB::delete("delete from roles_categorias where id_categoria = $id");
-          $eliminar = DB::delete("delete from categorias where id_categoria = $id");
+          DB::delete("delete from roles_categorias where id_categoria = $id");
+          DB::delete("delete from categorias where id_categoria = $id");
           //$eliminar = DB::table('categorias')->delete('id_categoria',$id)->where('id_categoria',$id)->get();
           //$eliminar = DB::table('categorias')->where('id_categoria','=',$id)->get();
           //$eliminar->delete($id);

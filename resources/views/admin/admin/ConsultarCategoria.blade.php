@@ -35,7 +35,7 @@
         <table class="table table-striped projects">
             <thead>
                 <tr>
-                    <th style="width: 1%">
+                    <th style="width: 10%">
                         ID
                     </th>
                     <th style="width: 20%">
@@ -51,6 +51,28 @@
                     <th style="width: 30%">
                     </th>
                 </tr>
+                <tr>
+                  {{ Form::open(['route' => 'categoria', 'method'=>'GET', 'class'=>'form-inline pull-right']) }}
+                  <td>
+                          {!! Form::text('id', null, ['class'=>'form-control']) !!}
+                  </td>
+                  <td>
+                          {!! Form::text('nombre', null, ['class'=>'form-control'])!!}
+                  </th>
+                  <td>
+                          ...
+                  </td>
+                  <td>
+                          {!! Form::select('estado', array(null => '-', '1' => 'Sí', '0' => 'No' ))!!}
+                  </td>
+                  <td class="project-actions text-right">
+                          <button type="submit" class="btn  btn-secondary btn-sm" href="#">
+                              <i class="fas fa-search"></i>
+                              Buscar
+                          </button>
+                  </th>
+                  {{ Form::close()}}
+              </tr>
             </thead>
             <tbody>
                 @foreach ($datoscategorias as $item)
@@ -99,6 +121,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$datoscategorias->render()}}
       </div>
       <!-- /.card-body -->
     </div>
@@ -106,19 +129,9 @@
     <!---------------------------modal eliminar---------------------------------------->
     <div class="modal fade" id="modal-danger" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
-            @php
-                @ $db = new mysqli(localhost, "root", "", "e-comerce");
-                if ($db->connect_error){
-                    die('Error de Conexion ('.$db->connect_errno.')'.$db->connect_error);
-                }else{
-                    
-                    $datoshijos= "entro";
-                }
-            @endphp
-           
           <div class="modal-content bg-danger">
               <div class="modal-header">
-              <h4 class="modal-title">Eliminar Categoría {{$datoshijos}}</h4>
+              <h4 class="modal-title">Eliminar Categoría </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span>
                 </button>
@@ -135,29 +148,11 @@
         
       </div>
   </section>
-
+ 
   
 @endsection
 @section('scripts')
 <script src="{{ asset('js/categorias.js') }}"></script>
-<!--script type="text/javascript">
-    $(function() {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000
-      });
-      $('.swalDefaultError').click(function() {
-        Toast.fire({
-          type: 'error',
-          title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-        })
-      });
-  
-    });
-  
-  </script-->
 
   
 @endsection
