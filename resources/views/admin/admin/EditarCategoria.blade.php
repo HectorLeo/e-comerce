@@ -8,7 +8,7 @@
     <li class="breadcrumb-item "><a href="{{ route('categoria') }}">Categorías</a></li>
     <li class="breadcrumb-item active">Modificar Categorías</li>
 @endsection
-
+@section('ActiveCata') nav-link active @endsection
 @section('ActiveCatalogo') nav-item has-treeview menu-open @endsection
 @section('ActiveCategoria') nav-link active @endsection
 
@@ -169,7 +169,7 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Agregar Categoría</button>
+                                            <button type="submit" class="btn btn-primary">Modificar Categoría</button>
                                             <a class="btn btn-danger" href="{{ route('categoria') }}">  Cancelar</a>
                             
                                         </div>

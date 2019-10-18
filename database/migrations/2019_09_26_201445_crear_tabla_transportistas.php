@@ -17,7 +17,7 @@ class CrearTablaTransportistas extends Migration
             $table->Increments('id_transporte');
             $table->boolean('envio_gratis');
             $table->string('nombre_transporte', 50);
-            $table->boolean('estado_transporte', 50);
+            $table->boolean('estado_transporte');
             $table->string('logotipo_transporte', 50);
             $table->string('retraso_transporte', 100);
             $table->integer('facturacion');

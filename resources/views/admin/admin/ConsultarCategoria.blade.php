@@ -7,7 +7,7 @@
 @section('titulonavegacion')
     <li class="breadcrumb-item active">Categorías</a></li>
 @endsection
-
+@section('ActiveCata') nav-link active @endsection
 @section('ActiveCatalogo') nav-item has-treeview menu-open @endsection
 @section('ActiveCategoria') nav-link active @endsection
 
@@ -90,10 +90,10 @@
                                 </i>
                                 Modificar
                             </a>
-                           
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-danger">
+                          <button  class="btn btn-danger btn-sm delete_user" id_delete="{{$item->id_categoria}}" >
                                 <i class="fas fa-trash"></i> Eliminar
-                              </button>
+                          </button>
+                          
                         </td>
                     </tr>
                 @endforeach
@@ -106,32 +106,41 @@
     <!---------------------------modal eliminar---------------------------------------->
     <div class="modal fade" id="modal-danger" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
+            @php
+                @ $db = new mysqli(localhost, "root", "", "e-comerce");
+                if ($db->connect_error){
+                    die('Error de Conexion ('.$db->connect_errno.')'.$db->connect_error);
+                }else{
+                    
+                    $datoshijos= "entro";
+                }
+            @endphp
+           
           <div class="modal-content bg-danger">
-            <div class="modal-header">
-              <h4 class="modal-title">Danger Modal</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>One fine body…</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-outline-light">Save changes</button>
-            </div>
+              <div class="modal-header">
+              <h4 class="modal-title">Eliminar Categoría {{$datoshijos}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Los productos asociados a esta categoría seran desactivados, para posteriormente pueda agregarlos a una nueva categoria</p>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-outline-light">Aceptar</button>
+              </div>
           </div>
-          <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
+        
       </div>
-    <!---------------------------------->
   </section>
 
   
 @endsection
 @section('scripts')
-<script type="text/javascript">
+<script src="{{ asset('js/categorias.js') }}"></script>
+<!--script type="text/javascript">
     $(function() {
       const Toast = Swal.mixin({
         toast: true,
@@ -148,5 +157,7 @@
   
     });
   
-  </script>
+  </script-->
+
+  
 @endsection

@@ -6,17 +6,20 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\Models\Admin\Categoria;
 use App\Models\Admin\Rol_Categoria;
-
+use Illuminate\Http\Request;
 
 class CategoriasController extends Controller
 {
     public function consultar(){
       $datoscategorias = DB::table('categorias')->get();
+
       return view('admin.admin.ConsultarCategoria', compact('datoscategorias'));
     }
+
     public function interfaceagregar()
     {
       $datoscategoria = DB::table('categorias')->get();
+      
       $datosroles = DB::table('rol')->where('clave_rol','!=','1')->get();
       //$datos = Producto::get();
       return view('admin.admin.AgregarCategoria', compact('datoscategoria','datosroles'));
@@ -182,6 +185,35 @@ class CategoriasController extends Controller
         
       }
       return redirect()->route('categoria');
+     
+    }
+    public function eliminar(Request $request){
+      //$id = $request;
+      $id = $request->id;
+      $c_padre = DB::table('categorias')->where('tipo_categoria','=',$id)->get();
+      if(!$c_padre->isEmpty()){//checo si esta vacia la consulta
+        $guardado="1";
+        return response()->json(['guardado' => $guardado], 200);
+      }else{
+        $c_producto = DB::table('productos')->where('id_categoria','=',$id)->get();
+        if(!$c_producto->isEmpty()){//checo si esta vacia la consulta
+          $guardado="2";
+          return response()->json(['guardado' => $guardado], 200);
+        }else{
+          $eliminarrol = DB::delete("delete from roles_categorias where id_categoria = $id");
+          $eliminar = DB::delete("delete from categorias where id_categoria = $id");
+          //$eliminar = DB::table('categorias')->delete('id_categoria',$id)->where('id_categoria',$id)->get();
+          //$eliminar = DB::table('categorias')->where('id_categoria','=',$id)->get();
+          //$eliminar->delete($id);
+          //Categoria::destroy($id);
+          //$c_padre = DB::table('productos')->where('id_categoria','=',$id)->get();
+          $guardado="3";
+          return response()->json(['guardado' => $guardado], 200);
+        }
+        
+      }
+
+
      
     }
 }

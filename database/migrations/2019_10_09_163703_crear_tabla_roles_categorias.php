@@ -19,7 +19,8 @@ class CrearTablaRolesCategorias extends Migration
             $table->foreign('id_categoria', 'fk_roles_categorias_categorias')->references('id_categoria')->on('categorias')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedInteger('clave_rol');
             $table->foreign('clave_rol', 'fk_roles_categorias_rol')->references('clave_rol')->on('rol')->onDelete('restrict')->onUpdate('restrict');
-
+            $table->boolean('activo');
+            
             $table->timestamps();
         });
     }

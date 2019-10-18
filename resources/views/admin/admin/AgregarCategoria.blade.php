@@ -8,7 +8,7 @@
     <li class="breadcrumb-item "><a href="{{ route('categoria') }}">Categorías</a></li>
     <li class="breadcrumb-item active">Agregar Categorías</li>
 @endsection
-
+@section('ActiveCata') nav-link active @endsection
 @section('ActiveCatalogo') nav-item has-treeview menu-open @endsection
 @section('ActiveCategoria') nav-link active @endsection
 
