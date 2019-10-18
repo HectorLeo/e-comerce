@@ -9,7 +9,7 @@ $(document).ready(function () {
 
         id_delete = $(e.currentTarget).attr("id_delete");
         $.ajax({
-            url: "./categoriaE",
+            url: "./transporteE",
             method: 'post',
             data: {
                 id: id_delete
