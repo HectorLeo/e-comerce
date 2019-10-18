@@ -137,11 +137,9 @@
                                 </i>
                                 Modificar
                             </a>
-                            <a class="btn btn-danger btn-sm" href="#">
-                                <i class="fas fa-trash">
-                                </i>
-                                Eliminar
-                            </a>
+                            <button  class="btn btn-danger btn-sm delete_user" id_delete="{{$item->id_transporte}}" >
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -152,6 +150,30 @@
       <!-- /.card-body -->
     </div>
     <!-- /.card -->
+    <!---------------------------modal eliminar---------------------------------------->
+    <div class="modal fade" id="modal-danger" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content bg-danger">
+              <div class="modal-header">
+              <h4 class="modal-title">Eliminar </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Los productos asociados a esta categoría seran desactivados, para posteriormente pueda agregarlos a una nueva categoria</p>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-outline-light">Aceptar</button>
+              </div>
+          </div>
+        </div>
+        
+      </div>
 
   </section>
+@endsection
+@section('scripts')
+    <script src="{{ asset('js/transporte.js') }}"></script>
 @endsection

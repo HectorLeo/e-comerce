@@ -210,8 +210,8 @@ class CategoriasController extends Controller
           $guardado="2";
           return response()->json(['guardado' => $guardado], 200);
         }else{
-          DB::delete("delete from roles_categorias where id_categoria = $id");
-          DB::delete("delete from categorias where id_categoria = $id");
+           DB::delete("delete from roles_categorias where id_categoria = $id");
+           DB::delete("delete from categorias where id_categoria = $id");
           //$eliminar = DB::table('categorias')->delete('id_categoria',$id)->where('id_categoria',$id)->get();
           //$eliminar = DB::table('categorias')->where('id_categoria','=',$id)->get();
           //$eliminar->delete($id);
