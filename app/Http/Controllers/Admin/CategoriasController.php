@@ -7,11 +7,21 @@ use DB;
 use App\Models\Admin\Categoria;
 use App\Models\Admin\Rol_Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as IlluminateRequest;
 
 class CategoriasController extends Controller
 {
-    public function consultar(){
-      $datoscategorias = DB::table('categorias')->get();
+    public function consultar(Request $request){
+      $id= $request->get('id');
+      $nombre= $request->get('nombre');
+      $estado= $request->get('estado');
+      
+      $datoscategorias = Categoria::orderBY('id_categoria', 'ASC')
+      ->id($id)
+      ->nombre($nombre)
+      ->estado($estado)
+      ->paginate(3);
+      //$datoscategorias = DB::table('categorias')->get();
 
       return view('admin.admin.ConsultarCategoria', compact('datoscategorias'));
     }

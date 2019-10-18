@@ -35,7 +35,7 @@
         <table class="table table-striped projects">
             <thead>
                 <tr>
-                    <th style="width: 1%">
+                    <th style="width: 10%">
                         ID
                     </th>
                     <th style="width: 20%">
@@ -51,6 +51,28 @@
                     <th style="width: 30%">
                     </th>
                 </tr>
+                <tr>
+                  {{ Form::open(['route' => 'categoria', 'method'=>'GET', 'class'=>'form-inline pull-right']) }}
+                  <td>
+                          {!! Form::text('id', null, ['class'=>'form-control']) !!}
+                  </td>
+                  <td>
+                          {!! Form::text('nombre', null, ['class'=>'form-control'])!!}
+                  </th>
+                  <td>
+                          ...
+                  </td>
+                  <td>
+                          {!! Form::select('estado', array(null => '-', '1' => 'Sí', '0' => 'No' ))!!}
+                  </td>
+                  <td class="project-actions text-right">
+                          <button type="submit" class="btn  btn-secondary btn-sm" href="#">
+                              <i class="fas fa-search"></i>
+                              Buscar
+                          </button>
+                  </th>
+                  {{ Form::close()}}
+              </tr>
             </thead>
             <tbody>
                 @foreach ($datoscategorias as $item)
@@ -99,6 +121,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$datoscategorias->render()}}
       </div>
       <!-- /.card-body -->
     </div>
@@ -125,7 +148,7 @@
         
       </div>
   </section>
-
+ 
   
 @endsection
 @section('scripts')
