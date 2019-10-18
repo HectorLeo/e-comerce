@@ -137,9 +137,15 @@
                                 </i>
                                 Modificar
                             </a>
+                            @if(($item->estado_tranporte)==1)
                             <button  class="btn btn-danger btn-sm delete_user" id_delete="{{$item->id_transporte}}" >
-                                <i class="fas fa-trash"></i> Eliminar
+                                <i class="fas fa-trash"></i> Desactivar
                             </button>
+                            @else
+                            <button  class="btn btn-danger btn-sm delete_user" id_delete="{{$item->id_transporte}}" >
+                                <i class="fas fa-trash"></i> Activar
+                            </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

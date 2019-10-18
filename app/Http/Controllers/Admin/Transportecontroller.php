@@ -72,7 +72,7 @@ class Transportecontroller extends Controller
         'nombre_transporte'=> request('nombre_transporte'),
         'retraso_transporte'=> request('retraso_transporte'),
         'facturacion'=> request('customRadio'),
-        'estado_impueto' => $impuestos,
+        'estado_impuesto' => $impuestos,
         'impuestos'=> request('lista_impuestos'),
         'fuera_rango'=> request('rango_comportamiento'),
         'r_mayorigual'=> request('rango_mayor'),
@@ -238,19 +238,11 @@ class Transportecontroller extends Controller
 
     public function eliminar(Request $request){
       $id = $request->id;
-      $pedido_t = DB::table('pedidos')->where('id_transporte','=',$id)->get();
-      if(!$pedido_t->isEmpty()){//checo si esta vacia la consulta
-        $guardado="1";
-        return response()->json(['guardado' => $guardado], 200);
-      }else{
-        DB::delete("delete from roles_categorias where id_categoria = $id");
-        DB::delete("delete from categorias where id_categoria = $id");
+       $g= DB::delete("delete from transporte_rol where id_transporte = $id");
+      $r=DB::delete("delete from transporte_producto where id_transporte = $id");
+        $i=DB::delete("delete from transportistas where id_transporte = $id");
           $guardado="3";
           return response()->json(['guardado' => $guardado], 200);
-        
-      }
-
-
      
     }
 

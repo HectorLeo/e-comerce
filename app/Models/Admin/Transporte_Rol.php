@@ -8,5 +8,5 @@ class Transporte_Rol extends Model
 {
     
     protected $table = 'transporte_rol';   // si no funciona habilitar esto para crearla la conexion hacia a la tabla
-    protected $fillable = ['id_transporte','clave_rol'];
+    protected $fillable = ['id_transporte','clave_rol','activo'];
 }
