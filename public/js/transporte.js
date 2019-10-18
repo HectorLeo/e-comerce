@@ -20,19 +20,13 @@ $(document).ready(function () {
 
                 if (enviar_reporte == '1') {
 
-                    alert("La catgoria No se puede Eliminar porque cuenta con subcategorias");
-                } else{ if(enviar_reporte == '2'){
-                    //alert("Eliminado");
-                    //$(e.currentTarget).
-                    //bootbox.alert("" + enviar_reporte + " ");
-                    alert(" La catgoria No se puede Eliminar porque cuenta con Productos" );
-                    //
-                    }else{
+                    alert("El transporte no se puede eliminar hay pedido(s) que lo estan usando");
+                } else{ 
                         if(enviar_reporte == '3'){
-                            alert("Categoria Eliminada");
+                            alert("Transporte Eliminado");
                             location.reload();
                         }
-                    }
+                    
                 }
             }
         });

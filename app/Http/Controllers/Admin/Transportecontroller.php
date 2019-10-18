@@ -238,21 +238,15 @@ class Transportecontroller extends Controller
 
     public function eliminar(Request $request){
       $id = $request->id;
-      $c_padre = DB::table('categorias')->where('tipo_categoria','=',$id)->get();
-      if(!$c_padre->isEmpty()){//checo si esta vacia la consulta
+      $pedido_t = DB::table('pedidos')->where('id_transporte','=',$id)->get();
+      if(!$pedido_t->isEmpty()){//checo si esta vacia la consulta
         $guardado="1";
         return response()->json(['guardado' => $guardado], 200);
       }else{
-        $c_producto = DB::table('productos')->where('id_categoria','=',$id)->get();
-        if(!$c_producto->isEmpty()){//checo si esta vacia la consulta
-          $guardado="2";
-          return response()->json(['guardado' => $guardado], 200);
-        }else{
-          $eliminarrol = DB::delete("delete from roles_categorias where id_categoria = $id");
-          $eliminar = DB::delete("delete from categorias where id_categoria = $id");
+        DB::delete("delete from roles_categorias where id_categoria = $id");
+        DB::delete("delete from categorias where id_categoria = $id");
           $guardado="3";
           return response()->json(['guardado' => $guardado], 200);
-        }
         
       }
 
