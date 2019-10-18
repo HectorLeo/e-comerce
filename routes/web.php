@@ -39,5 +39,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::post('transporteC', 'TransporteController@consultar')->name('transporteC');
     Route::get('transporte', 'TransporteController@interfaceagregar' )->name('transporte');
     Route::post('transporte', 'TransporteController@agregarbd' )->name('transporte');
+    Route::get('transporteM/{id}', 'TransporteController@interfacemodificar')->name('editarTransporte');
+    Route::patch('transporteM/{id}', 'TransporteController@modificarbd')->name('agregarModificacionT');
 
 });

@@ -132,7 +132,7 @@
                             
                         </td>
                         <td class="project-actions text-right">
-                            <a class="btn btn-info btn-sm" href="#">
+                            <a class="btn btn-info btn-sm" href="{{route('editarTransporte', ''.$item->id_transporte.'')}}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Modificar
