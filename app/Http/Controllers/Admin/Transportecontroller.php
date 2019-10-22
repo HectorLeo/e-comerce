@@ -56,7 +56,7 @@ class Transportecontroller extends Controller
       if(request('envio_g')){
         $envio_g = 1;
       }else{
-        $envio_g = 2;
+        $envio_g = 0;
       }
       if(request('estado')){
         $estado = 1;

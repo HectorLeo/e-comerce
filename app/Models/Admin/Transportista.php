@@ -28,13 +28,13 @@ class Transportista extends Model
 
     }
     public function scopeEstado($query, $estado){
-        if($estado){
+            if($estado != null){
             return $query->where('estado_transporte', $estado);
         }
 
     }
     public function scopeEnvio($query, $envio){
-        if($envio){
+        if($envio != null){
             return $query->where('envio_gratis', $envio);
         }
 
