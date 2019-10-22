@@ -183,106 +183,6 @@
                 </div>
             </div>
             <!------------------------------------------------ fin precio --------------------------------------->
-
-            <!------------------------------------------------ inicio Categoria ----------------------------------->
-            <div class="col-md-6">
-                    <div class="card card-info">
-                        <div class="card-header">
-                        <h3 class="card-title">Categoria </h3>
-                        </div>
-                        <div class="card-body">
-                            
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <label >Sin impuestos</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">$</span>
-                                        </div>
-                                        <input type="text" class="form-control" id="precio_sin_impuesto" name="precio__sin_impuesto"  placeholder="00.00">
-                                        <div class="input-group-append">
-                                                <span class="input-group-text">.00</span>
-                                        </div>
-                                    </div>
-                                    <!-- /input-group -->
-                                </div>
-                                <!-- /.col-lg-6 -->
-                                <div class="col-lg-6">
-                                        <label >Con impuestos</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">$</span>
-                                            </div>
-                                            <input type="text" class="form-control" id="precio_con_impuesto" name="precio__con_impuesto" readonly>
-                                            <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                            </div>
-                                        </div>
-                                        <!-- /input-group -->
-                                    </div>
-                                <!-- /.col-lg-6 -->
-                            </div>
-                            <div class="form-group">
-                                <label>Impuesto</label>
-                                
-                                <select id="lista_impuestos" name="lista_impuestos"  class="form-control">
-                                    <option value="0" >Sin impuestos</option>
-                                    <option value="1"  selected="selected">IVA (16%)</option>
-                                </select>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                    <div class="col-lg-6">
-                                        <label >Por Mayoreo</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">$</span>
-                                            </div>
-                                            <input type="text" class="form-control" id="precio_mayoreo" name="precio_mayoreo" placeholder="0,000">
-                                            <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                            </div>
-                                        </div>
-                                        <!-- /input-group -->
-                                    </div>
-                                    <!-- /.col-lg-6 -->
-                                    <div class="col-lg-6">
-                                            <label >Por Mayoreo con impuestos</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">$</span>
-                                                </div>
-                                                <input type="text" class="form-control" id="precio_impuesto_mayoreo" name="precio_impuesto_mayoreo" readonly>
-                                                <div class="input-group-append">
-                                                        <span class="input-group-text">.00</span>
-                                                </div>
-                                            </div>
-                                            <!-- /input-group -->
-                                        </div>
-                                    <!-- /.col-lg-6 -->
-                                </div>
-                                <div class="form-group">
-                                    <label>Impuesto por Mayoreo</label>
-                                    
-                                    <select id="lista_impuestos" name="lista_impuestos"  class="form-control">
-                                        <option value="0" >Sin impuestos</option>
-                                        <option value="1"  selected="selected">IVA (16%)</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label >Cantidad de productos para aplicar el Precio de Mayoreo</label>
-                                    <div class="col-lg-4">
-                                        <input type="number" class="form-control" id="cantidad_mayoreo" name="cantidad_mayoreo" value="0">
-                                    </div>
-                                </div>
-
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-                <!------------------------------------------------ fin categoria --------------------------------------->
-
             <!------------------------------------------------ inicio transporte ----------------------------------->
             <div class="col-md-6">
                 <div class="card card-secondary">
@@ -360,7 +260,7 @@
                                     </div>
                                 </div>
                             </div>
-                           <hr>
+                        <hr>
                             
                             <label>Transportes Disponibles</label>
                             <div class="col-sm-6">
@@ -375,13 +275,62 @@
                                 </div>
                             </div>
 
-                           
+                        
                                 
                     
                     </div>
                 </div>
             </div>
             <!------------------------------------------------ fin transporte  ----------------------------------->
+            <!------------------------------------------------ inicio Categoria ----------------------------------->
+            <div class="col-md-6">
+                    <div class="card card-info">
+                        <div class="card-header">
+                        <h3 class="card-title">Categoria </h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="form_step1_categories" class="category-tree-overflow">
+                                <ul class="category-tree">
+                                    <li class="form-control-label text-right main-category">Categoría principal</li>            
+                                    <li class="less">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="form[step1][categories][tree][]" value="2" class="category" checked="&quot;checked&quot;">
+                                            Inicio
+                                            <input type="radio" value="2" name="ignore" class="default-category">
+                                        </label>
+                                    </div> 
+                                    <ul>
+                                        <li class="less">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="form[step1][categories][tree][]" value="3" class="category">
+                                                    Clothes
+                                                    <input type="radio" value="3" name="ignore" class="default-category">
+                                                    </label>
+                                            </div> 
+                                            
+                                        </li>
+                                       
+                                    </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class=’easy-tree’>
+                                <ul>
+                                <li>Example 1</li>
+                                <li>Example 2</li>
+                                <li>Example 3</li>
+                                <li>Example 4</li>
+                                <ul>
+                                </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <!------------------------------------------------ fin categoria --------------------------------------->
+
+            
 
             <!------------------------------------------------ roles  ----------------------------------->
             
