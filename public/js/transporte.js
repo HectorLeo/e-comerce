@@ -8,11 +8,13 @@ $(document).ready(function () {
         });
 
         id_delete = $(e.currentTarget).attr("id_delete");
+        valor =  $(e.currentTarget).val();
         $.ajax({
             url: "./transporteE",
             method: 'post',
             data: {
-                id: id_delete
+                id: id_delete,
+                val: valor
             },
             success: function (resul) {
 
