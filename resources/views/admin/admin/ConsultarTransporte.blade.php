@@ -39,7 +39,7 @@
                     <th style="width: 10%">
                         ID
                     </th>
-                    <th style="width: 20%">
+                    <th style="width: 15%">
                         Nombre
                     </th>
                     <th style="width: 10%">
@@ -54,7 +54,7 @@
                     <th style="width: 10%">
                         Envío Gratis
                     </th>
-                    <th style="width: 30%">
+                    <th style="width: 60%">
                     </th>
                 </tr>
             </thead>
@@ -74,10 +74,10 @@
                            {!! Form::text('retraso', null, ['class'=>'form-control'])!!}
                     </td>
                     <td>
-                            {!! Form::select('estado', array(null => '-', '1' => 'Sí', '2' => 'No' ))!!}
+                            {!! Form::select('estado', array(null => '-', '1' => 'Sí', '0' => 'No' ))!!}
                     </td>
                     <td>
-                            {!! Form::select('envio', array(null => '-', '1' => 'Sí', '2' => 'No'))!!}
+                            {!! Form::select('envio', array(null => '-', '1' => 'Sí', '0' => 'No'))!!}
                     </td>
                     <td class="project-actions text-right">
                             <button type="submit" class="btn  btn-secondary btn-sm" href="#">
@@ -137,13 +137,13 @@
                                 </i>
                                 Modificar
                             </a>
-                            @if(($item->estado_tranporte)==1)
-                            <button  class="btn btn-danger btn-sm delete_user" id_delete="{{$item->id_transporte}}" >
-                                <i class="fas fa-trash"></i> Desactivar
+                            @if(($item->estado_transporte) == 1)
+                            <button  class="btn btn-danger btn-sm delete_user" id_delete="{{$item->id_transporte}}" value="0" name="id_delete" >
+                                <i class="fas fa-times-circle"></i>Desactivar
                             </button>
                             @else
-                            <button  class="btn btn-danger btn-sm delete_user" id_delete="{{$item->id_transporte}}" >
-                                <i class="fas fa-trash"></i> Activar
+                            <button  class="btn btn-success btn-sm delete_user" id_delete="{{$item->id_transporte}}" value="1" name="id_delete">
+                                <i class="fas fa-clipboard-check"></i>Activar
                             </button>
                             @endif
                         </td>

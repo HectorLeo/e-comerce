@@ -56,7 +56,7 @@ class Transportecontroller extends Controller
       if(request('envio_g')){
         $envio_g = 1;
       }else{
-        $envio_g = 2;
+        $envio_g = 0;
       }
       if(request('estado')){
         $estado = 1;
@@ -238,9 +238,12 @@ class Transportecontroller extends Controller
 
     public function eliminar(Request $request){
       $id = $request->id;
-       $g= DB::delete("delete from transporte_rol where id_transporte = $id");
-      $r=DB::delete("delete from transporte_producto where id_transporte = $id");
-        $i=DB::delete("delete from transportistas where id_transporte = $id");
+      //$g= DB::delete("delete from transporte_rol where id_transporte = $id");
+      //$r=DB::delete("delete from transporte_producto where id_transporte = $id");
+      //$i=DB::delete("delete from transportistas where id_transporte = $id");
+      $estado_transporte=$request->val;
+      DB::update("update transportistas set estado_transporte = $estado_transporte where id_transporte = $id");
+      
           $guardado="3";
           return response()->json(['guardado' => $guardado], 200);
      

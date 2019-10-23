@@ -50,4 +50,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::patch('transporteM/{id}', 'TransporteController@modificarbd')->name('agregarModificacionT');
     Route::post('transporteE','TransporteController@eliminar')->name('transporteE');
 
+    Route::get('marcaC', 'MarcaController@consultar')->name('marcaC');
+    Route::post('marcaC', 'MarcaController@consultar')->name('marcaC');
+    Route::get('marca', 'MarcaController@interfaceagregar' )->name('Marca');
+    Route::post('marca', 'MarcaController@agregarbd' )->name('Marca');
+    Route::get('marcaM/{id}', 'MarcaController@interfacemodificar')->name('editarMarca');
+    Route::patch('marcaM/{id}', 'MarcaController@modificarbd')->name('agregarModificacionM');
+    Route::post('marcaE','MarcaController@eliminar')->name('marcaE');
+
 });
