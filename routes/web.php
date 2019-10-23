@@ -24,8 +24,13 @@ Route::get('cliente/logout', 'cliente\LoginClienteController@logout')->name('log
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'superadmin']], function(){
     Route::get('admin', 'AdminController@index')->name('index');
-    Route::get('productoA', 'ProductosController@interfaceagregar' )->name('producto');
-    Route::post('productoA', 'ProductosController@agregarbd' )->name('producto');
+
+    Route::get('producto', 'ProductosController@consultar' )->name('producto');
+    Route::post('producto', 'ProductosController@consultar' )->name('producto');
+    Route::get('productoA', 'ProductosController@interfaceagregar' )->name('agregarProducto');
+    Route::post('productoA', 'ProductosController@agregarbd' )->name('agregarProducto');
+    Route::get('productoM/{id}', 'ProductosController@interfaceeditar' )->name('editarProducto');
+    Route::post('productoM/{id}', 'ProductosController@editarbd' )->name('editarProducto');
     
     Route::get('categoria', 'CategoriasController@consultar')->name('categoria');
     Route::post('categoria', 'CategoriasController@consultar')->name('categoria');

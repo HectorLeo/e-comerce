@@ -19,6 +19,7 @@ class CreateTransporteProducto extends Migration
             $table->foreign('id_producto', 'fk_transporte_producto_productos')->references('id_producto')->on('productos')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedInteger('id_transporte');
             $table->foreign('id_transporte', 'fk_transporte_producto_transportistas')->references('id_transporte')->on('transportistas')->onDelete('restrict')->onUpdate('restrict');
+            $table->boolean('activo');
             $table->timestamps();
         });
     }
