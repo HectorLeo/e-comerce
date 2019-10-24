@@ -179,7 +179,7 @@
                           </div>
                         </div>
                         <div class=pull-left>
-                          <a href="{{route('logout')}}" class="btn btn-xs btn-danger btn-block">Salir</a>
+                          <a href="{{route('logoutA')}}" class="btn btn-xs btn-danger btn-block">Salir</a>
                           </div>
                         <!-- Sidebar Menu -->
                         <nav class="mt-2">

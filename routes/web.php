@@ -16,11 +16,11 @@ Route::get('/', 'PaginasController@contenido' )->name('home');
 
 Route::get('admin', 'seguridad\LoginController@index')->name('login');
 Route::post('seguridad/login', 'seguridad\LoginController@login')->name('login_post');
-Route::get('seguridad/logout', 'seguridad\LoginController@logout')->name('logout');
+Route::get('seguridad/logoutA', 'seguridad\LoginController@logoutA')->name('logoutA');
 
-Route::get('loginC', 'cliente\LoginClienteController@index')->name('loginC');
+Route::get('cliente', 'cliente\LoginClienteController@index')->name('loginC');
 Route::post('cliente/login', 'cliente\LoginClienteController@login')->name('loginC_post');
-Route::get('cliente/logout', 'cliente\LoginClienteController@logout')->name('logout');
+Route::get('cliente/logoutC', 'cliente\LoginClienteController@logoutC')->name('logoutC');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'superadmin']], function(){
     Route::get('admin', 'AdminController@index')->name('index');
@@ -58,4 +58,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::patch('marcaM/{id}', 'MarcaController@modificarbd')->name('agregarModificacionM');
     Route::post('marcaE','MarcaController@eliminar')->name('marcaE');
 
+});
+
+Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  ['auth', 'cliente']], function(){
+    Route::get('cliente', 'ClienteController@index')->name('indexc');
 });
