@@ -30,7 +30,7 @@
         <table class="table table-striped projects">
             <thead>
                 <tr>
-                    <th style="width: 10%">
+                    <th style="width: 8%">
                         ID
                     </th>
                     <th style="width: 5%">
@@ -45,10 +45,10 @@
                     <th style="width: 10%">
                         Categoria
                     </th>
-                    <th style="width: 10%">
+                    <th style="width: 5%">
                         Precio (imp. excl.)
                     </th>
-                    <th style="width: 10%">
+                    <th style="width: 5%">
                         Precio (imp. incl.)
                     </th>
                     <th style="width: 5%">
@@ -58,7 +58,7 @@
                         Estado
                     </th>
                     
-                    <th style="width: 30%">
+                    <th style="width: 18%">
                     </th>
                 </tr>
                 <tr>
@@ -66,9 +66,8 @@
                   <td>
                           {!! Form::text('id', null, ['class'=>'form-control']) !!}
                   </td>
-                  <td>
-                        
-                </th>
+                  <td>   
+                  </th>
                   <td>
                           {!! Form::text('nombre', null, ['class'=>'form-control'])!!}
                   </th>
@@ -88,12 +87,12 @@
                         {!! Form::text('cantidad', null, ['class'=>'form-control'])!!}
                 </th>
                   <td>
-                          {!! Form::select('estado', array(null => '-', '1' => 'Sí', '0' => 'No' ))!!}
+                          {!! Form::select('estado', array(null => '-', '1' => 'Activo', '0' => 'Desactivo' ))!!}
                   </td>
                   <td class="project-actions text-right">
                           <button type="submit" class="btn  btn-secondary btn-sm" href="#">
                               <i class="fas fa-search"></i>
-                              
+                              Buscar
                           </button>
                   </th>
                   {{ Form::close()}}
@@ -145,9 +144,15 @@
                         <a class="btn btn-info btn-sm" href="{{route('editarProducto', ''.$item->id_producto.'')}}">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
-                          <button  class="btn btn-danger btn-sm delete_user" id_delete="{{$item->id_producto}}" >
-                                <i class="fas fa-trash"></i> 
-                          </button>
+                            @if(($item->estado) == 1)
+                            <button  class="btn btn-danger btn-sm delete_user" id_delete="{{$item->id_producto}}" value="0" name="id_delete" style='width:100px; height:30px' >
+                                <i class="fas fa-times-circle"> </i>  Desactivar
+                            </button>
+                            @else
+                            <button  class="btn btn-success btn-sm delete_user" id_delete="{{$item->id_producto}}" value="1" name="id_delete" style='width:100px; height:30px'>
+                                <i class="fas fa-clipboard-check"> </i>  Activar
+                            </button>
+                            @endif
                           
                         </td>
                     </tr>
@@ -166,5 +171,5 @@
   
 @endsection
 @section('scripts')
-<script src="{{ asset('js/categorias.js') }}"></script>
+<script src="{{ asset('js/producto.js') }}"></script>
 @endsection

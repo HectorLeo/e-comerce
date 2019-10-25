@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::post('productoA', 'ProductosController@agregarbd' )->name('agregarProducto');
     Route::get('productoM/{id}', 'ProductosController@interfaceeditar' )->name('editarProducto');
     Route::post('productoM/{id}', 'ProductosController@editarbd' )->name('editarProducto');
+    Route::post('productoE','ProductosController@eliminar')->name('productoE');
     
     Route::get('categoria', 'CategoriasController@consultar')->name('categoria');
     Route::post('categoria', 'CategoriasController@consultar')->name('categoria');

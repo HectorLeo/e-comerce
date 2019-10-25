@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group">
                                 <label >Descripción</label>
-                                <textarea class="form-control" rows="3" id="descripcion_producto" name="descripcion_producto" value="{{$descripcion_producto}}" placeholder="Descripción ..."></textarea>
+                                <textarea class="form-control" rows="3" id="descripcion_producto" name="descripcion_producto"  placeholder="Descripción ...">{{$descripcion_producto}}</textarea>
                                 
                             </div>
                             <div class="row">

@@ -38,7 +38,7 @@ class ProductosController extends Controller
     {
       $datos = DB::table('transportistas')->where('estado_transporte','!=','0')->get();
       $datoscategoria = DB::table('Categorias')->where('id_categoria','!=',1)->get();
-      $datosmarcas = DB::table('marcas')->get();
+      $datosmarcas = DB::table('marcas')->where('estado_transporte','!=','0')->get();
       $datosinicio = DB::table('Categorias')->where('id_categoria','=',1)->get();
       //$datos = Producto::get();
       return view('admin.admin.AgregarProducto', compact('datos','datoscategoria','datosmarcas'));
@@ -254,28 +254,16 @@ class ProductosController extends Controller
      
     }
     public function eliminar(Request $request){
-      //$id = $request;
       $id = $request->id;
-      $c_padre = DB::table('categorias')->where('tipo_categoria','=',$id)->get();
-      if(!$c_padre->isEmpty()){//checo si esta vacia la consulta
-        $guardado="1";
-        return response()->json(['guardado' => $guardado], 200);
+      $estado=$request->val;
+      DB::update("update productos set estado = $estado where id_producto = $id");
+      if($estado == '1'){
+        $guardado="activo";
       }else{
-        $c_producto = DB::table('productos')->where('id_categoria','=',$id)->get();
-        if(!$c_producto->isEmpty()){//checo si esta vacia la consulta
-          $guardado="2";
-          return response()->json(['guardado' => $guardado], 200);
-        }else{
-           DB::delete("delete from roles_categorias where id_categoria = $id");
-           DB::delete("delete from categorias where id_categoria = $id");
-          //$eliminar = DB::table('categorias')->delete('id_categoria',$id)->where('id_categoria',$id)->get();
-          //$eliminar = DB::table('categorias')->where('id_categoria','=',$id)->get();
-          //$eliminar->delete($id);
-          //Categoria::destroy($id);
-          //$c_padre = DB::table('productos')->where('id_categoria','=',$id)->get();
-          $guardado="3";
-          return response()->json(['guardado' => $guardado], 200);
-        }
+        $guardado="desactivo";
       }
+      
+      return response()->json(['guardado' => $guardado], 200);
+     
     }
-}
+  }
