@@ -9,11 +9,11 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class LoginClientecontroller extends Controller
 {
     use AuthenticatesUsers;
-    protected $redirectTo = '/';
+    protected $redirectTo = '/cliente/cliente';
 
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logoutC');
     }
     
     public function index(){
@@ -27,11 +27,11 @@ class LoginClientecontroller extends Controller
         }else{
             $this->guard()->logout();
             $request->session()->invalidate();
-            return redirect('cliente/logout')->withErrors(['Error' => 'Este usuario no tiene un rol activo']);
+            return redirect('cliente/logoutC')->withErrors(['Error' => 'Este usuario no tiene un rol activo']);
         }
     }
     
-    public function logout(Request $request)
+    public function logoutC(Request $request)
     {
         $this->guard()->logout();
 

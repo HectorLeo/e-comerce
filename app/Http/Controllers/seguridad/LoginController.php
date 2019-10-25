@@ -11,10 +11,10 @@ class LoginController extends Controller
     use AuthenticatesUsers;
     protected $redirectTo = '/admin/admin';
 
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('guest')->except('logout');
-    }
+    }*/
     
     public function index(){
         return view('seguridad.login');
@@ -27,11 +27,11 @@ class LoginController extends Controller
         }else{
             $this->guard()->logout();
             $request->session()->invalidate();
-            return redirect('seguridad/logout')->withErrors(['Error' => 'Este usuario no tiene un rol activo']);
+            return redirect('seguridad/logoutA')->withErrors(['Error' => 'Este usuario no tiene un rol activo']);
         }
     }
     
-    public function logout(Request $request)
+    public function logoutA(Request $request)
     {
         $this->guard()->logout();
 

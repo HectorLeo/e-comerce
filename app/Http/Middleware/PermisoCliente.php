@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class PermisoAdministrador
+class PermisoCliente
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,10 @@ class PermisoAdministrador
     {
         if($this->permiso())    
         return $next($request);
-        return redirect('seguridad/logoutA');
+        return redirect('cliente/logoutC');
     }
 
     private function permiso(){
-        return session()->get('rol') == 'SuperAdmin';
+        return session()->get('rol') == 'Cliente';
     }
 }
