@@ -25,6 +25,7 @@ class UsuarioController extends Controller
         $usuario = Usuario::create($request->all());
         $estado=1;
         $rol=3;
+        
         Clientes:: create ([
             'nombre' =>  request('nombre'),
             'a_paterno' => request('paterno'),
