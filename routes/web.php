@@ -63,3 +63,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  ['auth', 'cliente']], function(){
     Route::get('cliente', 'ClienteController@index')->name('indexc');
 });
+
+/* Rustas de Usuario */
+Route::get('usuarioC', 'cliente\UsuarioController@index')->name('registroC');
+//Route::get('usarioC/crear', 'UsuarioController@crear')->name('crearC');
+Route::post('usuarioC', 'cliente\UsuarioController@guardar' )->name('guardarC');
+Route::get('usuarioC/{id}/editar', 'cliente\UsuarioController@actualizar')->name('editarC');
+Route::delete('usuarioC/{id}','cliente\UsuarioController@eliminar')->name('eliminarC');
