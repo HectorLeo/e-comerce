@@ -22,7 +22,7 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Projects</h3>
+        <h3 class="card-title">Categoria</h3>
 
         <div class="card-tools">
         <a class="btn btn-info btn-sm" href="{{ route('agregarCategoria') }}"><i class="fas fa-plus-circle"></i>  Nueva Categoria</a>

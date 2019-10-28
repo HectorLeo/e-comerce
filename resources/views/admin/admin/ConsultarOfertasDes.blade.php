@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('titulohome')
-    <h1 class="m-0 text-dark">Productos</h1>
+    <h1 class="m-0 text-dark">Ofertas y Descuentos</h1>
 @endsection
 
 @section('titulonavegacion')
-    <li class="breadcrumb-item active">Productos</a></li>
+    <li class="breadcrumb-item active">Ofertas y Descuentos</a></li>
 @endsection
 @section('ActiveCata') nav-link active @endsection
 @section('ActiveCatalogo') nav-item has-treeview menu-open @endsection
-@section('ActiveProducto') nav-link active @endsection
+@section('ActiveOferDes') nav-link active @endsection
 
 @section('content')
 <section class="content">
@@ -17,20 +17,34 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Productos</h3>
+        <h3 class="card-title">Ofertas y Descuentos</h3>
 
-        <div class="card-tools">
-        <a class="btn btn-info btn-sm" href="{{ route('agregarProducto') }}"><i class="fas fa-plus-circle"></i>  Nuevo Producto</a>
-          <!--<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-            <i class="fas fa-minus"></i></button>-->
-           
-        </div>
       </div>
       <div class="card-body p-0" style="display: block;">
-        <table class="table table-striped projects">
+            <div class="col-sm-12">
+            <div class="row">
+                <div class="col">
+                    <div class="md-checkbox">
+                       
+                            <input type="checkbox" id="bulk_action_select_all" onclick="$('#product_catalog_list').find('table td.checkbox-column input:checkbox').prop('checked', $(this).prop('checked')); updateBulkMenu();" value="">
+                            <i class="md-checkbox-control"></i>
+                            Seleccionar todos
+                        
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="id_" name="id_" >
+                            <label for="id_" class="custom-control-label"></label>
+                        </div>
+                </div>
+            </div>
+        </div>
+            <hr>
+        <table class="table table-striped projects" name="product_catalog_list" id="product_catalog_list">
+
             <thead>
                 <tr>
-                    <th style="width: 8%">
+                    
+                    <th style="width: 10%">
                         ID
                     </th>
                     <th style="width: 5%">
@@ -45,12 +59,7 @@
                     <th style="width: 10%">
                         Categoria
                     </th>
-                    <th style="width: 5%">
-                        Precio (imp. excl.)
-                    </th>
-                    <th style="width: 5%">
-                        Precio (imp. incl.)
-                    </th>
+                    
                     <th style="width: 5%">
                         Cantidad
                     </th>
@@ -58,11 +67,14 @@
                         Estado
                     </th>
                     
-                    <th style="width: 18%">
+                    <th style="width: 30%">
                     </th>
+                    
                 </tr>
+
                 <tr>
                   {{ Form::open(['route' => 'producto', 'method'=>'GET', 'class'=>'form-inline pull-right']) }}
+                 
                   <td>
                           {!! Form::text('id', null, ['class'=>'form-control']) !!}
                   </td>
@@ -77,12 +89,7 @@
                 <td>
                         {!! Form::text('categoria', null, ['class'=>'form-control'])!!}
                 </th>
-                <td>
-                        {!! Form::text('precio_ex', null, ['class'=>'form-control'])!!}
-                </th>
-                <td>
-                        {!! Form::text('precio_in', null, ['class'=>'form-control'])!!}
-                </th>
+                
                 <td>
                         {!! Form::text('cantidad', null, ['class'=>'form-control'])!!}
                 </th>
@@ -101,8 +108,13 @@
             <tbody>
                 @foreach ($datosproductos as $item)
                     <tr>
-                        <td>
-                            {{$item->id_producto}}
+                        
+                        <td class="checkbox-column form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="id_{{$item->id_producto}}" name="id_{{$item->id_producto}}" >
+                                <label for="id_{{$item->id_producto}}" class="custom-control-label"></label> {{$item->id_producto}}
+                            </div>
+                            
                         </td>
                         <td>
                             <img width="50px" height="50px" src="{{Storage::url($item->imagen_p)}}" alt="Imagen de la categoria">
@@ -116,12 +128,7 @@
                         <td>
                             {{$item->id_categoria}}
                         </td>
-                        <td>
-                            {{$item->precio_neto}}
-                        </td>
-                        <td>
-                            {{$item->precio_iva}}
-                        </td>
+                        
                         <td>
                             {{$item->existencias}}
                         </td>
@@ -141,6 +148,7 @@
                                 </i>
                                 View
                             </a>-->
+                        <a class="btn btn-info btn-sm" href="{{ route('agregarOfertaDescuento', ''.$item->id_producto.'') }}"><i class="fas fa-plus-circle"></i>  Agregar</a>
                         <a class="btn btn-info btn-sm" href="{{route('editarProducto', ''.$item->id_producto.'')}}">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>

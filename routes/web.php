@@ -59,6 +59,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::patch('marcaM/{id}', 'MarcaController@modificarbd')->name('agregarModificacionM');
     Route::post('marcaE','MarcaController@eliminar')->name('marcaE');
 
+    Route::get('ofertasDes', 'OfertasDescuentosController@consultar' )->name('ofertaDescuento');
+    Route::post('ofertasDes', 'OfertasDescuentosController@consultar' )->name('ofertaDescuento');
+    Route::get('ofertasDesA/{id}', 'OfertasDescuentosController@interfaceagregar' )->name('agregarOfertaDescuento');
+    Route::post('ofertasDesA/{id}', 'OfertasDescuentosController@agregarbd' )->name('agregarOfertaDescuento');
+
+
 });
 
 Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  ['auth', 'cliente']], function(){

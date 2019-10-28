@@ -38,7 +38,7 @@ class ProductosController extends Controller
     {
       $datos = DB::table('transportistas')->where('estado_transporte','!=','0')->get();
       $datoscategoria = DB::table('Categorias')->where('id_categoria','!=',1)->get();
-      $datosmarcas = DB::table('marcas')->where('estado_transporte','!=','0')->get();
+      $datosmarcas = DB::table('marcas')->where('activo_m','!=','0')->get();
       $datosinicio = DB::table('Categorias')->where('id_categoria','=',1)->get();
       //$datos = Producto::get();
       return view('admin.admin.AgregarProducto', compact('datos','datoscategoria','datosmarcas'));
