@@ -4,6 +4,7 @@ namespace App\Models\Seguridad;
 
 use App\Models\Admin\Rol;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class Usuario extends Authenticatable
@@ -11,8 +12,8 @@ class Usuario extends Authenticatable
     protected $remember_token = false;
     protected $table ='usuarios';
     protected $fillable = ['email','password'];
-    protected $guarded = ['id_usuario'];
-    protected $primaryKey = 'id_usuario';
+    //protected $guarded = ['id'];
+    //protected $primaryKey = 'id';
     
     public function roles(){
         return $this->belongsToMany(Rol::class,'clientes');
@@ -32,5 +33,9 @@ class Usuario extends Authenticatable
         }else{
 
         }
+    }
+
+    public function setPasswordAttribute($pass){
+        $this->attributes['password'] = Hash::make($pass);
     }
 }

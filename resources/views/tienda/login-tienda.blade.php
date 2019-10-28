@@ -1,6 +1,9 @@
 @extends('layouts.app-usu')
 @section('titulohome')
-Inicio
+Iniciar sesión con su cuenta
+@endsection
+@section('iniciarsesion')
+<li><a href="{{route('loginC')}}"><i class="fa fa-user-o"></i> Iniciar sesión </a></li>
 @endsection
 @section('content')
 <!-- Aqui va ell contenido--> 
@@ -24,7 +27,14 @@ Inicio
                         {!! $errors->first('password','<span class="help-block">:message</span>') !!}
                         <p></p>
                         <div class="col-12" align="center">
-                            <button type="submit" class="primary-btn order-submit">Iniciar</button>
+                            <button type="submit" class="primary-btn order-submit">Iniciar Sesión</button>
+                        </div>
+                        <p></p>
+                        
+                        <div class="no-account">
+                            <a href="{{route('registroC')}}" data-link-action="display-register-form">
+                              ¿No tiene una cuenta? Cree una aquí
+                            </a>
                         </div>
                             <!-- /.col -->
                     </form>

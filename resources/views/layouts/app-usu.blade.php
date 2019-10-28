@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		
-		<title>Electro - HTML Ecommerce Template</title>
+		<title>Crystal Media | Cliente</title>
         <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
  		<!-- Google font -->
@@ -170,7 +170,7 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Inicio</a></li>
+						<li class="active"><a href="{{route('home')}}">Inicio</a></li>
 						<li><a href="#">Las mejores ofertas</a></li>
 						<li><a href="#">Categorias</a></li>
 						<li><a href="#">Laptops</a></li>
@@ -195,9 +195,8 @@
 					<div class="col-md-12">
 						<h3 class="breadcrumb-header"> @yield('titulohome')</h3>
 						<ul class="breadcrumb-tree">
-						<li class="active">Inicio</li>
-							@yield('pestanas')
-						</ul>
+							<li class="active">@yield('pestanas')</li>
+					    </ul>
 					</div>
 				</div>
 				<!-- /row -->
