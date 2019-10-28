@@ -32,6 +32,7 @@
     <!-- /shop -->
 @endsection
 @section('content2')
+<!-- SECTION -->
 <div class="section">
         <!-- container -->
         <div class="container">
@@ -41,30 +42,31 @@
                 <!-- section title -->
                 <div class="col-md-12">
                     <div class="section-title">
-                        <h3 class="title">Nuevos productos</h3>
-                        <!--div class="section-nav"       productos con ajax no sirve por ahora>
+                        <h3 class="title">New Products</h3>
+                        <div class="section-nav">
                             <ul class="section-tab-nav tab-nav">
                                 <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
                                 <li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
                                 <li><a data-toggle="tab" href="#tab1">Cameras</a></li>
                                 <li><a data-toggle="tab" href="#tab1">Accessories</a></li>
                             </ul>
-                        </div-->
+                        </div>
                     </div>
                 </div>
+                <!-- /section title -->
 
+                <!-- Products tab & slick -->
                 <div class="col-md-12">
-						<div class="row">
-							<div class="products-tabs">
-								<!-- tab -->
-								<div id="tab1" class="tab-pane active">
-									<div class="products-slick" data-nav="#slick-nav-1">
-                                        </div>
-                                        <!-- product -->
+                    <div class="row">
+                        <div class="products-tabs">
+                            <!-- tab -->
+                            <div id="tab1" class="tab-pane active">
+                                <div class="products-slick" data-nav="#slick-nav-1">
+                                    <!-- product -->
                                         @foreach ($datosP as $item)
 										<div class="product">
                                                 <div class="product-img">
-                                                    <img src="{{Storage::url($item->imagen_p)}}" alt="Imagen del producto">
+                                                    <img  width="10" height="50" src="{{Storage::url($item->imagen_p)}}" alt="Imagen del producto">
                                                     <div class="product-label">
                                                         <span class="sale">-30%</span>
                                                         <span class="new">NEW</span>
@@ -91,6 +93,9 @@
                                             </div>
                                             @endforeach
                                             <!-- /product -->
+                                        </div>
+                                        <div id="slick-nav-1" class="products-slick-nav"></div>
+                                    </div>
                                     <!-- /tab -->
                                 </div>
                             </div>
@@ -101,5 +106,4 @@
                 </div>
                 <!-- /container -->
             </div>
-            <!-- /SECTION -->
 @endsection

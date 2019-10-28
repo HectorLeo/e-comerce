@@ -192,14 +192,15 @@
 				<!-- row -->
 				<div class="row">
 					@yield('content')
-				</div>
-				<!-- /row -->
+				<!-- /shop -->
 			</div>
-			<!-- /container -->
+			<!-- /row -->
 		</div>
+		<!-- /container -->
+	</div>
 		<!-- /SECTION -->
 		<!-- SECTION2  contenidos  -->
-		@yield('content2')
+				@yield('content2')
 		<!-- /SECTION2 -->
 		<!-- NEWSLETTER -->
 		<div id="newsletter" class="section">
