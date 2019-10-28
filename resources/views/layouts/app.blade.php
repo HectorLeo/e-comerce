@@ -33,6 +33,8 @@
         <link rel="stylesheet" href="\assets\lte\plugins\summernote\summernote-bs4.css">
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+        
+        @yield('linkhead')
     </head>
     {{  Auth::guest() }}
         <body class="hold-transition sidebar-mini layout-fixed">
@@ -215,6 +217,12 @@
                                     <p>Marcas</p>
                                   </a>
                                 </li>
+                                <li class="nav-item">
+                                  <a href="{{ route('ofertaDescuento') }}" class="@yield('ActiveOferDes', 'nav-link')">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Ofertas y Descuentos</p>
+                                  </a>
+                                </li>
                               </ul>
                             </li>
                             
@@ -248,8 +256,6 @@
                                 </li>
                               </ul>
                             </li>
-                            
-                            
                             
                             <li class="nav-header">PERSONALIZAR</li>
                     
@@ -377,5 +383,5 @@
      <script src="\assets\lte\dist\js\demo.js"></script>
      <script src="\assets\lte\plugins\sweetalert2\sweetalert2.min.js"></script>
      <script src="\assets\lte\plugins\toastr\toastr.min.js"></script>
-     @yield('scripts');
+     @yield('scripts')
 </html>
