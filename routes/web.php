@@ -38,7 +38,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('categoriaA', 'CategoriasController@interfaceagregar')->name('agregarCategoria');
     Route::post('categoriaA', 'CategoriasController@agregarbd')->name('agregarCategoria');
     Route::get('categoriaM/{id}', 'CategoriasController@interfacemodificar')->name('editarCategoria');
-    Route::patch('categoriaM/{id}', 'CategoriasController@modificarbd')->name('agregarModificacion');
+    Route::post('categoriaM/{id}', 'CategoriasController@modificarbd')->name('agregarModificacion');
     Route::post('categoriaE','CategoriasController@eliminar')->name('categoriaE');
     
     //Route::post('categoriaM/{id}/g', 'CategoriasController@modificarbd')->name('agregarModificacion');
@@ -48,7 +48,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('transporte', 'TransporteController@interfaceagregar' )->name('transporte');
     Route::post('transporte', 'TransporteController@agregarbd' )->name('transporte');
     Route::get('transporteM/{id}', 'TransporteController@interfacemodificar')->name('editarTransporte');
-    Route::patch('transporteM/{id}', 'TransporteController@modificarbd')->name('agregarModificacionT');
+    Route::post('transporteM/{id}', 'TransporteController@modificarbd')->name('agregarModificacionT');
     Route::post('transporteE','TransporteController@eliminar')->name('transporteE');
 
     Route::get('marcaC', 'MarcaController@consultar')->name('marcaC');
@@ -56,13 +56,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('marca', 'MarcaController@interfaceagregar' )->name('Marca');
     Route::post('marca', 'MarcaController@agregarbd' )->name('Marca');
     Route::get('marcaM/{id}', 'MarcaController@interfacemodificar')->name('editarMarca');
-    Route::patch('marcaM/{id}', 'MarcaController@modificarbd')->name('agregarModificacionM');
+    Route::post('marcaM/{id}', 'MarcaController@modificarbd')->name('agregarModificacionM');
     Route::post('marcaE','MarcaController@eliminar')->name('marcaE');
 
     Route::get('ofertasDes', 'OfertasDescuentosController@consultar' )->name('ofertaDescuento');
     Route::post('ofertasDes', 'OfertasDescuentosController@consultar' )->name('ofertaDescuento');
     Route::get('ofertasDesA/{id}', 'OfertasDescuentosController@interfaceagregar' )->name('agregarOfertaDescuento');
     Route::post('ofertasDesA/{id}', 'OfertasDescuentosController@agregarbd' )->name('agregarOfertaDescuento');
+    Route::get('ofertasDesM/{id}', 'OfertasDescuentosController@interfacemodificar')->name('editarOfertaDescuento');
+    Route::post('ofertasDesM/{id}', 'OfertasDescuentosController@editarbd')->name('editarOfertaDescuento');
+    Route::post('ofertasDesE','OfertasDescuentosController@eliminar')->name('ofertasDesE');
 
 
 });

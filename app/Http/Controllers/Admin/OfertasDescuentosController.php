@@ -17,7 +17,7 @@ class OfertasDescuentosController extends Controller
       $precio_ex =$request->get('precio_ex');
       $precio_in =$request->get('precio_in');
       $cantidad =$request->get('cantidad');
-      $estado = $request->get('estado');
+      $oferta = $request->get('oferta');
       
       $datosproductos = Producto::orderBY('id_producto', 'ASC')
       ->id($id)
@@ -27,10 +27,10 @@ class OfertasDescuentosController extends Controller
       ->precio_ex($precio_ex)
       ->precio_in($precio_in)
       ->cantidad($cantidad)
-      ->estado($estado)
+      ->oferta($oferta)
       ->paginate(50);
       //$datoscategorias = DB::table('categorias')->get();
-
+      
       return view('admin.admin.ConsultarOfertasDes', compact('datosproductos'));
     }
 
@@ -39,65 +39,34 @@ class OfertasDescuentosController extends Controller
       $datosproductos = DB::table('productos')->where('id_producto',''.$id.'')->get();
       
       $id_categoria = "";
-      $id_marca = "";
       $nombre_p = "";
       $referencia = "";
       $precio_neto = "";
       $precio_iva = "";
-      $resumen_producto = "";
-      $descripcion_producto = "";
       $imagen_p = "";
       $existencias= "";
-      $p_anchura = "";
-      $p_altura = "";
-      $p_profundidad = "";
-      $p_peso = "";
-      $plazo_entrega_p = "";
-      $gasto_envio_p = "";
-      $precio_mayoreo_p = "";
-      $cantidad_minima = "";
-      $cantidad_mayoreo = "";
-      $mostrado_c = "";
+      $resumen_producto = "";
+
       foreach($datosproductos as $item){
         $id_categoria = $item->id_categoria;
-        $id_marca = $item->id_marca;
         $nombre_p= $item->nombre_p;
         $referencia = $item->referencia;
         $precio_neto = $item->precio_neto;
         $precio_iva = $item->precio_iva;
-        $resumen_producto = $item->resumen_producto;
-        $descripcion_producto = $item->descripcion_producto;
         $imagen_p = $item->imagen_p;
         $existencias = $item->existencias;
-        $p_anchura = $item->p_anchura;
-        $p_altura = $item->p_altura;
-        $p_profundidad = $item->p_profundidad;
-        $p_peso = $item->p_peso;
-        $plazo_entrega_p = $item->plazo_entrega_p;
-        $gasto_envio_p = $item->gasto_envio_p;
-        $precio_mayoreo_p = $item->precio_mayoreo_p;
-        $cantidad_minima = $item->cantidad_minima;
-        $cantidad_mayoreo = $item->cantidad_mayoreo;
-        $estado = $item->estado;
+        $resumen_producto = $item->resumen_producto;
+        $oferta = $item->oferta;
       }
       
-      /*$roles = DB::table('roles_categorias')->whereColumn([
-          ["id_categoria","=",(int)$id],
-          ['activo',1]
-        ])->get();*/
-      $datosmarcas = DB::table('marcas')->get();
-      $datostransporte = DB::table('transportistas')->where('estado_transporte','!=','0')->get();
-      $acti_transporte = DB::select("select * from transporte_producto where (id_producto = $id and activo = 1)");
       //return $roles;
       $datoscategoria = DB::table('categorias')->get();
       
       //$datostransporte = DB::table('rol')->where('clave_rol','!=','1')->get();
       //return $roles ;
       //$datos = Producto::get();
-      return view('admin.admin.AgregarOfertasDes', compact('datoscategoria','datosmarcas','datostransporte','id_categoria','id_marca',
-      'nombre_p','referencia','precio_neto','precio_iva','resumen_producto','descripcion_producto','imagen_p','existencias',
-      'p_anchura','p_altura','p_profundidad','p_peso','plazo_entrega_p','gasto_envio_p','precio_mayoreo_p',
-      'cantidad_minima','cantidad_mayoreo','estado','acti_transporte','id'));
+      return view('admin.admin.AgregarOfertasDes', compact('datoscategoria','id_categoria',
+      'nombre_p','referencia','resumen_producto','precio_neto','precio_iva','imagen_p','existencias','oferta','id'));
     }
     public function agregarbd($id)
     {
@@ -115,22 +84,22 @@ class OfertasDescuentosController extends Controller
         $estado = 0;
       }
       if(request("fecha_inicio")==""){
-        $fecha_inicio = "00-00-0000";
+        $fecha_inicio = "0000-00-00";
       }else{
         $fecha_inicio = request("fecha_inicio");
       }
       if(request("hora_inicio")==""){
-        $hora_inicio = "00:00";
+        $hora_inicio = "00:00:00";
       }else{
         $hora_inicio = request("hora_inicio");
       }
       if(request("fecha_fin")==""){
-        $fecha_fin = "00-00-0000";
+        $fecha_fin = "0000-00-00";
       }else{
         $fecha_fin = request("fecha_fin");
       }
       if(request("hora_fin")==""){
-        $hora_fin = "00:00";
+        $hora_fin = "00:00:00";
       }else{
         $hora_fin = request("hora_fin");
       }
@@ -149,8 +118,8 @@ class OfertasDescuentosController extends Controller
       Descuento:: create([
         'id_producto'=> $id,
         'porcentaje_d'=> $porcentaje_d,
-        'peso_d'=> $peso_d ,
-        'fecha_inicio'=>  $fecha_inicio,
+        'peso_d'=> $peso_d,
+        'fecha_inicio'=> $fecha_inicio,
         'fecha_fin'=> $fecha_fin,
         'hora_inicio'=> $hora_inicio,
         'hora_fin'=> $hora_fin
@@ -159,8 +128,130 @@ class OfertasDescuentosController extends Controller
       
       DB::update("update productos set  oferta=$estado  where id_producto = $id"); 
 
-      return redirect()->route('producto');
+      return redirect()->route('ofertaDescuento');
       //return view('admin.admin.AgregarProducto');
+    }
+    public function interfacemodificar($id)
+    {
+      $datosproductos = DB::table('productos')->where('id_producto',''.$id.'')->get();
+      
+      $id_categoria = "";
+      $nombre_p = "";
+      $referencia = "";
+      $precio_neto = "";
+      $precio_iva = "";
+      $imagen_p = "";
+      $existencias= "";
+      $resumen_producto = "";
+
+      foreach($datosproductos as $item){
+        $id_categoria = $item->id_categoria;
+        $nombre_p= $item->nombre_p;
+        $referencia = $item->referencia;
+        $precio_neto = $item->precio_neto;
+        $precio_iva = $item->precio_iva;
+        $imagen_p = $item->imagen_p;
+        $existencias = $item->existencias;
+        $resumen_producto = $item->resumen_producto;
+        $oferta = $item->oferta;
+      }
+
+      $datosdescuento = DB::table('descuentos')->where('id_producto',''.$id.'')->get();
+      $id_descuentos = "";
+      $id_producto= "";
+      $porcentaje_d = "";
+      $peso_d = "";
+      $fecha_inicio = "";
+      $fecha_fin = "";
+      $hora_inicio = "";
+      $hora_fin = "";
+
+      foreach($datosdescuento as $item){
+        $id_descuentos = $item->id_descuentos;
+        $id_producto= $item->id_producto;
+        $porcentaje_d = $item->porcentaje_d;
+        $peso_d = $item->peso_d;
+        $fecha_inicio = $item->fecha_inicio;
+        $fecha_fin = $item->fecha_fin;
+        $hora_inicio = $item->hora_inicio;
+        $hora_fin = $item->hora_fin;
+      }
+      //return $roles;
+      $datoscategoria = DB::table('categorias')->get();
+      
+      //$datostransporte = DB::table('rol')->where('clave_rol','!=','1')->get();
+      //return $roles ;
+      //$datos = Producto::get();
+      return view('admin.admin.EditarOfertasDes', compact('datoscategoria','id_categoria',
+      'nombre_p','referencia','resumen_producto','precio_neto','precio_iva','imagen_p','existencias','oferta','id',
+      'id_descuentos','id_producto','porcentaje_d','peso_d','fecha_inicio','fecha_fin','hora_inicio','hora_fin'));
+    }
+    
+    public function editarbd($id)
+    {
+     /* request()->validate([
+        'nombre_categoria' => 'required',
+        'categoria_padre' =>'required',
+        'descripcion_categoria' =>'required',
+        'imagen_categoria' =>'image',
+      ]);*/
+
+      //return request('imagen_categoria');
+      
+      if(request("id_$id")){
+        $oferta = 1;
+      }else{
+        $oferta = 0;
+      }
+      if(request("fecha_inicio")==""){
+        $fecha_inicio = "0000-00-00";
+      }else{
+        $fecha_inicio = request("fecha_inicio");
+      }
+      if(request("hora_inicio")==""){
+        $hora_inicio = "00:00:00";
+      }else{
+        $hora_inicio = request("hora_inicio");
+      }
+      if(request("fecha_fin")==""){
+        $fecha_fin = "0000-00-00";
+      }else{
+        $fecha_fin = request("fecha_fin");
+      }
+      if(request("hora_fin")==""){
+        $hora_fin = "00:00:00";
+      }else{
+        $hora_fin = request("hora_fin");
+      }
+      if(request("porcentaje_d")==""){
+        $porcentaje_d = "0.0";
+      }else{
+        $porcentaje_d = request("porcentaje_d");
+      }
+      if(request("peso_d")==""){
+        $peso_d = "0.00";
+      }else{
+        $peso_d = request("peso_d");
+      }
+     
+      //request()->file('imagen_categoria')->store('public');
+      DB::update("update productos set oferta=$oferta  where id_producto = $id"); 
+      DB::update("update descuentos set fecha_inicio='$fecha_inicio', hora_inicio='$hora_inicio', fecha_fin='$fecha_fin',
+       hora_fin='$hora_fin', porcentaje_d=$porcentaje_d, peso_d=$peso_d   where id_producto = $id"); 
+      
+      
+      return redirect()->route('ofertaDescuento');
+     
+    }
+    public function eliminar(Request $request){
+      $id = $request->id;
+      
+      DB::update("update productos set oferta = 0 where id_producto = $id");
+      DB::delete("delete from  descuentos where id_producto =  $id");
+      $guardado="eliminado";
+      
+      return response()->json(['guardado' => $guardado], 200);
+     
     }
 
 }

@@ -35,6 +35,7 @@ class CrearTablaProductos extends Migration
             $table->integer('cantidad_minima');
             $table->integer('cantidad_mayoreo');
             $table->boolean('estado');
+            $table->boolean('oferta');
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     //protected $table = 'productos';   // si no funciona habilitar esto para crearla la conexion hacia a la tabla
-    protected $fillable = ['id_categoria','id_marca','nombre_p','referencia','precio_neto','precio_iva','resumen_producto','descripcion_producto','imagen_p','existencias','p_anchura','p_altura','p_profundidad','p_peso','plazo_entrega_p','gasto_envio_p','precio_mayoreo_p','cantidad_minima','cantidad_mayoreo','estado'];
+    protected $fillable = ['id_categoria','id_marca','nombre_p','referencia','precio_neto','precio_iva','resumen_producto','descripcion_producto','imagen_p','existencias','p_anchura','p_altura','p_profundidad','p_peso','plazo_entrega_p','gasto_envio_p','precio_mayoreo_p','cantidad_minima','cantidad_mayoreo','estado','oferta'];
     
     public function scopeId($query, $id){
         if($id){
@@ -54,6 +54,13 @@ class Producto extends Model
     public function scopeEstado($query, $estado){
         if($estado != null){
             return $query->where('estado', $estado);
+            //return Categoria::whereIn('mostrado_c', [$estado])->get();
+        }
+
+    }
+    public function scopeOferta($query, $oferta){
+        if($oferta != null){
+            return $query->where('oferta', $oferta);
             //return Categoria::whereIn('mostrado_c', [$estado])->get();
         }
 
