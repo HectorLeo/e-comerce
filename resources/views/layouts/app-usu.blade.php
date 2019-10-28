@@ -74,10 +74,9 @@
 						<div class="col-md-6">
 							<div class="header-search">
 								<form>
-									<select class="input-select">
+									<select  style="width:120px" class="input-select">
 										<option value="0">Categorias</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
+										@yield('category')
 									</select>
 									<input class="input" placeholder="Buscar aquí">
 									<button class="search-btn">Buscar</button>
@@ -172,11 +171,7 @@
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="{{route('home')}}">Inicio</a></li>
 						<li><a href="#">Las mejores ofertas</a></li>
-						<li><a href="#">Categorias</a></li>
-						<li><a href="#">Laptops</a></li>
-						<li><a href="#">Smartphones</a></li>
-						<li><a href="#">Camaras</a></li>
-						<li><a href="#">Acesorios</a></li>
+						@yield('lista')
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -187,22 +182,7 @@
 		<!-- /NAVIGATION -->
 
 		<!-- BREADCRUMB -->
-		<div id="breadcrumb" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<h3 class="breadcrumb-header"> @yield('titulohome')</h3>
-						<ul class="breadcrumb-tree">
-							<li class="active">@yield('pestanas')</li>
-					    </ul>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
+		<!-- barras gris de categorias -->
 		<!-- /BREADCRUMB -->
 
 		<!-- SECTION  contenidos  -->
@@ -212,13 +192,16 @@
 				<!-- row -->
 				<div class="row">
 					@yield('content')
-				</div>
-				<!-- /row -->
+				<!-- /shop -->
 			</div>
-			<!-- /container -->
+			<!-- /row -->
 		</div>
+		<!-- /container -->
+	</div>
 		<!-- /SECTION -->
-
+		<!-- SECTION2  contenidos  -->
+				@yield('content2')
+		<!-- /SECTION2 -->
 		<!-- NEWSLETTER -->
 		<div id="newsletter" class="section">
 			<!-- container -->
