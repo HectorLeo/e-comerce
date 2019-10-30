@@ -87,7 +87,8 @@ class ProductosController extends Controller
         'precio_mayoreo_p'=> request('precio_mayoreo'),
         'cantidad_minima'=> request('cantidad_minima_venta'),
         'cantidad_mayoreo'=> request('cantidad_mayoreo'),
-        'estado'=> $estado
+        'estado'=> $estado,
+        'oferta'=> 0
 
       ]);
       $vector = array();
