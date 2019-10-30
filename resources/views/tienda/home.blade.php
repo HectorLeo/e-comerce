@@ -15,7 +15,7 @@
 @section('content')
 <!-- Aqui va ell contenido> 
 
-    shop -->
+    <!-- shop -->
     @foreach ($datosC as $item)
     <div class="col-md-4 col-xs-6">
         <div class="shop">
@@ -24,7 +24,7 @@
             </div>
             <div class="shop-body">
                 <h3>{{ $item->nombre_c }}</h3>
-                <a href="#" class="cta-btn">Compra ahora <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="{{route('tiendaC', ''.$item->id_categoria.'')}}" class="cta-btn">Compra ahora <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>
@@ -34,10 +34,10 @@
 @section('content2')
 <!-- SECTION -->
 <div class="section">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
 
                 <!-- section title -->
                 <div class="col-md-12">
@@ -53,17 +53,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- /section title -->
+                <!-- /section title -->
 
-            <!-- Products tab & slick -->
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="products-tabs">
-                        <!-- tab -->
-                        <div id="tab1" class="tab-pane active">
-                            <div class="products-slick" data-nav="#slick-nav-1">
-                                @foreach ($datosP as $item)
+                <!-- Products tab & slick -->
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="products-tabs">
+                            <!-- tab -->
+                            <div id="tab1" class="tab-pane active">
+                                <div class="products-slick" data-nav="#slick-nav-1">
                                     <!-- product -->
                                         @foreach ($datosP as $item)
 										<div class="product">
@@ -93,25 +91,20 @@
                                                     <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
                                                 </div>
                                             </div>
+                                            @endforeach
+                                            <!-- /product -->
                                         </div>
-                                        <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                        </div>
+                                        <div id="slick-nav-1" class="products-slick-nav"></div>
                                     </div>
-                                    <!-- /product -->
-                                @endforeach
-                                
-                                
-
-                                
-
-                                
+                                    <!-- /tab -->
+                                </div>
                             </div>
-                            <div id="slick-nav-1" class="products-slick-nav"></div>
                         </div>
-                        <!-- /tab -->
+                        <!-- Products tab & slick -->
                     </div>
+                    <!-- /row -->
                 </div>
+                <!-- /container -->
             </div>
 @endsection
 @section('imagen')
