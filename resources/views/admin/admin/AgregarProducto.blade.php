@@ -293,7 +293,7 @@
                                 
                                     <!-- checkbox -->
                                     <div class="form-group">
-                                        <select id="categoria_padre" name="categoria_padre"  class="form-control ">
+                                        <select id="categoria_padre" name="categoria_padre"  class="form-control " required="required">
                                             <option value="" >Selecione una opción</option>
                                             @foreach ($datoscategoria as $item)
                                                 <option value="{{$item->id_categoria}}" >{{$item->nombre_c}}</option>

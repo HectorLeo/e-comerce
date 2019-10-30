@@ -25,6 +25,7 @@ class PaginasController extends Controller
         $imagen_c = $item->imagen_c;
         $descripcion = $item->descripcion;
       }*/
-      return view('tienda.home', compact('datosC', 'datosP'));
+      $i=0;
+      return view('tienda.home', compact('datosC', 'datosP','i'));
     }
 }
