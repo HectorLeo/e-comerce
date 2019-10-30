@@ -7,34 +7,31 @@
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		
 		<title>Crystal Media | Cliente</title>
-        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
- 		<!-- Google font -->
- 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+       <!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
- 		<!-- Bootstrap -->
- 		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css\bootstrap.min.css"/>
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css/bootstrap.min.css"/>
 
- 		<!-- Slick -->
- 		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css\slick.css"/>
- 		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css\slick-theme.css"/>
+		<!-- Slick -->
+		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css\slick.css"/>
+		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css\slick-theme.css"/>
 
- 		<!-- nouislider -->
- 		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css\nouislider.min.css"/>
+		<!-- nouislider -->
+		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css\nouislider.min.css"/>
 
- 		<!-- Font Awesome Icon -->
- 		<link rel="stylesheet" href="\assets\usu-tienda\css\font-awesome.min.css">
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="\assets\usu-tienda\css\font-awesome.min.css">
 
- 		<!-- Custom stlylesheet -->
- 		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css\style.css"/>
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css\style.css"/>
 
- 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
- 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
- 		<!--[if lt IE 9]>
- 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
- 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
- 		<![endif]-->
-
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
     </head>
 	<body>
 		<!-- HEADER -->
@@ -199,9 +196,23 @@
 		<!-- /container -->
 	</div>
 		<!-- /SECTION -->
+
 		<!-- SECTION2  contenidos  -->
 				@yield('content2')
 		<!-- /SECTION2 -->
+		
+		<!-- INAGEN  -->
+		@yield('imagen')
+		<!-- /IMAGEN -->
+
+		<!-- LISTA  -->
+		@yield('listas')
+		<!-- /LISTA -->
+
+		<!-- LISTA  -->
+		@yield('comentarios')
+		<!-- /LISTA -->
+
 		<!-- NEWSLETTER -->
 		<div id="newsletter" class="section">
 			<!-- container -->
@@ -337,12 +348,12 @@
 		<!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/slick.min.js"></script>
-		<script src="js/nouislider.min.js"></script>
-		<script src="js/jquery.zoom.min.js"></script>
-		<script src="js/main.js"></script>
-
+		<!-- jQuery Plugins -->
+		<script src="\assets\usu-tienda\js\jquery.min.js"></script>
+		<script src="\assets\usu-tienda\js\bootstrap.min.js"></script>
+		<script src="\assets\usu-tienda\js\slick.min.js"></script>
+		<script src="\assets\usu-tienda\js\nouislider.min.js"></script>
+		<script src="\assets\usu-tienda\js\jquery.zoom.min.js"></script>
+		<script src="\assets\usu-tienda\js\main.js"></script>
 	</body>
 </html>
