@@ -71,7 +71,7 @@ class Transportecontroller extends Controller
         
         'nombre_transporte'=> request('nombre_transporte'),
         'retraso_transporte'=> request('retraso_transporte'),
-        'facturacion'=> request('customRadio'),
+        'facturacion'=> request('customRadio'), 
         'estado_impuesto' => $impuestos,
         'impuestos'=> request('lista_impuestos'),
         'fuera_rango'=> request('rango_comportamiento'),

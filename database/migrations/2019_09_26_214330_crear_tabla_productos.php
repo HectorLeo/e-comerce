@@ -36,6 +36,8 @@ class CrearTablaProductos extends Migration
             $table->integer('cantidad_mayoreo');
             $table->boolean('estado');
             $table->boolean('oferta');
+            $table->boolean('nuevo');
+            $table->boolean('exclusivo');
             $table->timestamps();
         });
     }

@@ -11,7 +11,11 @@ class PaginasController extends Controller
     
     public function contenido()
     {
+<<<<<<< HEAD
       $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
+=======
+      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1']])->get();
+>>>>>>> 0b7701430b90aa019f4e2c42b55ebabe03f2d489
       $datosP = DB::table('productos')->where([['estado','=','1']])->get();
       return view('tienda.home', compact('datosC','datosP'));
     }

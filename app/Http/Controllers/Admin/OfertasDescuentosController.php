@@ -20,6 +20,7 @@ class OfertasDescuentosController extends Controller
       $oferta = $request->get('oferta');
       
       $datosproductos = Producto::orderBY('id_producto', 'ASC')
+      ->where('estado','1')
       ->id($id)
       ->nombre($nombre)
       ->referencia($referencia)
@@ -78,10 +79,17 @@ class OfertasDescuentosController extends Controller
       ]);*/
 
       
-      if(request("id_$id")){
-        $estado = 1;
+      if(request("p_exclu$id")){
+        $exclusivo = 1;
       }else{
-        $estado = 0;
+        $exclusivo = 0;
+      }
+      if(request("ofe_nue")==0){
+        $oferta = 1;
+        $nuevo = 0;
+      }else{
+        $oferta = 0;
+        $nuevo = 1;
       }
       if(request("fecha_inicio")==""){
         $fecha_inicio = "0000-00-00";
@@ -126,7 +134,7 @@ class OfertasDescuentosController extends Controller
 
       ]);
       
-      DB::update("update productos set  oferta=$estado  where id_producto = $id"); 
+      DB::update("update productos set  oferta=$oferta ,exclusivo=$exclusivo, nuevo=$nuevo where id_producto = $id"); 
 
       return redirect()->route('ofertaDescuento');
       //return view('admin.admin.AgregarProducto');
@@ -154,6 +162,8 @@ class OfertasDescuentosController extends Controller
         $existencias = $item->existencias;
         $resumen_producto = $item->resumen_producto;
         $oferta = $item->oferta;
+        $nuevo = $item->nuevo;
+        $exclusivo = $item->exclusivo;
       }
 
       $datosdescuento = DB::table('descuentos')->where('id_producto',''.$id.'')->get();
@@ -183,7 +193,7 @@ class OfertasDescuentosController extends Controller
       //return $roles ;
       //$datos = Producto::get();
       return view('admin.admin.EditarOfertasDes', compact('datoscategoria','id_categoria',
-      'nombre_p','referencia','resumen_producto','precio_neto','precio_iva','imagen_p','existencias','oferta','id',
+      'nombre_p','referencia','resumen_producto','precio_neto','precio_iva','imagen_p','existencias','oferta','nuevo','exclusivo','id',
       'id_descuentos','id_producto','porcentaje_d','peso_d','fecha_inicio','fecha_fin','hora_inicio','hora_fin'));
     }
     
@@ -198,10 +208,17 @@ class OfertasDescuentosController extends Controller
 
       //return request('imagen_categoria');
       
-      if(request("id_$id")){
+      if(request("p_exclu$id")){
+        $exclusivo = 1;
+      }else{
+        $exclusivo = 0;
+      }
+      if(request("ofe_nue")==0){
         $oferta = 1;
+        $nuevo = 0;
       }else{
         $oferta = 0;
+        $nuevo = 1;
       }
       if(request("fecha_inicio")==""){
         $fecha_inicio = "0000-00-00";
@@ -235,7 +252,7 @@ class OfertasDescuentosController extends Controller
       }
      
       //request()->file('imagen_categoria')->store('public');
-      DB::update("update productos set oferta=$oferta  where id_producto = $id"); 
+      DB::update("update productos set oferta=$oferta ,exclusivo=$exclusivo, nuevo=$nuevo where id_producto = $id"); 
       DB::update("update descuentos set fecha_inicio='$fecha_inicio', hora_inicio='$hora_inicio', fecha_fin='$fecha_fin',
        hora_fin='$hora_fin', porcentaje_d=$porcentaje_d, peso_d=$peso_d   where id_producto = $id"); 
       
@@ -246,7 +263,7 @@ class OfertasDescuentosController extends Controller
     public function eliminar(Request $request){
       $id = $request->id;
       
-      DB::update("update productos set oferta = 0 where id_producto = $id");
+      DB::update("update productos set oferta = 0 , exclusivo=0 ,nuevo=0 where id_producto = $id");
       DB::delete("delete from  descuentos where id_producto =  $id");
       $guardado="eliminado";
       
