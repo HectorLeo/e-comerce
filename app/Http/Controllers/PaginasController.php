@@ -11,7 +11,7 @@ class PaginasController extends Controller
     
     public function contenido()
     {
-      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3']])->get();
+      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1']])->get();
       $datosP = DB::table('productos')->where([['estado','=','1']])->get();
       
      

@@ -22,15 +22,33 @@
                   <div class="col-md-6">
                         <div class="card card-info">
                             <div class="card-header">
-                            <h3 class="card-title">Fecha y Hora</h3>
+                            <h3 class="card-title">Ofertas y Descuentos</h3>
                             </div>
                             <div class="card-body">
-                                <div class="custom-control custom-checkbox">
-                                        <input class="custom-control-input" type="checkbox" id="id_{{$id}}" name="id_{{$id}}" checked>
-                                    <label for="id_{{$id}}" class="custom-control-label"> Producto en Oferta</label>
+                                
+                                    <!-- radio -->
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="custom-control custom-radio">
+                                                    <input class="custom-control-input" type="radio" id="p_oferta1" name="ofe_nue" value="0" checked>
+                                                    <label for="p_oferta1" class="custom-control-label">Producto en Oferta</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input class="custom-control-input" type="radio" id="p_nuevo2" name="ofe_nue" value="1" >
+                                                    <label for="p_nuevo2" class="custom-control-label">Producto Nuevo</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox" id="p_exclu{{$id}}" name="p_exclu{{$id}}" checked>
+                                                <label for="p_exclu{{$id}}" class="custom-control-label"> Producto Exclusivo</label>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    
+                               
+                                
                                 <hr>
                                 <label >Inicia: </label>
                                 <div class="row">

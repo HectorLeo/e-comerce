@@ -34,6 +34,7 @@
  		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
  		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
  		<![endif]-->
+		 
 
     </head>
 	<body>
@@ -337,12 +338,12 @@
 		<!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/slick.min.js"></script>
-		<script src="js/nouislider.min.js"></script>
-		<script src="js/jquery.zoom.min.js"></script>
-		<script src="js/main.js"></script>
+		<script src="\assets\usu-tienda\js\jquery.min.js"></script>
+		<script src="\assets\usu-tienda\js\bootstrap.min.js"></script>
+		<script src="\assets\usu-tienda\js\slick.min.js"></script>
+		<script src="\assets\usu-tienda\js\nouislider.min.js"></script>
+		<script src="\assets\usu-tienda\js\jquery.zoom.min.js"></script>
+		<script src="\assets\usu-tienda\js\main.js"></script>
 
 	</body>
 </html>
