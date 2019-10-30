@@ -24,7 +24,7 @@
             </div>
             <div class="shop-body">
                 <h3>{{ $item->nombre_c }}</h3>
-                <a href="#" class="cta-btn">Compra ahora <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="{{route('tiendaC', ''.$item->id_categoria.'')}}" class="cta-btn">Compra ahora <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>

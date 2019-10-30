@@ -80,3 +80,5 @@ Route::get('usuarioC', 'cliente\UsuarioController@index')->name('registroC');
 Route::post('usuarioC', 'cliente\UsuarioController@guardar' )->name('guardarC');
 Route::get('usuarioC/{id}/editar', 'cliente\UsuarioController@actualizar')->name('editarC');
 Route::delete('usuarioC/{id}','cliente\UsuarioController@eliminar')->name('eliminarC');
+
+Route::get('tiendaC/{id}', 'PaginasController@tiendaC')->name('tiendaC');

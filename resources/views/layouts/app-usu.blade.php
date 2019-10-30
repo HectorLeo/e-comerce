@@ -179,7 +179,7 @@
 		<!-- /NAVIGATION -->
 
 		<!-- BREADCRUMB -->
-		<!-- barras gris de categorias -->
+		@yield('encabezadoC')
 		<!-- /BREADCRUMB -->
 
 		<!-- SECTION  contenidos  -->
