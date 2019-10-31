@@ -192,7 +192,8 @@
 				<div class="row">
 					@yield('content')
 				<!-- /shop -->
-			</div>
+				</div>
+			@yield('content3')
 			<!-- /row -->
 		</div>
 		<!-- /container -->
