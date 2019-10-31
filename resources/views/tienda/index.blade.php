@@ -8,6 +8,4 @@ Inicio
 {{  Auth::guest() }}
 @section('content')
 <!-- Aqui va ell contenido> 
-
-
 @endsection

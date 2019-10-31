@@ -11,11 +11,8 @@ class PaginasController extends Controller
     
     public function contenido()
     {
-<<<<<<< HEAD
       $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
-=======
-      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1']])->get();
->>>>>>> 0b7701430b90aa019f4e2c42b55ebabe03f2d489
+
       $datosP = DB::table('productos')->where([['estado','=','1']])->get();
       return view('tienda.home', compact('datosC','datosP'));
     }
@@ -27,17 +24,21 @@ class PaginasController extends Controller
     
       $datosCH= DB::table('categorias')->where([['tipo_categoria','=',''.$id.'']])->get();
 
+      $idCate_CH="";
       $nombre_ch = "";
       $tipo_ch = "";
       $imagen_ch = "";
       $descripcion_ch = "";
-      foreach($datosCH as $item){
+      foreach($datosCP as $item){
+        $idCate_CH = $item->id_categoria;
         $nombre_ch = $item->nombre_c;
         $tipo_ch = $item->tipo_categoria;
         $imagen_ch = $item->imagen_c;
         $descripcion_ch = $item->descripcion;
       }
+      $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo_ch.''],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
+      $datosPr= DB::table('productos')->where([['id_categoria','=',''.$id.'']])->get();
 
-      return view('tienda.tiendaC', compact('datosC','datosP','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
+      return view('tienda.tiendaC', compact('datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
     }
 }
