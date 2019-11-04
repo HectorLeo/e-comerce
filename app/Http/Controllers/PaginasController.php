@@ -11,10 +11,18 @@ class PaginasController extends Controller
     
     public function contenido()
     {
+<<<<<<< HEAD
       $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3']])->get();
       $datosP = DB::table('productos')->where([['estado','=','1'],['nuevo','=','1']])->get();
+=======
+      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1']])->get();
+      $datosPNuevos = DB::table('productos')->where([['estado','=','1'],['nuevo','=','1']])->get();
+      $datosPOfertas = DB::table('productos')->where([['estado','=','1'],['oferta','=','1']])->get();
+      $datosPExclusivo = DB::table('productos')->where([['estado','=','1'],['exclusivo','=','1']])->get();
+>>>>>>> 25c35886b364ddf0da849720d2055b627792766d
       $datoscomentarios = DB::table('comentarios')->where([['estado','=','1']])->get();
-      return view('tienda.home', compact('datosC','datosP','datoscomentarios'));
+      $datosdescuentos = DB::table('descuentos')->get();
+      return view('tienda.home', compact('datosC','datosPNuevos','datosPOfertas','datosPExclusivo','datoscomentarios','datosdescuentos'));
     }
 
     public function tiendaC($id)

@@ -80,9 +80,9 @@
                             <div class="form-group">
                                 <label >Agrege una imagen de la Categoría*</label>
                                 <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input {!! $errors->first('imagen_categoria','is-invalid') !!}" id="imagen_categoria" name="imagen_categoria">
-                                        <label class="custom-file-label" for="imagen_categoria">Elige una imagen</label>
+                                    <div class="">
+                                        <input type="file" class=" {!! $errors->first('imagen_categoria','is-invalid') !!}" id="imagen_categoria" name="imagen_categoria">
+                                    
                                     </div>
                                     
                                 </div>
