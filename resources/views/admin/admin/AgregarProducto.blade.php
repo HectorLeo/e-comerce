@@ -31,11 +31,11 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="etiqueta_producto">Nombre del Producto</label>
-                                <input type="text" class="form-control" id="nombre_producto" name="nombre_producto" placeholder="Producto">
+                                <input type="text" class="form-control" id="nombre_producto" name="nombre_producto" placeholder="Producto" required>
                             </div>
                             <div class="form-group">
                                 <label >Referencia</label>
-                                <input type="text" class="form-control" id="referencia_producto" name="referencia_producto" placeholder="Referencia">
+                                <input type="text" class="form-control" id="referencia_producto" name="referencia_producto" placeholder="Referencia" required>
                             </div>
                             <div class="form-group">
                                 <label >Resumen</label>
@@ -67,9 +67,8 @@
                             <div class="form-group">
                                 <label >Agrege una imagen del producto</label>
                                 <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="imagen_producto" name="imagen_producto">
-                                        <label class="custom-file-label" for="imagen_producto">Elige una imagen</label>
+                                    <div class="">
+                                        <input type="file" class="" id="imagen_producto" name="imagen_producto">
                                     </div>
                                     
                                 </div>
@@ -350,7 +349,7 @@
                                     <div class="form-group">
                                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                             <input type="checkbox" class="custom-control-input" id="estado_product" name="estado_product">
-                                            <label class="custom-control-label" for="estado_product">Seleccione el estado de la categoría</label>
+                                            <label class="custom-control-label" for="estado_product">Seleccione el estado del producto</label>
                                         </div>
                                     </div>
                                 </div>
