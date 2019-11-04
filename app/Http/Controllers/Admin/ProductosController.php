@@ -28,7 +28,7 @@ class ProductosController extends Controller
       ->precio_in($precio_in)
       ->cantidad($cantidad)
       ->estado($estado)
-      ->paginate(5);
+      ->paginate(20);
       //$datoscategorias = DB::table('categorias')->get();
 
       return view('admin.admin.ConsultarProductos', compact('datosproductos'));
