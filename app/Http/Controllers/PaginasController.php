@@ -41,4 +41,32 @@ class PaginasController extends Controller
 
       return view('tienda.tiendaC', compact('datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
     }
+
+    public function tiendaP($id)
+    {
+      $datosP = DB::table('productos')->where([['id_producto','=',''.$id.'']])->get();
+
+      $idP="";
+      $nombre = "";
+      $precioN = "";
+      $existancias = "";
+      $descripcion = "";
+      $resumen ="";
+      $marca = "";
+      $imagen = "";
+      $categoria ="";
+      foreach($datosP as $item){
+        $idP = $item->id_producto;
+        $nombre = $item->nombre_p;
+        $precioN = $item->precio_neto;
+        $existencias = $item->existencias;
+        $descripcion = $item->descripcion_producto;
+        $resumen = $item->resumen_producto;
+        $marca = $item->id_marca;
+        $imagen =  $item->imagen;
+        $categoria =  $item->id_categoria;
+      }
+
+      return view('tienda.home', compact('nombre','precionN','existencias','descripcion','resumen','marca','imagen'));
+    }
 }
