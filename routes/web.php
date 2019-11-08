@@ -83,4 +83,4 @@ Route::get('usuarioC/{id}/editar', 'cliente\UsuarioController@actualizar')->name
 Route::delete('usuarioC/{id}','cliente\UsuarioController@eliminar')->name('eliminarC');
 
 Route::get('tiendaC/{id}', 'PaginasController@tiendaC')->name('tiendaC');
-Route::get('tiendaP/{id}', 'PaginasController@tiendaP')->name('tiendaP');
+Route::get('tiendaP/{id}', 'PaginasController@TiendaP')->name('TiendaP');

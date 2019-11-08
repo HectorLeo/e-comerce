@@ -77,20 +77,34 @@
                     <div class="product-img">
                         <img width="100" height="250" src="{{Storage::url($item->imagen_p)}}" alt="imagen del producto">
                         <div class="product-label">
-                            <span class="sale">-30%</span>
-                            <span class="new">NEW</span>
+                                @foreach ($datosDes as $item_D)
+                                @if($item->id_producto == $item_D->id_producto )
+                                    @if($item_D->porcentaje_d != 0.00)
+                                        <span class="sale">-{{$item_D->porcentaje_d}}%</span>
+                                    @endif
+                                    @if($item_D->porcentaje_d == 0.00)
+                                        <span class="sale">-${{$item_D->peso_d}}</span>
+                                    @endif
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="product-body">
-                        <p class="product-category">Category</p>
-                        <h3 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">{{ $item->nombre_p }}</a></h3>
-                        <h4 class="product-price">{{ $item->precio_neto }} <del class="product-old-price">$990.00</del></h4>
+                        @foreach ($datosC as $item_C)
+                            @if ($item->id_categoria == $item_C->id_categoria)
+                                    {{$item_C->nombre_c}}
+                            @endif
+                        @endforeach
+                        <h3 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
+                        @foreach ($datosDes as $item_D)
+                            @if(($item_D->id_producto == $item->id_producto))
+                                <h4 class="product-price 1">${{$item_D->precio_descuento}} <del class="product-old-price"> ${{$item->precio_iva}}</del></h4>
+                            @endif
+                        @endforeach
+                         @if(($item->nuevo==0) && ($item->oferta==0))
+                                <h4 class="product-price 2">${{$item->precio_iva}}<del class="product-old-price"></del></h4>
+                        @endif
                         <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
                         </div>
                         <div class="product-btns">
                             <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
