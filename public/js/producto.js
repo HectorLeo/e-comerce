@@ -28,8 +28,33 @@ $(document).ready(function () {
                     if(enviar_reporte == 'desactivo'){
                         alert("Producto Desactivado");
                         location.reload();
-                    }
+                    } 
                 }    
+                
+            }
+        });
+    });
+    $('.remove_imagen').click(function (e) {
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        id_delete = $(e.currentTarget).attr("remove_imagen");
+        //valor =  $(e.currentTarget).val();
+        $.ajax({
+            url: "../productoImagen",
+            method: 'post',
+            data: {
+                id: id_delete
+            },
+            success: function (resul) {
+
+                var enviar_reporte = resul.guardado;
+                //valor =  $(e.currentTarget).val();
+                alert('Imagen del producto eliminada: Correctamente'); 
                 
             }
         });

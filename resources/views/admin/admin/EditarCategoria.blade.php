@@ -41,7 +41,7 @@
                                 
                             </div>
                             {!! $errors->first('nombre_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Campo Obligatorio!</strong>
+                                <strong>:message</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
@@ -65,7 +65,7 @@
                                 
                             </div>
                             {!! $errors->first('categoria_padre','<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Campo Obligatorio!</strong>
+                                <strong>:message</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
@@ -76,20 +76,20 @@
                                 
                             </div>
                             {!! $errors->first('descripcion_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Campo Obligatorio!</strong>
+                                <strong>:message</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>') !!}
                             <label >Imagen </label>
                             <div class="form-group">
-                                <img width="200px" src="{{Storage::url($imagen_c)}}" alt="Imagen de la categoria">
+                                <img width="100%" height="200px" src="{{Storage::url($imagen_c)}}" alt="Imagen de la categoria">
                                 <input type="hidden" id="imagen_actual" name="imagen_actual" value="{{$imagen_c}}">
                             </div>
-                            <label >Agregar nueva imagen</label>
+                            <label >Agregar nueva imagen</label> 
                             <div class="custom-file">
-                                <input type="file"  lang="es" class="custom-file-input {!! $errors->first('imagen_categoria','is-invalid') !!}" id="imagen_categoria" name="imagen_categoria" >
-                                <label class="custom-file-label" for="imagen_categoria">Elige una imagen</label>
+                                <input type="file"   class=" {!! $errors->first('imagen_categoria','is-invalid') !!}" id="imagen_categoria" name="imagen_categoria" >
+                                
                             </div>
                             
                             {!! $errors->first('imagen_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">

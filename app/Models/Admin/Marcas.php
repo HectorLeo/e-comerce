@@ -14,7 +14,7 @@ class Marcas extends Model
             return $query->where('id_marca', 'LIKE', "%$id%");
         }
 
-    }
+    } 
     public function scopeNombre($query, $nombre){
         if($nombre){
             return $query->where('nombre_m', 'LIKE', "%$nombre%");

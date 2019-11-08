@@ -14,11 +14,11 @@ class Marcacontroller extends Controller
         $id= $request->get('id');
         $nombre= $request->get('nombre');
         $estado= $request->get('estado');
-        $datosmarcas = Marcas::orderBY('id_marca', 'DESC')
+        $datosmarcas = Marcas::orderBY('id_marca', 'ASC')
         ->id($id)
         ->nombre($nombre)
-        ->estado($estado)
-        ->paginate(4);
+        ->estado($estado) 
+        ->paginate(10);
       //$datostransportes = DB::table('transportistas')->get();
       return view('admin.admin.ConsultarMarcas', compact('datosmarcas'));
     }
@@ -111,8 +111,11 @@ class Marcacontroller extends Controller
       $id = $request->id;
       $estado_marca=$request->val;
       DB::update("update marcas set activo_m = $estado_marca where id_marca = $id");
-      
-          $guardado="3";
+      if($estado_marca == '1'){
+        $guardado ="activo";
+      }else{
+        $guardado ="desactivo";
+      }
           return response()->json(['guardado' => $guardado], 200);
      
     }

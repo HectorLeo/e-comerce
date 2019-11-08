@@ -20,16 +20,15 @@ $(document).ready(function () {
 
                 var enviar_reporte = resul.guardado;
 
-                if (enviar_reporte == '1') {
-
-                    alert("El transporte no se puede eliminar hay pedido(s) que lo estan usando");
-                } else{ 
-                        if(enviar_reporte == '3'){
-                            alert("Transporte Eliminado");
-                            location.reload();
-                        }
-                    
-                }
+                if(enviar_reporte == 'activo'){
+                    alert("Marca Activada");
+                    location.reload();
+                }else{ 
+                    if(enviar_reporte == 'desactivo'){
+                        alert("Marca Desactivada");
+                        location.reload();
+                    }
+                }   
             }
         });
     });

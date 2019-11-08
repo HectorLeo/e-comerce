@@ -105,13 +105,13 @@
                         {!! Form::text('cantidad', null, ['class'=>'form-control'])!!}
                 </th>
                 <td>
-                          {!! Form::select('oferta', array(null => '-', '1' => 'Si', '0' => 'No' ),['class'=>'form-control'])!!}
+                          {!! Form::select('oferta', array(null => '-', '1' => 'Si', '0' => 'No' ),null, ['class' => 'form-control'])!!}
                 </td>
                 <td>
-                        {!! Form::select('nuevo', array(null => '-', '1' => 'Si', '0' => 'No' ))!!}
+                        {!! Form::select('nuevo', array(null => '-', '1' => 'Si', '0' => 'No' ),null, ['class' => 'form-control'])!!}
                 </td>
                 <td>
-                        {!! Form::select('exclusivo', array(null => '-', '1' => 'Si', '0' => 'No' ))!!}
+                        {!! Form::select('exclusivo', array(null => '-', '1' => 'Si', '0' => 'No' ),null, ['class' => 'form-control'])!!}
                 </td>
                   
                   <td class="project-actions text-right">

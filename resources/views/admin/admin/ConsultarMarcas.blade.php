@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulohome')
-    <h1 class="m-0 text-dark">Categorías</h1>
+    <h1 class="m-0 text-dark">Marcas</h1>
 @endsection
 
 @section('titulonavegacion')
@@ -22,7 +22,7 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Projects</h3>
+        <h3 class="card-title">Marcas</h3>
 
         <div class="card-tools">
         <a class="btn btn-info btn-sm" href="{{ route('Marca') }}"><i class="fas fa-plus-circle"></i>  Nueva Marca</a>
@@ -48,7 +48,6 @@
                     <th style="width: 10%">
                         Activado
                     </th>
-                        Acciones
                     <th style="width: 30%">
                     </th>
                 </tr>
@@ -64,7 +63,7 @@
                           {!! Form::text('nombre', null, ['class'=>'form-control'])!!}
                   </th>
                   <td>
-                          {!! Form::select('estado', array(null => '-', '1' => 'Sí', '0' => 'No' ))!!}
+                          {!! Form::select('estado', array( null => '-', '1' => 'Sí', '0' => 'No' ),null, ['class' => 'form-control'])!!}
                   </td>
                 
                   <td class="project-actions text-right">
@@ -83,7 +82,7 @@
                             {{$item->id_marca}}
                         </td>
                         <td>
-                            <img width="40" src="{{Storage::url($item->logotipo_m)}}">
+                            <img width="50px" height="50px" src="{{Storage::url($item->logotipo_m)}}">
                             
                         </td>
                         <td>

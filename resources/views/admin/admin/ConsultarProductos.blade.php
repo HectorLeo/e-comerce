@@ -87,7 +87,7 @@
                         {!! Form::text('cantidad', null, ['class'=>'form-control'])!!}
                 </th>
                   <td>
-                          {!! Form::select('estado', array(null => '-', '1' => 'Activo', '0' => 'Desactivo' ))!!}
+                          {!! Form::select('estado', array(null => '-', '1' => 'Si', '0' => 'No' ),null, ['class' => 'form-control'])!!}
                   </td>
                   <td class="project-actions text-right">
                           <button type="submit" class="btn  btn-secondary btn-sm" href="#">
@@ -100,32 +100,32 @@
             </thead>
             <tbody>
                 @foreach ($datosproductos as $item)
-                    <tr>
-                        <td>
+                    <tr  >
+                        <td style="width: 8%">
                             {{$item->id_producto}}
                         </td>
-                        <td>
+                        <td style="width: 5%">
                             <img width="50px" height="50px" src="{{Storage::url($item->imagen_p)}}" alt="Imagen de la categoria">
                         </td>
-                        <td>
+                        <td style="width: 10%">
                             {{$item->nombre_p}}
                         </td>
-                        <td>
+                        <td style="width: 15%">
                             {{$item->referencia}}
                         </td>
-                        <td>
+                        <td style="width: 10%">
                             {{$item->id_categoria}}
                         </td>
-                        <td>
+                        <td style="width: 5%">
                             {{$item->precio_neto}}
                         </td>
-                        <td>
+                        <td style="width: 5%">
                             {{$item->precio_iva}}
                         </td>
-                        <td>
+                        <td style="width: 5%">
                             {{$item->existencias}}
                         </td>
-                        <td class="project_progress">
+                        <td class="project_progress" style="width: 5%">
                                 
                             @if(($item->estado) == 1)
                                 <i class="fas fa-check"></i> <!-- activo -->
@@ -135,7 +135,7 @@
                             
                             
                         </td>
-                        <td class="project-actions text-right">
+                        <td class="project-actions text-right" style="width: 20%">
                             <!--<a class="btn btn-primary btn-sm" href="#">
                                 <i class="fas fa-folder">
                                 </i>

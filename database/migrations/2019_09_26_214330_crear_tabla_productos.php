@@ -31,7 +31,8 @@ class CrearTablaProductos extends Migration
             $table->float('p_peso');
             $table->string('plazo_entrega_p', 50);
             $table->float('gasto_envio_p');
-            $table->float('precio_mayoreo_p');
+            $table->float('precio_mayoreo_psin');
+            $table->float('precio_mayoreo_pcon');
             $table->integer('cantidad_minima');
             $table->integer('cantidad_mayoreo');
             $table->boolean('estado');

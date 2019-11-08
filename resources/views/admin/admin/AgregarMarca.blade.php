@@ -5,7 +5,8 @@
 @endsection
 
 @section('titulonavegacion')
-    <li class="breadcrumb-item active">Marcas</a></li>
+    <li class="breadcrumb-item "><a href="{{ route('categoria') }}">Marcas</a></li>
+    <li class="breadcrumb-item active">Agregar Marcas</li>
 @endsection
 @section('ActiveCata') nav-link active @endsection
 @section('ActiveCatalogo') nav-item has-treeview menu-open @endsection
@@ -34,10 +35,10 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="etiqueta_producto">Nombre de la Marca*</label>
-                                <input type="text" class="form-control {!! $errors->first('nombre_categoria','is-invalid') !!}" id="nombre_marca" name="nombre_marca" placeholder="Marca" >
+                                <input type="text" class="form-control {!! $errors->first('nombre_marca','is-invalid') !!}" id="nombre_marca" name="nombre_marca" placeholder="Marca" value="{{old('nombre_marca')}}" >
                                 
                             </div>
-                            {!! $errors->first('nombre_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {!! $errors->first('nombre_marca','<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <strong>Campo Obligatorio!</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
@@ -46,10 +47,10 @@
                             
                             <div class="form-group">
                                 <label >Descripción*</label>
-                                <textarea class="form-control {!! $errors->first('descripcion_categoria','is-invalid') !!}" rows="3" id="descripcion_marca" name="descripcion_marca" placeholder="Descripción ..."></textarea>
+                                <textarea class="form-control {!! $errors->first('descripcion_marca','is-invalid') !!}" rows="3" id="descripcion_marca" name="descripcion_marca" placeholder="Descripción ...">{{old('descripcion_marca')}}</textarea>
                                 
                             </div>
-                            {!! $errors->first('descripcion_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {!! $errors->first('descripcion_marca','<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <strong>Campo Obligatorio!</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
@@ -59,13 +60,13 @@
                                 <label >Agrege una imagen de la Marca*</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input {!! $errors->first('imagen_categoria','is-invalid') !!}" id="imagen_marca" name="imagen_marca">
-                                        <label class="custom-file-label" for="imagen_categoria">Elige una imagen</label>
+                                        <input type="file" class=" {!! $errors->first('imagen_marca','is-invalid') !!}" id="imagen_marca" name="imagen_marca" value="{{old('imagen_marca')}}">
+                                        
                                     </div>
                                     
                                 </div>
                             </div>
-                            {!! $errors->first('imagen_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {!! $errors->first('imagen_marca','<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <strong>:message</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
@@ -73,14 +74,21 @@
                               </div>') !!}
                         </div>
                         <!-- /.card-body -->
-                        <div align="center" class="col-sm-offset-2 col-sm-10">
+                        <div align="center" class="col-sm-offset-2 col-sm-12">
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" data-toggle="toggle" name="estado" id="estado">
                                     Activado
                                 </label>
+                                
                             </div>
-                            <button type="submit" class="btn btn-primary">Aceptar</button>
+                            <hr>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Agregar Marca</button>
+                                <a class="btn btn-danger" href="{{ route('marcaC') }}">  Cancelar</a>
+                
+                            </div>
+                            
                         </div>
                         
                 </div>

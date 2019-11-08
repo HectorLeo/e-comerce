@@ -5,6 +5,7 @@ use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Producto;
+use App\Models\Admin\Imagenes_Producto;
 use App\Models\Admin\Transportista_Producto;
 
 class ProductosController extends Controller
@@ -47,18 +48,30 @@ class ProductosController extends Controller
     }
     public function agregarbd()
     {
-      /*request()->validate([
-        'nombre_categoria' => 'required',
-        'categoria_padre' =>'required',
-        'descripcion_categoria' =>'required',
-        'imagen_categoria' =>'required|image',
-      ]);*/
+      request()->validate([
+        'nombre_producto' => 'required',
+        'referencia_producto' =>'required',
+        'resumen_producto' =>'required',
+        'descripcion_producto' =>'required',
+        'cantidad_existencia' =>'required|integer',
+        'imagen_producto' =>'required|image',
+        'categoria' =>'required',
+        'marca' =>'required',
+        'precio_sin_impuesto'=>'between:0.00,99.99',
+        'precio_mayoreo'=>'between:0.00,99.99',
+        
+      ]);
 
       
       if(request('estado_product')){
         $estado = 1;
       }else{
         $estado = 0;
+      }
+      if(request('plazo_entrega')==""){
+        $plazo_entrega = "";
+      }else{
+        $plazo_entrega = request('plazo_entrega');
       }
 
       request()->file('imagen_producto')->store('public');
@@ -68,12 +81,12 @@ class ProductosController extends Controller
       Producto:: create([
         
         //'id_producto'=> request('nombre_categoria'),
-        'id_categoria'=> request('categoria_padre'),
+        'id_categoria'=> request('categoria'),
         'id_marca'=> request('marca'),
         'nombre_p'=> request('nombre_producto'),
         'referencia'=> request('referencia_producto'),
         'precio_neto'=> request('precio_sin_impuesto'),
-        'precio_iva'=> request('precio_sin_impuesto'),
+        'precio_iva'=> request('precio_con_impuesto'),
         'resumen_producto'=> request('resumen_producto'),
         'descripcion_producto'=> request('descripcion_producto'),
         'imagen_p'=> $url,
@@ -82,9 +95,10 @@ class ProductosController extends Controller
         'p_altura'=> request('altura_producto'),
         'p_profundidad'=> request('profundidad_producto'),
         'p_peso'=> request('peso_producto'),
-        'plazo_entrega_p'=> request('plazo_entrega'),
+        'plazo_entrega_p'=> $plazo_entrega,
         'gasto_envio_p'=> request('gastos_envio'),
-        'precio_mayoreo_p'=> request('precio_mayoreo'),
+        'precio_mayoreo_psin'=> request('precio_mayoreo'),
+        'precio_mayoreo_pcon'=> request('precio_impuesto_mayoreo'),
         'cantidad_minima'=> request('cantidad_minima_venta'),
         'cantidad_mayoreo'=> request('cantidad_mayoreo'),
         'estado'=> $estado,
@@ -118,6 +132,14 @@ class ProductosController extends Controller
           ]);
         
       }
+      for($i=0;$i<6;$i++){
+        if(request('imagen_producto_'.$i.'')!=null){
+          Imagenes_Producto:: create([
+            'id_producto'=> $id,
+            'url'=> request()->file('imagen_producto_'.$i.'')->store('public')
+          ]);
+        }
+    }
       
       return redirect()->route('producto');
       //return view('admin.admin.AgregarProducto');
@@ -143,7 +165,8 @@ class ProductosController extends Controller
       $p_peso = "";
       $plazo_entrega_p = "";
       $gasto_envio_p = "";
-      $precio_mayoreo_p = "";
+      $precio_mayoreo_psin = "";
+      $precio_mayoreo_pcon = "";
       $cantidad_minima = "";
       $cantidad_mayoreo = "";
       $mostrado_c = "";
@@ -164,7 +187,8 @@ class ProductosController extends Controller
         $p_peso = $item->p_peso;
         $plazo_entrega_p = $item->plazo_entrega_p;
         $gasto_envio_p = $item->gasto_envio_p;
-        $precio_mayoreo_p = $item->precio_mayoreo_p;
+        $precio_mayoreo_psin = $item->precio_mayoreo_psin;
+        $precio_mayoreo_pcon = $item->precio_mayoreo_pcon;
         $cantidad_minima = $item->cantidad_minima;
         $cantidad_mayoreo = $item->cantidad_mayoreo;
         $estado = $item->estado;
@@ -179,23 +203,28 @@ class ProductosController extends Controller
       $acti_transporte = DB::select("select * from transporte_producto where (id_producto = $id and activo = 1)");
       //return $roles;
       $datoscategoria = DB::table('categorias')->get();
-      
+      $datosimagenes = DB::table('imagenes_producto')->where('id_producto',''.$id.'')->get();
       //$datostransporte = DB::table('rol')->where('clave_rol','!=','1')->get();
       //return $roles ;
       //$datos = Producto::get();
       return view('admin.admin.EditarProducto', compact('datoscategoria','datosmarcas','datostransporte','id_categoria','id_marca',
       'nombre_p','referencia','precio_neto','precio_iva','resumen_producto','descripcion_producto','imagen_p','existencias',
-      'p_anchura','p_altura','p_profundidad','p_peso','plazo_entrega_p','gasto_envio_p','precio_mayoreo_p',
-      'cantidad_minima','cantidad_mayoreo','estado','acti_transporte','id'));
+      'p_anchura','p_altura','p_profundidad','p_peso','plazo_entrega_p','gasto_envio_p','precio_mayoreo_psin','precio_mayoreo_pcon',
+      'cantidad_minima','cantidad_mayoreo','estado','acti_transporte','id','datosimagenes'));
     }
     public function editarbd($id)
     {
-     /* request()->validate([
-        'nombre_categoria' => 'required',
-        'categoria_padre' =>'required',
-        'descripcion_categoria' =>'required',
-        'imagen_categoria' =>'image',
-      ]);*/
+      request()->validate([
+        'nombre_producto' => 'required',
+        'referencia_producto' =>'required',
+        'resumen_producto' =>'required',
+        'descripcion_producto' =>'required',
+        'cantidad_existencia' =>'required|integer',
+        'imagen_producto' =>'image',
+        'categoria' =>'required',
+        'marca' =>'required'
+        
+      ]);
 
       //return request('imagen_categoria');
       if(request('imagen_producto')==""){
@@ -209,12 +238,12 @@ class ProductosController extends Controller
         $estado = 0;
       }
 
-      $id_categoria =  request('categoria_padre');
+      $id_categoria =  request('categoria');
       $id_marca =   request('marca');
       $nombre_p = request('nombre_producto');
       $referencia = request('referencia_producto');
       $precio_neto = request('precio_sin_impuesto');
-      $precio_iva = request('precio_sin_impuesto');
+      $precio_iva = request('precio_con_impuesto');
       $resumen_producto = request('resumen_producto');
       $descripcion_producto = request('descripcion_producto');
       $imagen_p = $url;
@@ -225,7 +254,8 @@ class ProductosController extends Controller
       $p_peso = request('peso_producto');
       $plazo_entrega_p = request('plazo_entrega');
       $gasto_envio_p = request('gastos_envio');
-      $precio_mayoreo_p = request('precio_mayoreo');
+      $precio_mayoreo_psin = request('precio_mayoreo');
+      $precio_mayoreo_pcon = request('precio_impuesto_mayoreo');
       $cantidad_minima = request('cantidad_minima_venta');
       $cantidad_mayoreo = request('cantidad_mayoreo');
      
@@ -234,7 +264,7 @@ class ProductosController extends Controller
       referencia='$referencia', precio_neto=$precio_neto, precio_iva=$precio_iva, resumen_producto='$resumen_producto',
       descripcion_producto='$descripcion_producto', imagen_p='$imagen_p', existencias=$existencias, p_anchura=$p_anchura, 
       p_altura=$p_altura, p_profundidad=$p_profundidad ,p_peso=$p_peso ,plazo_entrega_p='$plazo_entrega_p' ,gasto_envio_p=$gasto_envio_p,
-      precio_mayoreo_p=$precio_mayoreo_p, cantidad_minima=$cantidad_minima, cantidad_mayoreo=$cantidad_mayoreo,
+      precio_mayoreo_psin=$precio_mayoreo_psin,precio_mayoreo_pcon=$precio_mayoreo_pcon, cantidad_minima=$cantidad_minima, cantidad_mayoreo=$cantidad_mayoreo,
       estado=$estado  where id_producto = $id"); 
       
       $datostransporte = DB::table('transportistas')->where('estado_transporte','!=','0')->get();
@@ -244,14 +274,44 @@ class ProductosController extends Controller
             if(request('id'.$item->id_transporte.'')){
               DB::table('transporte_producto')->updateOrInsert(
                 ['id_producto' => $id, 'id_transporte' => $item->id_transporte],
-                ['activo' => '1']);
+                ['activo' => '1',
+                'created_at'=>date("Y-m-d H:i:s"),
+                'updated_at'=>date("Y-m-d H:i:s")
+                ]);
             }else{
               DB::table('transporte_producto')->updateOrInsert(
                 ['id_producto' => $id, 'id_transporte' => $item->id_transporte],
-                ['activo' => '0']);
+                ['activo' => '0',
+                'created_at'=>date("Y-m-d H:i:s"),
+                'updated_at'=>date("Y-m-d H:i:s")
+                ]);
               }
          
         
+      }
+      for($i=0;$i<6;$i++){
+        if(request('imagen_editar_'.$i.'')!=null){
+          if(request('imagen_extra_'.$i.'')!=null){
+            $id_imagen_producto = request('imagen_extra_'.$i.'');
+          }else{
+            $id_imagen_producto = 0;
+          }
+          DB::table('imagenes_producto')->updateOrInsert(
+            ['id_producto' => $id, 'id_imagen_producto' => $id_imagen_producto],
+            ['id_producto'=> $id,
+            'url'=> request()->file('imagen_editar_'.$i.'')->store('public'),
+            'created_at'=>date("Y-m-d H:i:s"),
+            'updated_at'=>date("Y-m-d H:i:s") 
+
+            ]);
+        }/*else{
+          //return request('imagen_editar_'.$i.'');
+          if((request('imagen_extra_'.$i.'')!=null) && (request('imagen_actual_'.$i.'')=="")){
+            return 'editar'.request('imagen_editar_'.$i.'').' -imagen-'.request('imagen_extra_'.$i.'').'';
+            DB::table('imagenes_producto')->where('id_imagen_producto','=', request('imagen_extra_'.$i.''))->delete();
+            
+          }
+        }*/
       }
       return redirect()->route('producto');
      
@@ -267,6 +327,15 @@ class ProductosController extends Controller
       }
       
       return response()->json(['guardado' => $guardado], 200);
+     
+    }
+    public function eliminarimagen(Request $request){
+      $id = $request->id;
+      //$estado=$request->val;
+      DB::table('imagenes_producto')->where('id_imagen_producto','=', ''.$id.'')->delete();
+      
+      
+      return response()->json(['guardado' => $id], 200);
      
     }
   }
