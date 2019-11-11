@@ -72,6 +72,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
 Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  ['auth', 'cliente']], function(){
     Route::get('cliente', 'ClienteController@index')->name('indexc');
+    
 });
 
 /* Rustas de Usuario */
