@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     //protected $table = 'productos';   // si no funciona habilitar esto para crearla la conexion hacia a la tabla
-    protected $fillable = ['id_categoria','id_marca','nombre_p','referencia','precio_neto','precio_iva','resumen_producto','descripcion_producto','imagen_p','existencias','p_anchura','p_altura','p_profundidad','p_peso','plazo_entrega_p','gasto_envio_p','precio_mayoreo_p','cantidad_minima','cantidad_mayoreo','estado','oferta','nuevo','exclusivo'];
+    protected $fillable = ['id_categoria','id_marca','nombre_p','referencia','precio_neto','precio_iva','resumen_producto','descripcion_producto','imagen_p','existencias','p_anchura','p_altura','p_profundidad','p_peso','plazo_entrega_p','gasto_envio_p','precio_mayoreo_psin','precio_mayoreo_pcon','cantidad_minima','cantidad_mayoreo','estado','oferta','nuevo','exclusivo'];
     
     public function scopeId($query, $id){
         if($id){

@@ -29,7 +29,7 @@ class OfertasDescuentosController extends Controller
       ->precio_in($precio_in)
       ->cantidad($cantidad)
       ->oferta($oferta)
-      ->paginate(50);
+      ->paginate(20);
       //$datoscategorias = DB::table('categorias')->get();
       
       return view('admin.admin.ConsultarOfertasDes', compact('datosproductos'));
@@ -71,12 +71,10 @@ class OfertasDescuentosController extends Controller
     }
     public function agregarbd($id)
     {
-      /*request()->validate([
-        'nombre_categoria' => 'required',
-        'categoria_padre' =>'required',
-        'descripcion_categoria' =>'required',
-        'imagen_categoria' =>'required|image',
-      ]);*/
+      request()->validate([
+        'porcentaje_d' => 'between:0.00,100.00',
+        'peso_d' =>'between:0.000,99999999999.999'
+      ]);
 
       
       if(request("p_exclu$id")){
@@ -111,22 +109,10 @@ class OfertasDescuentosController extends Controller
       }else{
         $hora_fin = request("hora_fin");
       }
-      if(request("porcentaje_d")==""){
-        $porcentaje_d = "0.0";
-      }else{
-        $porcentaje_d = request("porcentaje_d");
-      }
-      if(request("peso_d")==""){
-        $peso_d = "0.00";
-      }else{
-        $peso_d = request("peso_d");
-      }
-      
-      
       Descuento:: create([
         'id_producto'=> $id,
-        'porcentaje_d'=> $porcentaje_d,
-        'peso_d'=> $peso_d,
+        'porcentaje_d'=> request("porcentaje_d"),
+        'peso_d'=> request("peso_d"),
         'fecha_inicio'=> $fecha_inicio,
         'fecha_fin'=> $fecha_fin,
         'hora_inicio'=> $hora_inicio,

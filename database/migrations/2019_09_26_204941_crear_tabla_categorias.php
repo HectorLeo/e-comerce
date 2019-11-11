@@ -17,7 +17,7 @@ class CrearTablaCategorias extends Migration
             $table->Increments('id_categoria');
             $table->string('nombre_c', 50);
             $table->string('tipo_categoria', 50);
-            $table->string('imagen_c', 100);
+            $table->string('imagen_c', 200);
             $table->string('descripcion', 300);
             $table->boolean('mostrado_c');
             $table->timestamps();

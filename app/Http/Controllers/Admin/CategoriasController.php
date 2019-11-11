@@ -20,7 +20,7 @@ class CategoriasController extends Controller
       ->id($id)
       ->nombre($nombre)
       ->estado($estado)
-      ->paginate(3);
+      ->paginate(10);
       //$datoscategorias = DB::table('categorias')->get();
 
       return view('admin.admin.ConsultarCategoria', compact('datoscategorias'));

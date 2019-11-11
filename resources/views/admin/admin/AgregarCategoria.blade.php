@@ -36,11 +36,11 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="etiqueta_producto">Nombre de la Categoría*</label>
-                                <input type="text" class="form-control {!! $errors->first('nombre_categoria','is-invalid') !!}" id="nombre_Categoria" name="nombre_categoria" placeholder="Categoría" >
+                                <input type="text" class="form-control {!! $errors->first('nombre_categoria','is-invalid') !!}" id="nombre_Categoria" name="nombre_categoria" placeholder="Categoría"  value="{{old('nombre_categoria')}}">
                                 
                             </div>
                             {!! $errors->first('nombre_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Campo Obligatorio!</strong>
+                                <strong>:message</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
@@ -49,11 +49,11 @@
                                 <label >Categoría padre*</label>
                                 
                                     <!-- checkbox -->
-                                    <div class="form-group">
-                                        <select id="categoria_padre" name="categoria_padre"  class="form-control {!! $errors->first('categoria_padre','is-invalid') !!}">
+                                    <div class="form-group"> 
+                                        <select id="categoria_padre" name="categoria_padre"  class="form-control {!! $errors->first('categoria_padre','is-invalid') !!}" value="{{old('categoria_padre')}}">
                                             <option value="" >Selecione una opción</option>
                                             @foreach ($datoscategoria as $item)
-                                                <option value="{{$item->id_categoria}}" >{{$item->nombre_c}}</option>
+                                                <option value="{{$item->id_categoria}}" >{{$item->nombre_c}}</option> 
                                                 
                                             @endforeach
                                         </select>
@@ -61,18 +61,18 @@
                                 
                             </div>
                             {!! $errors->first('categoria_padre','<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Campo Obligatorio!</strong>
+                                <strong>:message</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>') !!}
                             <div class="form-group">
                                 <label >Descripción*</label>
-                                <textarea class="form-control {!! $errors->first('descripcion_categoria','is-invalid') !!}" rows="3" id="descripcion_categoria" name="descripcion_categoria" placeholder="Descripción ..."></textarea>
+                                <textarea class="form-control {!! $errors->first('descripcion_categoria','is-invalid') !!}" rows="3" id="descripcion_categoria" name="descripcion_categoria" placeholder="Descripción ...">{{old('descripcion_categoria')}}</textarea>
                                 
                             </div>
                             {!! $errors->first('descripcion_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Campo Obligatorio!</strong>
+                                <strong>:message</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
@@ -81,7 +81,7 @@
                                 <label >Agrege una imagen de la Categoría*</label>
                                 <div class="input-group">
                                     <div class="">
-                                        <input type="file" class=" {!! $errors->first('imagen_categoria','is-invalid') !!}" id="imagen_categoria" name="imagen_categoria">
+                                        <input type="file" class=" {!! $errors->first('imagen_categoria','is-invalid') !!}" id="imagen_categoria" name="imagen_categoria" value="{{old('imagen_categoria')}}">
                                     
                                     </div>
                                     

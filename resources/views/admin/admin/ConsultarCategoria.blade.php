@@ -63,7 +63,7 @@
                           ...
                   </td>
                   <td>
-                          {!! Form::select('estado', array(null => '-', '1' => 'Sí', '0' => 'No' ))!!}
+                          {!! Form::select('estado', array(null => '-', '1' => 'Sí', '0' => 'No' ),null, ['class' => 'form-control'])!!}
                   </td>
                   <td class="project-actions text-right">
                           <button type="submit" class="btn  btn-secondary btn-sm" href="#">

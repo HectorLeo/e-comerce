@@ -2,7 +2,7 @@
 
 
 @section('titulohome')
-    <h1 class="m-0 text-dark">Transporte</h1>
+    <h1 class="m-0 text-dark">Transportista</h1>
 @endsection
 
 @section('titulonavegacion')
@@ -200,15 +200,38 @@
             <!-- /.card-body -->
     </div>
 
-    <div align="center" class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" data-toggle="toggle" name="estado" id="estado">
-                    Activado
-                </label>
+    
+    <!------------------------------------------------ inicio botones  ----------------------------------->
+    <div   align="center" class="col-sm-offset-2 col-sm-12">
+            <div class="card card-info">
+                
+                <div class="card-body">
+                    
+
+                    <div class="row">
+                            <div class="col-6">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" data-toggle="toggle" name="estado" id="estado">
+                                        Seleccione el estado del transporte
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Agregar Transporte</button>
+                                    <a class="btn btn-danger" href="{{ route('transporteC') }}">  Cancelar</a>
+                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                </div>
+                
+                <!-- /.card-body -->
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
+        <!------------------------------------------------ fin botones --------------------------------------->
                     
 </form>
 

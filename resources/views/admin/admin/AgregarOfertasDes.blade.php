@@ -129,7 +129,7 @@
                             <div class="col-lg-6">
                                 <div class="input-group">
                                     
-                                    <input type="text" class="form-control" id="porcentaje_d" name="porcentaje_d" placeholder="0.0">
+                                    <input type="text" class="form-control" id="porcentaje_d" name="porcentaje_d" value="0.0">
                                     <div class="input-group-append">
                                             <span class="input-group-text">%</span>
                                     </div>
@@ -144,7 +144,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
                                     </div>
-                                    <input type="text" class="form-control" id="peso_d" name="peso_d" placeholder="0.000">
+                                    <input type="text" class="form-control" id="peso_d" name="peso_d" value="0.000">
                                     
                                 </div>
                             </div>
@@ -224,4 +224,27 @@
 
         </div>
     </form>
+@endsection
+
+@section('scripts')
+
+    <script  type="text/javascript">
+       $(document).ready(function () {
+        $("#porcentaje_d").click(function () {
+            //document.getElementById('peso_d').readOnly=true;
+            $("#peso_d").val("0.0");
+            $("#porcentaje_d").removeAttr('readOnly');
+            $("#peso_d").attr("readOnly","false");
+            
+        });
+        $("#peso_d").click(function () {
+            $("#porcentaje_d").val("0.0");
+            $("#porcentaje_d").attr("readOnly","false");
+            //$("#peso_d").attr("readOnly","true");
+            $("#peso_d").removeAttr('readOnly');
+        });
+        });
+        
+    </script>
+    
 @endsection
