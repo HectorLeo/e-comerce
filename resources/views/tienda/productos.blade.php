@@ -106,7 +106,7 @@
                                 @endif
                             </div>
                         </div>
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
+                        <button class="add-to-cart-btn" href="{{route('add', $item->nombre_p)}}"><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
                     </div>
 
                     <ul class="product-links">
@@ -372,7 +372,7 @@
                         </div>
                     </div>
                     <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
+                        <button class="add-to-cart-btn"  href="{{route('add', $item->nombre_p)}}">><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
                     </div>
                 </div>
             </div>

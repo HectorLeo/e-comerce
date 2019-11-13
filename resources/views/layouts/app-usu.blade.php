@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -122,8 +123,8 @@
 											<h5>SUBTOTAL: $2940.00</h5>
 										</div>
 										<div class="cart-btns">
-											<a href="#">View Cart</a>
-											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="{{route('carrito')}}">Ver Carrito</a>
+											<a href="#">Pagar  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -347,6 +348,6 @@
 		<script src="\assets\usu-tienda\js\nouislider.min.js"></script>
 		<script src="\assets\usu-tienda\js\jquery.zoom.min.js"></script>
 		<script src="\assets\usu-tienda\js\main.js"></script>
-		
+		@yield('scripts')
 	</body>
 </html>

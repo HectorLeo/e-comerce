@@ -73,7 +73,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
 Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  ['auth', 'cliente']], function(){
     Route::get('cliente', 'ClienteController@index')->name('indexc');
-    
+
 });
 
 /* Rustas de Usuario */
@@ -85,3 +85,12 @@ Route::delete('usuarioC/{id}','cliente\UsuarioController@eliminar')->name('elimi
 
 Route::get('tiendaC/{id}', 'PaginasController@tiendaC')->name('tiendaC');
 Route::get('tiendaP/{id}', 'PaginasController@TiendaP')->name('TiendaP');
+
+Route::get('carrito', 'cliente\CartController@show')->name('carrito');
+Route::bind('producto', function($slug){
+    return App\Models\Admin\Producto::where('nombre_p',$slug)->first();
+});
+Route::get('add/{producto}','cliente\CartController@add')->name('add');
+Route::get('delete/{producto}','cliente\CartController@delete')->name('delete'); 
+Route::get('updateS/{producto}/{quantity?}','cliente\CartController@update')->name('updateS'); 
+Route::post('update','cliente\CartController@update')->name('update');  
