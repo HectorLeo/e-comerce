@@ -12,7 +12,7 @@
 */
 
 //
-Route::get('/', 'PaginasController@contenido' )->name('home');
+Route::get('/', 'PaginasController@contenido' )->name('home'); 
 
 Route::get('admin', 'seguridad\LoginController@index')->name('login');
 Route::post('seguridad/login', 'seguridad\LoginController@login')->name('login_post');
@@ -46,10 +46,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
     Route::get('transporteC', 'TransporteController@consultar')->name('transporteC');
     Route::post('transporteC', 'TransporteController@consultar')->name('transporteC');
-    Route::get('transporte', 'TransporteController@interfaceagregar' )->name('transporte');
-    Route::post('transporte', 'TransporteController@agregarbd' )->name('transporte');
-    Route::get('transporteM/{id}', 'TransporteController@interfacemodificar')->name('editarTransporte');
-    Route::post('transporteM/{id}', 'TransporteController@modificarbd')->name('agregarModificacionT');
+    Route::get('transporte-insertar', 'TransporteController@interfaceagregar' )->name('transporte');
+    Route::post('transporte-insertar', 'TransporteController@agregarbd' )->name('transporte');
+    Route::get('transporte-Modificar/{id}', 'TransporteController@interfacemodificar')->name('editarTransporte');
+    Route::patch('transporte-Modificar/{id}', 'TransporteController@modificarbd')->name('agregarModificacionT');
     Route::post('transporteE','TransporteController@eliminar')->name('transporteE');
 
     Route::get('marcaC', 'MarcaController@consultar')->name('marcaC');
@@ -68,11 +68,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::post('ofertasDes-Modificar/{id}', 'OfertasDescuentosController@editarbd')->name('editarOfertaDescuento');
     Route::post('ofertasDesE','OfertasDescuentosController@eliminar')->name('ofertasDesE');
 
+    Route::get('comentarios', 'ComentariosController@consultar' )->name('ComentarioCliente');
+    Route::post('comentariosE','ComentariosController@eliminar')->name('comentariosE');
 
 });
 
 Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  ['auth', 'cliente']], function(){
     Route::get('cliente', 'ClienteController@index')->name('indexc');
+    Route::get('tiendaCliente/{id}', 'UsuClienteController@tiendaC')->name('tCliente');
+    Route::get('cliente', 'UsuClienteController@contenido' )->name('homeCliente'); 
+    Route::get('clienteP/{id}', 'UsuClienteController@TiendaP' )->name('clienteP');
 });
 
 /* Rustas de Usuario */

@@ -1,6 +1,6 @@
 @extends('layouts.app-usu')
 @section('iniciarsesion')
-<li><a href="{{route('loginC')}}"><i class="fa fa-user-o"></i> Iniciar sesión </a></li>
+<li><a href="#"><i class="fa fa-user-o"></i> {{session()->get('email') ?? 'Invitado'}} </a> <a href="{{route('logoutC')}}" class="btn btn-xs btn-danger">Salir</a></li>
 @endsection
 @section('category')
     @foreach ( $datosC as $item )
@@ -21,9 +21,9 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-                            <li><a href="{{route('home')}}">Inicio</a></li>
+                            <li><a href="{{route('homeCliente')}}">Inicio</a></li>
                             @foreach ( $datosP2 as $item )
-                                    <li><a href="{{route('tiendaC', ''.$item->id_categoria.'')}}">{{$item->nombre_c}}</a></li>
+                                    <li><a href="{{route('tCliente', ''.$item->id_categoria.'')}}">{{$item->nombre_c}}</a></li>
                             @endforeach
                             <li class="active">{{$nombre}}</li>  
 						</ul>
@@ -280,7 +280,26 @@
                                 <!-- /Reviews -->
 
                                 <!-- Review Form -->
-                                
+                                <div class="col-md-3">
+                                    <div id="review-form">
+                                     <form class="review-form" href="#">
+                                            <input class="input" type="text" placeholder="Tu Nombre">
+                                            <input class="input" type="email" placeholder="Tu Correo">
+                                            <textarea class="input" placeholder="Tu Comentario"></textarea>
+                                            <div class="input-rating">
+                                                <span>Tu Calificación: </span>
+                                                <div class="stars">
+                                                    <input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
+                                                    <input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
+                                                    <input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
+                                                    <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
+                                                    <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+                                                </div>
+                                            </div>
+                                            <button class="primary-btn">Aceptar</button>
+                                        </form>
+                                    </div>
+                                </div>
                                 <!-- /Review Form -->
                             </div>
                         </div>
@@ -337,7 +356,7 @@
                                     {{$item_C->nombre_c}}
                             @endif
                         @endforeach
-                        <h3 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
+                        <h3 class="product-name"><a href="{{route('clienteP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
                         @foreach ($datosDes as $item_D)
                             @if(($item_D->id_producto == $item->id_producto))
                                 <h4 class="product-price 1">${{$item_D->precio_descuento}} <del class="product-old-price"> ${{$item->precio_iva}}</del></h4>

@@ -76,12 +76,12 @@
                         <!-- /.card-body -->
                         <div align="center" class="col-sm-offset-2 col-sm-12">
                             <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" data-toggle="toggle" name="estado" id="estado">
-                                    Activado
-                                </label>
-                                
-                            </div>
+                                       
+                                    <label>
+                                        Seleccione el estado de la marca&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" data-toggle="toggle" name="estado_product" id="estado_product">
+                                    </label>
+                                </div>
                             <hr>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Agregar Marca</button>

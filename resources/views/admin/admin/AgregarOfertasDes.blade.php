@@ -202,19 +202,15 @@
 
             
         <!------------------------------------------------ inicio botones  ----------------------------------->
-        <div class="col-md-12">
+        <div align="center" class="col-sm-offset-2 col-sm-12">
                 <div class="card card-info">
                     <div class="card-body">
-                        <div class="row" >
-                                <div class="col-6" >
-                                    <div class="form-group" >
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
-                                        <a class="btn btn-danger" href="{{ route('ofertaDescuento') }}">  Cancelar</a>
-                        
-                                    </div>
-                                </div>
+                        <div class="form-group" >
+                            <button type="submit" class="btn btn-primary">Agregar Oferta/Descuento</button>
+                            <a class="btn btn-danger" href="{{ route('ofertaDescuento') }}">  Cancelar</a>
+            
+                        </div>
                                 
-                            </div>
                     </div>
                     
                     <!-- /.card-body -->

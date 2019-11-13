@@ -40,10 +40,7 @@ class Transportecontroller extends Controller
       request()->validate([
         'nombre_transporte' => 'required',
         'retraso_transporte' =>'required',
-        'imagen_logotipo' =>'required|image',
-        'customRadio' =>'required',
-        'lista_impuestos' =>'required',
-        'rango_comportamiento' =>'required',
+        'imagen_logotipo' =>'required|image'
 
       ]);
        
@@ -110,12 +107,13 @@ class Transportecontroller extends Controller
           ]);
         
       }
-      return redirect()->route('transporteC');
+      return redirect()->route('editarTransporte');
      
     }
 
     public function interfacemodificar($id)
     {
+     
       $datos = DB::table('transportistas')->where('id_transporte','=',''.$id.'')->get();
       
      
@@ -165,7 +163,14 @@ class Transportecontroller extends Controller
 
     public function modificarbd($id)
     {
+      request()->validate([
+        'nombre_transporte' => 'required',
+        'retraso_transporte' =>'required',
+        'imagen_logotipo' =>'image',
+        'rango_mayor'=>'between:0.00,99.99',
+        'rango_menor'=>'between:0.00,99.99'
 
+      ]);
       //return request('imagen_categoria');
       if(request('imagen_logotipo')==""){
         $url = request('imagen_actual');
@@ -236,16 +241,17 @@ class Transportecontroller extends Controller
      
     }
 
-    public function eliminar(Request $request){
+    public function eliminar(Request $request){ 
       $id = $request->id;
-      //$g= DB::delete("delete from transporte_rol where id_transporte = $id");
-      //$r=DB::delete("delete from transporte_producto where id_transporte = $id");
-      //$i=DB::delete("delete from transportistas where id_transporte = $id");
+      $estado=$request->val;
       $estado_transporte=$request->val;
       DB::update("update transportistas set estado_transporte = $estado_transporte where id_transporte = $id");
-      
-          $guardado="3";
-          return response()->json(['guardado' => $guardado], 200);
+      if($estado == '1'){
+        $guardado="activo";
+      }else{
+        $guardado="desactivo";
+      }
+      return response()->json(['guardado' => $guardado], 200);
      
     }
 

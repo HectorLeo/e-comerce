@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\cliente;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 
-class PaginasController extends Controller
+class UsuClienteController extends Controller
 {
     
     public function contenido()
@@ -17,7 +17,7 @@ class PaginasController extends Controller
       $datosPExclusivo = DB::table('productos')->where([['estado','=','1'],['exclusivo','=','1']])->get();
       $datoscomentarios = DB::table('comentarios')->where([['estado','=','1']])->get();
       $datosdescuentos = DB::table('descuentos')->get();
-      return view('tienda.home', compact('datosC','datosPNuevos','datosPOfertas','datosPExclusivo','datoscomentarios','datosdescuentos'));
+      return view('tiendaCliente.homecliente', compact('datosC','datosPNuevos','datosPOfertas','datosPExclusivo','datoscomentarios','datosdescuentos'));
     }
 
     public function tiendaC($id)
@@ -43,7 +43,7 @@ class PaginasController extends Controller
       $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo_ch.''],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       $datosPr= DB::table('productos')->where([['id_categoria','=',''.$id.'']])->get();
 
-      return view('tienda.tiendaC', compact('datosDes','datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
+      return view('tiendaCliente.tiendaClien', compact('datosDes','datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
     }
 
     public function TiendaP($id)
@@ -105,17 +105,19 @@ class PaginasController extends Controller
       }
 
       $datosclientes = DB::table('clientes')->get();
-      $datosCat = DB::table('categorias')->where([['id_categoria','=',''.$categoria.''],['tipo_categoria','!=','1']])->get();
+      $datosCat = DB::table('categorias')->where([['id_categoria','=',''.$categoria.''],['tipo_categoria','!=','3']])->get();
       if((count($datosCat))!=0){
         $tipo="";
         foreach($datosCat as $item){
           $tipo=$item->tipo_categoria;
         }
-        $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo.''],['id_categoria','!=','1'],['tipo_categoria','=','3']])->orWhere([['id_categoria','=',''.$categoria.'']])->get();
+        $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo.''],['id_categoria','!=','3'],['tipo_categoria','=','3']])->orWhere([['id_categoria','=',''.$categoria.'']])->get();
       }else{
-        $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$categoria.''],['id_categoria','!=','1'],['tipo_categoria','=','3']])->get();
+        $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$categoria.''],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
       }
       $datosP3  = DB::table('productos')->where([['id_categoria','=',''.$categoria.''],['id_producto','!=',''.$id.'']])->get();
-      return view('tienda.productos', compact('datosDes','datosP3','datosP2','precioD','datosComen','datosclientes','datosC','prom','nombre','precioN','existencias','descripcion','resumen','marca','imagen'));
+      return view('tiendaCliente.productos', compact('datosDes','datosP3','datosP2','precioD','datosComen','datosclientes','datosC','prom','nombre','precioN','existencias','descripcion','resumen','marca','imagen'));
     }
+
+    
 }

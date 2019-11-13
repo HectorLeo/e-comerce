@@ -80,11 +80,11 @@
                         <div align="center" class="col-sm-offset-2 col-sm-12">
                             <div class="checkbox">
                                 <label>
+                                     Seleccione el estado de la marca&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
                                     <input type="checkbox" data-toggle="toggle" name="estado" id="estado"
                                     @if ($activo_m==1)
                                         checked
                                     @endif>
-                                    Activado
                                 </label>
                             </div>
                             <hr>

@@ -190,8 +190,7 @@
                                  with font-awesome or any other icon font library -->
                             <li class="@yield('ActiveCatalogo', 'nav-item' )">
                               <a href="#" class="@yield('ActiveCata', 'nav-link')">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                
+                                  <i class="fas fa-edit"></i>
                                 <p>
                                   Catalogo
                                   <i class="right fas fa-angle-left"></i>
@@ -225,38 +224,32 @@
                                 </li>
                               </ul>
                             </li>
-                            
-                            
-                            <li class="nav-item has-treeview">
-                              <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
-                                <p>
-                                  Charts
-                                  <i class="right fas fa-angle-left"></i>
-                                </p>
-                              </a>
-                              <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                  <a href="pages/charts/chartjs.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>ChartJS</p>
-                                  </a>
-                                </li>
-                                <li class="nav-item">
-                                  <a href="pages/charts/flot.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Flot</p>
-                                  </a>
-                                </li>
-                                <li class="nav-item">
-                                  <a href="pages/charts/inline.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Inline</p>
-                                  </a>
-                                </li>
-                              </ul>
-                            </li>
-                            
+                            <!------------------------------------------------------------------------------------------>
+                            <!-- Add icons to the links using the .nav-icon class
+                                 with font-awesome or any other icon font library -->
+                                 <li class="@yield('ActiveCatalogoclient', 'nav-item' )">
+                                    <a href="#" class="@yield('ActiveCataclient', 'nav-link')">
+                                      <i class="fas fa-portrait"></i>
+                                      <p>
+                                          &nbsp;  Clientes
+                                        <i class="right fas fa-angle-left"></i>
+                                        
+                                      </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                      <li class="nav-item">
+                                        <a href="{{ route('ComentarioCliente') }}" class="@yield('ActiveComentario', 'nav-link')">
+                                          <i class="far fa-circle nav-icon"></i>
+                                          <p>Comentarios</p>
+                                        </a>
+                                      </li>
+                                      
+                                    </ul>
+                                  </li>
+<!------------------------------------------------------------------------------------------>
+                                 
+<!------------------------------------------------------------------------------------------>
+
                             <li class="nav-header">PERSONALIZAR</li>
                     
                             <li class="@yield('Activetransporte', 'nav-item')"> 
@@ -330,10 +323,10 @@
                     </div>
                     <!-- /.content-wrapper -->
                     <footer class="main-footer">
-                      <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-                      All rights reserved.
+                      <strong>Copyright &copy; 2019 All rights reserved | Designed by <a href="https://crystalmedia.mx">Crystal Media</a>.</strong>
+                      
                       <div class="float-right d-none d-sm-inline-block">
-                        <b>Version</b> 3.0.0-rc.1
+                        <b>Version</b> 1.0.3
                       </div>
                     </footer>
                   

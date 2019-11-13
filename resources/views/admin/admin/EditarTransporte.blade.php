@@ -35,27 +35,40 @@
                             <label for="etiqueta_producto">Nombre del Transportista</label>
                             <input type="text" class="form-control  {!! $errors->first('nombre_transporte','is-invalid') !!}" id="nombre_transporte" name="nombre_transporte" value="{{$nombre_t}}"placeholder="Transporte">
                         </div>
-                        {!! $errors->first('nombre_categoria','<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Campo Obligatorio!</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>') !!}
+                        {!! $errors->first('nombre_transporte','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>:message</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>') !!} 
                         <div class="form-group">
                             <label >Tiempo de transito</label>
-                            <input type="text" class="form-control " id="retraso_transporte" name="retraso_transporte" value="{{$retraso}}" placeholder="Tiempo de Transito">
+                            <input type="text" class="form-control {!! $errors->first('retraso_transporte','is-invalid') !!}" id="retraso_transporte" name="retraso_transporte" value="{{$retraso}}" placeholder="Tiempo de Transito">
                         </div>
+                        {!! $errors->first('retraso_transporte','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>:message</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>') !!} 
                         <div class="form-group">
                             <label >Logotipo</label>
                             <div class="form-group">
                                 <img width="200px" src="{{Storage::url($logotipo)}}" alt="Imagen de el transporte">
                                 <input type="hidden" id="imagen_actual" name="imagen_actual" value="{{$logotipo}}">
                             </div>
+                            
                             <label >Agregar nueva imagen</label>
                             <div class="custom-file">
-                                <input type="file"  lang="es" class="custom-file-input" id="imagen_logotipo" name="imagen_logotipo" >
-                                <label class="custom-file-label" for="imagen_logotipo">Elige una imagen</label>
+                                <input type="file"  lang="es" class=" {!! $errors->first('imagen_logotipo','is-invalid') !!}" id="imagen_logotipo" name="imagen_logotipo" >
+                                
                             </div>
+                            {!! $errors->first('imagen_logotipo','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>:message</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>') !!} 
                         </div>
                     </div>
                      <!-- /.card-body -->
@@ -93,8 +106,8 @@
                                 <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" data-toggle="toggle" name="envio_g" 
+                                                <label id="val-boton">
+                                                    <input type="checkbox" data-toggle="toggle" name="envio_g" id="envio_g"
                                                     @if ($envio==1)
                                                         checked
                                                     @endif>
@@ -159,29 +172,25 @@
                         <label aling="center" >Rango</label>
                         <div class="row">
                                 <div class="col-lg-6">
-                                    <label >Sera aplicado cuando el sea >=</label>
-                                    <div class="input-group">
+                                    <label id="eti-1">Será aplicado cuando el peso sea >=</label>
+                                    <div class="input-group campo2">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">Kg</span>
+                                            <span class="input-group-text" id="dato1">Kg</span>
                                         </div>
                                         <input type="text" class="form-control" id="rango_mayor" name="rango_mayor" value="{{$rmayor}}" placeholder="0.000">
-                                        <div class="input-group-append">
-                                                <span class="input-group-text">.00</span>
-                                        </div>
+                                        
                                     </div>
                                     <!-- /input-group -->
                                 </div>
                                 <!-- /.col-lg-6 -->
                                 <div class="col-lg-6">
-                                        <label >Sera aplicado cuando el sea <</label>
-                                        <div class="input-group">
+                                        <label id="eti-2">Sera aplicado cuando el sea <</label>
+                                        <div class="input-group campo2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">Kg</span>
+                                                <span class="input-group-text" id="dato2">Kg</span>
                                             </div>
                                             <input type="text" class="form-control" id="rango_menor" name="rango_menor" value="{{$rmenor}}" placeholder="0.000">
-                                            <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                            </div>
+                                            
                                         </div>
                                         <!-- /input-group -->
                                     </div>
@@ -247,20 +256,91 @@
             <!-- /.card-body -->
     </div>
 
-    <div align="center" class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" data-toggle="toggle" name="estado" id="estado"
-                    @if ($estado_t==1)
-                        checked
-                    @endif>
-                    Activado
-                </label>
+    
+        <!------------------------------------------------ inicio botones  ----------------------------------->
+    <div   align="center" class="col-sm-offset-2 col-sm-12">
+            <div class="card card-info">
+                
+                <div class="card-body">
+                    
+
+                    <div class="row">
+                            <div class="col-6">
+                                <div class="checkbox">
+                                    
+                                    <label>
+                                        Seleccione el estado del transporte&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" data-toggle="toggle" name="estado" id="estado" 
+                                        @if ($estado_t==1)
+                                            checked
+                                        @endif>
+                                       
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Modificar Transporte</button>
+                                    <a class="btn btn-danger" href="{{ route('transporteC') }}">  Cancelar</a>
+                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                </div>
+                
+                <!-- /.card-body -->
             </div>
-            <button type="submit" class="btn btn-primary">Aceptar</button>
         </div>
+        <!------------------------------------------------ fin botones --------------------------------------->
                     
 </form>
 
 
+@endsection
+
+@section('scripts')
+
+    <script  type="text/javascript">
+       $(document).ready(function () {
+            $("#val-boton").on( 'click', function() {
+            
+                if( !$("#envio_g").is(':checked') ){
+                    //alert("hola");
+                    //document.getElementById('peso_d').readOnly=true;
+                    $("#rango_mayor").val("0.000");
+                    //$("#rango_mayor").removeAttr('readOnly');
+                    $("#rango_mayor").attr("readOnly","false");
+
+                    $("#rango_menor").val("0.000");
+                    //$("#rango_menor").removeAttr('readOnly');
+                    $("#rango_menor").attr("readOnly","false");
+                } else {
+                    // Hacer algo si el checkbox ha sido deseleccionado
+                    $("#rango_mayor").val("0.000");
+                    $("#rango_mayor").removeAttr('readOnly');
+                    //$("#rango_mayor").attr("readOnly","false");
+
+                    $("#rango_menor").val("0.000");
+                    $("#rango_menor").removeAttr('readOnly');
+                    //$("#rango_menor").attr("readOnly","false");
+                }
+                
+            });
+            $("#customRadio1").on( 'click', function() {
+                $("#eti-1").text('Será aplicado cuando el precio sea >=');
+                $("#eti-2").text('Será aplicado cuando el precio sea <');
+                $("#dato1").text('$');
+                $("#dato2").text('$');
+            });
+            $("#customRadio2").on( 'click', function() {
+                $("#eti-1").text('Será aplicado cuando el peso sea >=');
+                $("#eti-2").text('Será aplicado cuando el peso sea <');
+                $("#dato1").text('kg');
+                $("#dato2").text('kg');
+            });
+        });
+        
+    </script>
+    
 @endsection

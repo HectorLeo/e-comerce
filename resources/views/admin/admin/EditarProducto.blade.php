@@ -477,14 +477,16 @@
 
                         <div class="row">
                                 <div class="col-6">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                            <input type="checkbox" class="custom-control-input" id="estado_product" name="estado_product" 
-                                            @if ($estado==1)
-                                                    checked
-                                                @endif>
-                                            <label class="custom-control-label" for="estado_product">Seleccione el estado del producto</label>
-                                        </div>
+                                    <div class="checkbox">
+                                               
+                                        <label>
+                                            Seleccione el estado del producto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox" data-toggle="toggle" name="estado_product" id="estado_product" 
+                                            @if ($mostrado_c==1)
+                                                checked
+                                            @endif>
+                                            
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-6">

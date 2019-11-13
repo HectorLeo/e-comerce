@@ -27,8 +27,8 @@
       </div>
       <div class="card-body p-0" style="display: block;">
             <div class="col-sm-12">
-            <div class="row">
-                <!--div class="col">
+            <!--div class="row">
+                <div class="col">
                     <div class="md-checkbox">
                        
                             <input type="checkbox" id="bulk_action_select_all" onclick="$('#product_catalog_list').find('table td.checkbox-column input:checkbox').prop('checked', $(this).prop('checked')); updateBulkMenu();" value="">
@@ -40,10 +40,10 @@
                             <input class="custom-control-input" type="checkbox" id="id_" name="id_" >
                             <label for="id_" class="custom-control-label"></label>
                         </div>
-                </div-->
-            </div>
+                </div>
+            </div-->
         </div>
-            <hr>
+            
         <table class="table table-striped projects" name="product_catalog_list" id="product_catalog_list">
 
             <thead>

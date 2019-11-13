@@ -31,7 +31,7 @@ Crear una cuenta
                         <p></p>
                         Contraseña<input type="password" name="password" class="input"  placeholder="Contraseña" required="required">
                         <p></p>
-                        Contraseña<input type="password" name="re_password" class="input"  placeholder="Contraseña" required="required">
+                        Confirmar Contraseña <input type="password" name="re_password" class="input"  placeholder="Contraseña" required="required">
                         <p></p>
                         <input type="hidden" name="id_rol" value="3"  required="required">
                         <div class="col-12" align="center">
