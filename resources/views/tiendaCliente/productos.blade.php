@@ -284,7 +284,7 @@
                                     <div id="review-form">
                                      <form class="review-form" href="#">
                                             <input class="input" type="text" placeholder="Tu Nombre">
-                                            <input class="input" type="email" placeholder="Tu Correo">
+                                            <input class="input" type="email" value="{{session()->get('email')}}" readonly>
                                             <textarea class="input" placeholder="Tu Comentario"></textarea>
                                             <div class="input-rating">
                                                 <span>Tu Calificación: </span>

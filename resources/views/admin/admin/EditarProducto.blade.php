@@ -17,7 +17,7 @@
         @csrf
         <div class="row">
             
-            <!-- left column -->
+            <!-- left column --> 
             <!------------------------------------------------ inicio datos  ----------------------------------->
             <div class="col-md-6">
                 
