@@ -159,7 +159,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{$datosproductos->render()}}
+        {{$datosproductos->render()}} 
       </div>
       <!-- /.card-body -->
     </div>

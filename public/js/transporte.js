@@ -10,7 +10,7 @@ $(document).ready(function () {
         id_delete = $(e.currentTarget).attr("id_delete");
         valor =  $(e.currentTarget).val();
         $.ajax({
-            url: "./transporteE",
+            url: "./transporteE", 
             method: 'post',
             data: {
                 id: id_delete,
@@ -20,16 +20,15 @@ $(document).ready(function () {
 
                 var enviar_reporte = resul.guardado;
 
-                if (enviar_reporte == '1') {
-
-                    alert("El transporte no se puede eliminar hay pedido(s) que lo estan usando");
-                } else{ 
-                        if(enviar_reporte == '3'){
-                            alert("Transporte Eliminado");
-                            location.reload();
-                        }
-                    
-                }
+                if(enviar_reporte == 'activo'){
+                    alert("Transporte Activado");
+                    location.reload();
+                }else{ 
+                    if(enviar_reporte == 'desactivo'){
+                        alert("Transporte Desactivado");
+                        location.reload();
+                    } 
+                }    
             }
         });
     });

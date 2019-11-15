@@ -80,16 +80,16 @@
                         <div align="center" class="col-sm-offset-2 col-sm-12">
                             <div class="checkbox">
                                 <label>
+                                     Seleccione el estado de la marca&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
                                     <input type="checkbox" data-toggle="toggle" name="estado" id="estado"
                                     @if ($activo_m==1)
                                         checked
                                     @endif>
-                                    Activado
                                 </label>
                             </div>
                             <hr>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Agregar Marca</button>
+                                <button type="submit" class="btn btn-primary">Modificar Marca</button>
                                 <a class="btn btn-danger" href="{{ route('marcaC') }}">  Cancelar</a>
                 
                             </div>

@@ -159,7 +159,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">$</span>
                                         </div>
-                                        <input type="text" class="form-control" id="precio_con_impuesto" name="precio_con_impuesto" readonly value="0">
+                                        <input type="text" class="form-control" id="precio_con_impuesto" name="precio_con_impuesto" readonly value="0.0">
                                         <div class="input-group-append">
                                                 <span class="input-group-text">.00</span>
                                         </div>
@@ -184,7 +184,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">$</span>
                                         </div>
-                                        <input type="text" class="form-control {!! $errors->first('precio_mayoreo','is-invalid') !!}" id="precio_mayoreo" name="precio_mayoreo" value="0" >
+                                        <input type="text" class="form-control {!! $errors->first('precio_mayoreo','is-invalid') !!}" id="precio_mayoreo" name="precio_mayoreo" value="0.0" >
                                         <div class="input-group-append">
                                                 <span class="input-group-text">.00</span>
                                         </div>
@@ -204,7 +204,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">$</span>
                                             </div>
-                                            <input type="text" class="form-control" id="precio_impuesto_mayoreo" name="precio_impuesto_mayoreo" readonly value="0" >
+                                            <input type="text" class="form-control" id="precio_impuesto_mayoreo" name="precio_impuesto_mayoreo" readonly value="0.0" >
                                             <div class="input-group-append">
                                                     <span class="input-group-text">.00</span>
                                             </div>
@@ -343,7 +343,6 @@
                        
                         <div class="form-group">
                                 <label >Seleccione la Categoría*</label>
-                                
                                     <!-- checkbox -->
                                     <div class="form-group">
                                         <select id="categoria" name="categoria"  class="form-control {!! $errors->first('categoria','is-invalid') !!}" >
@@ -354,8 +353,6 @@
                                                 @else
                                                     <option value="{{$item->id_categoria}}" >{{$item->nombre_c}}</option>
                                                 @endif
-                                                
-                                                
                                             @endforeach
                                         </select>
                                     </div>
@@ -409,9 +406,6 @@
 
             
 
-            <!------------------------------------------------ roles  ----------------------------------->
-            
-        <!------------------------------------------------ fin roles  --------------------------------------->
         <!------------------------------------------------ inicio botones  ----------------------------------->
         <div align="center" class="col-sm-offset-2 col-sm-12">
                 <div class="card card-info">
@@ -420,9 +414,11 @@
                                 <div class="col-6">
                                     
                                     <div class="checkbox">
+                                              
                                             <label>
+                                                Seleccione el estado del producto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                                                 <input type="checkbox" data-toggle="toggle" name="estado_product" id="estado_product">
-                                                Seleccione el estado del producto
+                                                
                                             </label>
                                         </div>
                                 </div>
@@ -535,6 +531,17 @@
                  $("#precio_impuesto_mayoreo").val(precio);
              }
          });
+         $('#btnDecimal').click(function() {
+            if( $('#formDecimal').smkValidate() ){
+                // Code here
+                $.smkAlert({
+                text: $('#formDecimal input').val(),
+                type: 'success'
+                });
+            }
+        });
+
+
          });
          
      </script>

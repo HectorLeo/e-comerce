@@ -56,9 +56,9 @@ class ProductosController extends Controller
         'cantidad_existencia' =>'required|integer',
         'imagen_producto' =>'required|image',
         'categoria' =>'required',
-        'marca' =>'required',
-        'precio_sin_impuesto'=>'between:0.00,99.99',
-        'precio_mayoreo'=>'between:0.00,99.99',
+        'marca' =>'required'/*,
+        'precio_sin_impuesto'=>'digits_between:0.00,99.99',
+        'precio_mayoreo'=>'digits_between:0.00,99.99',*/
         
       ]);
 

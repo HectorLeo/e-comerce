@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulohome')
-    <h1 class="m-0 text-dark">Productos</h1>
+    <h1 class="m-0 text-dark">Modificar Productos</h1>
 @endsection
 
 @section('titulonavegacion')
@@ -17,7 +17,7 @@
         @csrf
         <div class="row">
             
-            <!-- left column -->
+            <!-- left column --> 
             <!------------------------------------------------ inicio datos  ----------------------------------->
             <div class="col-md-6">
                 
@@ -477,14 +477,14 @@
 
                         <div class="row">
                                 <div class="col-6">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                            <input type="checkbox" class="custom-control-input" id="estado_product" name="estado_product" 
-                                            @if ($estado==1)
-                                                    checked
-                                                @endif>
-                                            <label class="custom-control-label" for="estado_product">Seleccione el estado del producto</label>
-                                        </div>
+                                    <div class="checkbox">
+                                               
+                                        <label>
+                                            Seleccione el estado del producto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox" data-toggle="toggle" name="estado_product" id="estado_product" 
+                                            >
+                                            
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-6">
