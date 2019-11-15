@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulohome')
-    <h1 class="m-0 text-dark">Productos</h1>
+    <h1 class="m-0 text-dark">Modificar Productos</h1>
 @endsection
 
 @section('titulonavegacion')
@@ -482,9 +482,7 @@
                                         <label>
                                             Seleccione el estado del producto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <input type="checkbox" data-toggle="toggle" name="estado_product" id="estado_product" 
-                                            @if ($mostrado_c==1)
-                                                checked
-                                            @endif>
+                                            >
                                             
                                         </label>
                                     </div>

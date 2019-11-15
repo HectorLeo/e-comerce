@@ -89,7 +89,7 @@
                             </div>
                             <hr>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Agregar Marca</button>
+                                <button type="submit" class="btn btn-primary">Modificar Marca</button>
                                 <a class="btn btn-danger" href="{{ route('marcaC') }}">  Cancelar</a>
                 
                             </div>
