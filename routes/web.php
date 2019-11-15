@@ -88,7 +88,7 @@ Route::get('usuarioC/{id}/editar', 'cliente\UsuarioController@actualizar')->name
 Route::delete('usuarioC/{id}','cliente\UsuarioController@eliminar')->name('eliminarC');
 
 Route::get('tiendaC/{id}', 'PaginasController@tiendaC')->name('tiendaC');
-Route::get('tiendaP/{id,email}', 'PaginasController@TiendaP')->name('TiendaP');
+Route::get('tiendaP/{id}', 'PaginasController@TiendaP')->name('TiendaP');
 
 Route::get('carrito', 'cliente\CartController@show')->name('carrito');
 Route::bind('producto', function($slug){

@@ -83,7 +83,7 @@
                                                         {{$item_C->nombre_c}}
                                                         @endif
                                                     @endforeach</p>
-                                                    <h3 class="product-name"><a href="{{route('clienteP', ''.$item->id_producto.'',''.session()->get('email') .'')}}">{{$item->nombre_p}}</a></h3>
+                                                    <h3 class="product-name"><a href="{{route('clienteP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
                                                     @foreach ($datosdescuentos as $item_d)
                                                         @if ($item->id_producto == $item_d->id_producto)
                                                             <h4 class="product-price">${{$item->precio_iva}}
@@ -130,7 +130,7 @@
                                                         {{$item_C->nombre_c}}
                                                         @endif
                                                     @endforeach</p>
-                                                    <h3 class="product-name"><a href="{{route('clienteP', ''.$item->id_producto.'',''.session()->get('email') .'')}}">{{$item->nombre_p}}</a></h3>
+                                                    <h3 class="product-name"><a href="{{route('clienteP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
                                                     <h4 class="product-price">${{$item->precio_iva}}
                                                     <div class="product-rating">
                                                         <i class="fa fa-star"></i>
@@ -173,7 +173,7 @@
                                                         {{$item_C->nombre_c}}
                                                         @endif
                                                     @endforeach</p>
-                                                    <h3 class="product-name"><a href="{{route('clienteP', ''.$item->id_producto.'',''.session()->get('email').'')}}">{{$item->nombre_p}}</a></h3>
+                                                    <h3 class="product-name"><a href="{{route('clienteP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
                                                     <h4 class="product-price">${{$item->precio_iva}}
                                                     <div class="product-rating">
                                                         <i class="fa fa-star"></i>
