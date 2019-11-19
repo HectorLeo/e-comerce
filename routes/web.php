@@ -78,13 +78,15 @@ Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  
     Route::get('tiendaCliente/{id}', 'UsuClienteController@tiendaC')->name('tCliente');
     Route::get('cliente', 'UsuClienteController@contenido' )->name('homeCliente'); 
     Route::get('clienteP/{id}', 'UsuClienteController@TiendaP' )->name('clienteP');
+    Route::post('clienteP/{id}', 'UsuClienteController@TiendaP' )->name('clienteInsertComentario');
+
 });
 
 /* Rustas de Usuario */
 Route::get('usuarioC', 'cliente\UsuarioController@index')->name('registroC');
 //Route::get('usarioC/crear', 'UsuarioController@crear')->name('crearC');
 Route::post('usuarioC', 'cliente\UsuarioController@guardar' )->name('guardarC');
-Route::get('usuarioC/{id}/editar', 'cliente\UsuarioController@actualizar')->name('editarC');
+Route::get('usuarioC/{id}', 'cliente\UsuarioController@actualizar')->name('editarC');
 Route::delete('usuarioC/{id}','cliente\UsuarioController@eliminar')->name('eliminarC');
 
 Route::get('tiendaC/{id}', 'PaginasController@tiendaC')->name('tiendaC');

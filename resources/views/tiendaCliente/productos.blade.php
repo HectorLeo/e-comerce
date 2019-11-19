@@ -106,7 +106,9 @@
                                 @endif
                             </div>
                         </div>
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
+                        <a href="{{route('add',''.$nombre.'')}}">
+                        <button class="add-to-cart-btn"  href="{{route('add',''.$nombre.'')}}"><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
+                        </a>
                     </div>
 
                     <ul class="product-links">
@@ -278,14 +280,15 @@
                                     </div>
                                 </div>
                                 <!-- /Reviews -->
-
+<!-------------------------------------Insertar comentarios------------------------------------->
                                 <!-- Review Form -->
                                 <div class="col-md-3">
                                     <div id="review-form">
-                                     <form class="review-form" href="#">
-                                            <input class="input" type="text" placeholder="Tu Nombre">
-                                            <input class="input" type="email" value="{{session()->get('email')}}" readonly>
-                                            <textarea class="input" placeholder="Tu Comentario"></textarea>
+                                     <form class="review-form"  method="POST" action="{{ route('transporte') }}" >
+                                            @csrf
+                                            <input class="input" type="text" id="id_usuario" name="id_usuario" value="{{session()->get('id')}}" readonly>
+                                            <input class="input" type="email" id="email_usuario" name="email_usuario" value="{{session()->get('email')}}" readonly>
+                                            <textarea class="input" id="comentarios" rows="3" name="comentarios" placeholder="Tu Comentario"></textarea>
                                             <div class="input-rating">
                                                 <span>Tu Calificación: </span>
                                                 <div class="stars">
@@ -297,7 +300,7 @@
                                                 </div>
                                             </div>
                                             <button class="primary-btn">Aceptar</button>
-                                        </form>
+                                    </form>
                                     </div>
                                 </div>
                                 <!-- /Review Form -->
