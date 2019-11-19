@@ -104,23 +104,38 @@
                         <div><strong>TOTAL</strong></div>
                     </div>
                     <div class="order-products">
+                        @php
+                            $total=0;
+                            $i=0;
+                            $totalproductos=0;
+                        @endphp
+                        @foreach ($cart as $item)
+                            <div class="order-col">
+                            
+                            
+                                <div>
+                                    <span id="totalproducto{{$item->id_producto}}" >{{$item->quantity}}</span>
+                                </div>
+                                <div>$<span id="totalprecio{{$item->id_producto}}">{{$item->quantity*$item->precio_iva}}</span></div> 
+                            
+                                @php
+                                    $total=$total+($item->quantity*$item->precio_iva);
+                                    $totalproductos = $totalproductos + $item->quantity;
+                                    $i++;
+                                @endphp
+                            </div> 
+                        @endforeach
+                        <hr>
                         <div class="order-col">
-                            @php
-                                $product=0;
-                                $total=0;
-                            @endphp
-                            <div>@foreach ($cart as $item)
-                                    @php
-                                        $product=$product+$item->quantity;
-                                        $total=$total + ($item->quantity*$item->precio_iva);
-                                    @endphp
-                                @endforeach
-                                <span id="totalproducto">{{$product}}</span>
+                            <div>
+                                <span >Total: </span>
                             </div>
-                            <div>$<span id="totalprecio">{{$total}}</span></div>
-                    </div>
+                            <div>$<span id="sumatotal" >{{$total}}</span></div> 
+                            
+                        </div> 
+                        
                 </div>
-                <a href="#" class="primary-btn order-submit">Pasar por caja</a>
+                <a href="{{route('caja')}}" class="primary-btn order-submit">Pasar por caja</a>
             </div>
             <!-- /Order Details -->
         </div>
@@ -131,6 +146,10 @@
 <!-- /SECTION -->
 
 @endsection
+@section('nuemeroProductosCarrito')
+    <span id="totalproductoscarrito">{{$totalproductos}}</span>
+@endsection
+
 @section('scripts')
     <script src="{{ asset('js/cart.js') }}"></script>
  
@@ -147,14 +166,24 @@
                 var id = $(e.currentTarget).attr("id_aut");
                 var valor =  $(e.currentTarget).val();
                 var precio =  $("#subtotal"+id).val();
+
+                var sumatotal = $("#sumatotal").text();
+                var totalprecio = $("#totalprecio"+id+"").text();
+                var totalproducto = $("#totalproducto"+id+"").text();
+                var totalproductoscarrito = $("#totalproductoscarrito").text();
                 
-                var totalproducto = ( (parseFloat($("#totalproducto").val())) + parseFloat(valor));
-                var totalprecio =  $("#totalprecio").val();
                 var subtotal=precio*valor
                 $("#subt"+id+"").text(subtotal);
-                $("#totalproducto").text(totalproducto);
-                $("#totalprecio").text((parseFloat(totalprecio) + parseFloat(subtotal)));
+                $("#totalproducto"+id+"").text(valor);
+                $("#totalprecio"+id+"").text(subtotal);
 
+                var restaprecio =   subtotal - totalprecio;
+                var restaproducto =     valor - totalproducto ;
+
+                var value = (parseFloat(sumatotal ) + parseFloat(restaprecio));
+                $("#sumatotal").text(value);
+                var value2 = (parseInt(totalproductoscarrito ) + parseInt(restaproducto));
+                $("#totalproductoscarrito").text(value2);
             });
         });
     </script>

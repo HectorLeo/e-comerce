@@ -11,7 +11,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
 		<!-- Bootstrap -->
-		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css/bootstrap.min.css"/> 
 
 		<!-- Slick -->
 		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css\slick.css"/>
@@ -94,7 +94,7 @@
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
 										<span>Tu carrito</span>
-										<div class="qty">3</div>
+										<div class="qty">@yield('nuemeroProductosCarrito','0')</div>
 									</a>
 									<div class="cart-dropdown">
 										<div class="cart-list">

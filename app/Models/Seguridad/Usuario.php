@@ -27,7 +27,7 @@ class Usuario extends Authenticatable
                     'clave_rol' => $roles[0]['clave_rol'],
                     'rol' => $roles[0]['rol'],
                     'email' => $this->email,
-                    'id_usuario' => $this->id_usuario,
+                    'id_usuario' => $this->id_usuario
                 ]
             );
         }else{

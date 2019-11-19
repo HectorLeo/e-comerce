@@ -100,3 +100,4 @@ Route::get('add/{producto}','cliente\CartController@add')->name('add');
 Route::get('delete/{producto}','cliente\CartController@delete')->name('delete'); 
 Route::get('updateS/{producto}/{quantity?}','cliente\CartController@update')->name('updateS'); 
 Route::post('update','cliente\CartController@update')->name('update');  
+Route::get('caja', 'cliente\CartController@caja')->name('caja');
