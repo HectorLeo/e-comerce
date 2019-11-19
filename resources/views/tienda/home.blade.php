@@ -68,45 +68,58 @@
                             <div id="tab1" class="tab-pane active">
                                 <div class="products-slick" data-nav="#slick-nav-1">
                                     <!-- product -->
-                                        @foreach ($datosPNuevos as $item)
-										<div class="product">
-                                                <div class="product-img">
-                                                    <img width="100" height="250" src="{{Storage::url($item->imagen_p)}}" alt="Imagen del producto">
-                                                    <div class="product-label">
-                                                        <!--span class="sale">-30%</span-->
-                                                        <span class="new">NEW</span>
+                                        @foreach ($datosPtodos as $item)
+                                            @if ($item->nuevo == 1)
+                                                <div class="product">
+                                                    <div class="product-img">
+                                                        
+                                                        <img width="100" height="250" src="{{Storage::url($item->imagen_p)}}" alt="Imagen del producto">
+                                                        <div class="product-label">
+                                                            @if ($item->oferta == 1)
+                                                                <span class="sale">OFERTA</span>
+                                                            @endif 
+                                                            <span class="new">NUEVO</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-category">@foreach ($datosC as $item_C)
-                                                        @if ($item->id_categoria == $item_C->id_categoria)
-                                                        {{$item_C->nombre_c}}
+                                                    <div class="product-body">
+                                                        <p class="product-category">@foreach ($datosC as $item_C)
+                                                            @if ($item->id_categoria == $item_C->id_categoria)
+                                                            {{$item_C->nombre_c}}
+                                                            @endif
+                                                        @endforeach</p>
+                                                        <h3 class="product-name"><a href="#">{{$item->nombre_p}}</a></h3>
+                                                        @php
+                                                            $band=false;
+                                                        @endphp
+                                                        @foreach ($datosdescuentos as $item_d)
+                                                            @if ($item->id_producto == $item_d->id_producto)
+                                                                <h4 class="product-price">${{$item->precio_iva}}
+                                                                    @php
+                                                                        $band=true;
+                                                                    @endphp
+                                                            @endif
+                                                        @endforeach
+                                                        @if($band==false)
+                                                            <h4 class="product-price">${{$item->precio_iva}}
                                                         @endif
-                                                    @endforeach</p>
-                                                    <h3 class="product-name"><a href="#">{{$item->nombre_p}}</a></h3>
-                                                    @foreach ($datosdescuentos as $item_d)
-                                                        @if ($item->id_producto == $item_d->id_producto)
-                                                        <h4 class="product-price">${{$item->precio_neto}}
-                                                        @endif
-                                                    @endforeach
-                                                    <h4 class="product-price">${{$item->precio_neto}}
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
+                                                        <div class="product-rating">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </div>
+                                                        <div class="product-btns">
+                                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
+                                                        </div>
                                                     </div>
-                                                    <div class="product-btns">
-                                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
-                                                    </div>
+                                                    <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
+                                                        {{ csrf_field() }}
+                                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
+                                                    </a>
                                                 </div>
-                                                <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
-                                                    {{ csrf_field() }}
-                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
-                                                </a>
-                                            </div>
-                                            @endforeach
+                                            @endif
+                                        @endforeach
                                             <!-- /product -->
                                         </div>
                                         <div id="slick-nav-1" class="products-slick-nav"></div>
@@ -382,5 +395,14 @@
     </div>
         <!-- /product tab -->
         <!-- SECTION -->
-     
+   
+@endsection
+@section('nuemeroProductosCarrito')
+    @foreach ($cart as $item)
+    @php
+        $totalproductos = $totalproductos + $item->quantity;
+        $i++;
+    @endphp
+    @endforeach
+    <span id="totalproductoscarrito">{{$totalproductos}}</span>
 @endsection

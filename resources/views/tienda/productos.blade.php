@@ -47,7 +47,7 @@
             <div class="col-md-5 col-md-push-2">
                 <div id="product-main-img">
                     <div class="product-preview">
-                        <img src="{{Storage::url($imagen)}}" alt="imagen del producto">
+                        <img src="{{Storage::url($imagen)}}" alt="imagen del producto1">
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
             <div class="col-md-2  col-md-pull-5">
                 <div id="product-imgs">
                     <div class="product-preview">
-                        <img src="{{Storage::url($imagen)}}" alt="imagen del producto">
+                        <img src="{{Storage::url($imagen)}}" alt="imagen del producto2">
                     </div>
                 </div>
             </div>
@@ -94,21 +94,24 @@
                         @endif
                     </div>
                     <p>{{$resumen}}</p>
-                    <div class="add-to-cart">
-                        <div class="qty-label">
-                            Cantidad
-                            <div class="number">
-                                @if($existencias==0)
-                                    <input type="number" value="0"  min="0" max="{{$existencias}}">
-                                @endif
-                                @if($existencias!=0)
-                                    <input type="number" value="1"  min="1" max="{{$existencias}}">
-                                @endif
+                    <form method="GET" action="{{route('add', $nombre)}}" >
+                        <div class="add-to-cart">
+                            <div class="qty-label">
+                                Cantidad
+                                <div class="number">
+                                    @if($existencias==0)
+                                        <input type="number" value="0"  min="0" max="{{$existencias}}" id="existencias" name="existencias">
+                                    @endif
+                                    @if($existencias!=0)
+                                        <input type="number" value="1"  min="1" max="{{$existencias}}" id="existencias" name="existencias">
+                                    @endif
+                                </div>
                             </div>
+                            
+                                <button class="add-to-cart-btn" ><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
+                            
                         </div>
-                        <button class="add-to-cart-btn" href="{{route('add', $item->nombre_p)}}"><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
-                    </div>
-
+                    </form>
                     <ul class="product-links">
                         <li>Categoria:</li>
                         @foreach ( $datosP2 as $item )

@@ -22,8 +22,12 @@ class CartController extends Controller
 
    //add item
    public function add(Producto $producto){
+        $existencias =  request('existencias');
+        if($existencias==""){
+            $existencias=1;
+        }
         $cart = \Session:: get('cart');
-        $producto->quantity = 1;
+        $producto->quantity = $existencias;
         $cart[ $producto->nombre_p] = $producto;
         \Session::put('cart', $cart);
 
@@ -58,5 +62,12 @@ class CartController extends Controller
     \Session::put('cart', $cart);
 
     return response()->json(['guardado' => $valor], 200);
+   }
+
+   //caja
+   public function caja(){
+        $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
+        $cart = \Session::get('cart');
+        return view('tienda.caja', compact('cart','datosC'));
    }
 }

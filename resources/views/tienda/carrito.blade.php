@@ -135,7 +135,7 @@
                         </div> 
                         
                 </div>
-                <a href="#" class="primary-btn order-submit">Pasar por caja</a>
+                <a href="{{route('caja')}}" class="primary-btn order-submit">Pasar por caja</a>
             </div>
             <!-- /Order Details -->
         </div>
@@ -178,11 +178,11 @@
                 $("#totalprecio"+id+"").text(subtotal);
 
                 var restaprecio =   subtotal - totalprecio;
-                var restaproducto =     totalproducto - id;
+                var restaproducto =     valor - totalproducto ;
 
                 var value = (parseFloat(sumatotal ) + parseFloat(restaprecio));
                 $("#sumatotal").text(value);
-                var value2 = (parseFloat(totalproductoscarrito ) + parseFloat(restaproducto));
+                var value2 = (parseInt(totalproductoscarrito ) + parseInt(restaproducto));
                 $("#totalproductoscarrito").text(value2);
             });
         });

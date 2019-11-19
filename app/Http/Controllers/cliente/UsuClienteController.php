@@ -46,7 +46,7 @@ class UsuClienteController extends Controller
       return view('tiendaCliente.tiendaClien', compact('datosDes','datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
     }
 
-    public function TiendaP($id,$email)
+    public function TiendaP($id)
     {
       $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       $datosP = DB::table('productos')->where([['id_producto','=',''.$id.'']])->get();

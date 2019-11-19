@@ -11,13 +11,15 @@ class PaginasController extends Controller
     
     public function contenido()
     {
-      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
+      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
       $datosPNuevos = DB::table('productos')->where([['estado','=','1'],['nuevo','=','1']])->get();
       $datosPOfertas = DB::table('productos')->where([['estado','=','1'],['oferta','=','1']])->get();
       $datosPExclusivo = DB::table('productos')->where([['estado','=','1'],['exclusivo','=','1']])->get();
+      $datosPtodos = DB::table('productos')->where('estado','=','1')->get();
       $datoscomentarios = DB::table('comentarios')->where([['estado','=','1']])->get();
       $datosdescuentos = DB::table('descuentos')->get();
-      return view('tienda.home', compact('datosC','datosPNuevos','datosPOfertas','datosPExclusivo','datoscomentarios','datosdescuentos'));
+      $cart = \Session::get('cart');
+      return view('tienda.home', compact('datosC','cart','datosPNuevos','datosPtodos','datosPOfertas','datosPExclusivo','datoscomentarios','datosdescuentos'));
     }
 
     public function tiendaC($id)
