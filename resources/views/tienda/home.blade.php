@@ -397,12 +397,3 @@
         <!-- SECTION -->
    
 @endsection
-@section('nuemeroProductosCarrito')
-    @foreach ($cart as $item)
-    @php
-        $totalproductos = $totalproductos + $item->quantity;
-        $i++;
-    @endphp
-    @endforeach
-    <span id="totalproductoscarrito">{{$totalproductos}}</span>
-@endsection

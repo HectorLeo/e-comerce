@@ -68,6 +68,7 @@ class CartController extends Controller
    public function caja(){
         $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
         $cart = \Session::get('cart');
+        
         return view('tienda.caja', compact('cart','datosC'));
    }
 }

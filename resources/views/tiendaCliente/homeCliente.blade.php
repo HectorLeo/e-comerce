@@ -1,4 +1,4 @@
-@extends('layouts.app-usu')
+@extends('layouts.app-client')
 @section('iniciarsesion')
 <li><a href="#"><i class="fa fa-user-o"></i> {{session()->get('email') ?? 'Invitado'}} </a> <a href="{{route('logoutC')}}" class="btn btn-xs btn-danger">Salir</a></li>
 @endsection
@@ -100,9 +100,10 @@
                                                         <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
                                                     </div>
                                                 </div>
-                                                <div class="add-to-cart">
-                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
-                                                </div>
+                                                <a class="add-to-cart"  href="{{route('addC', ''.$item->nombre_p.'')}}" >
+                                                    {{ csrf_field() }}
+                                                    <button class="add-to-cart-btn" ><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
+                                                </a>
                                             </div>
                                             @endforeach
                                             <!-- /product -->
@@ -143,9 +144,10 @@
                                                         <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
                                                     </div>
                                                 </div>
-                                                <div class="add-to-cart">
-                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
-                                                </div>
+                                                <a class="add-to-cart"  href="{{route('addC', ''.$item->nombre_p.'')}}" >
+                                                    {{ csrf_field() }}
+                                                    <button class="add-to-cart-btn" ><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
+                                                </a>
                                             </div>
                                             @endforeach
                                             <!-- /product -->
@@ -186,9 +188,10 @@
                                                         <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
                                                     </div>
                                                 </div>
-                                                <div class="add-to-cart">
-                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
-                                                </div>
+                                                <a class="add-to-cart"  href="{{route('addC', ''.$item->nombre_p.'')}}" >
+                                                    {{ csrf_field() }}
+                                                    <button class="add-to-cart-btn" ><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
+                                                </a>
                                             </div>
                                             @endforeach
                                             <!-- /product -->
