@@ -78,6 +78,16 @@ Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  
     Route::get('tiendaCliente/{id}', 'UsuClienteController@tiendaC')->name('tCliente');
     Route::get('cliente', 'UsuClienteController@contenido' )->name('homeCliente'); 
     Route::get('clienteP/{id}', 'UsuClienteController@TiendaP' )->name('clienteP');
+
+    Route::get('carritoC', 'CartClienController@show')->name('carritoC');
+    Route::bind('producto', function($slug){
+        return App\Models\Admin\Producto::where('nombre_p',$slug)->first();
+    });
+    Route::get('addC/{producto}','CartClienController@add')->name('addC');
+    Route::get('deleteC/{producto}','CartClienController@delete')->name('deleteC'); 
+    Route::get('updateC1/{producto}/{quantity?}','CartClienController@update')->name('updateC1'); 
+    Route::post('updateC','CartClienController@updateC')->name('updateC');  
+    Route::get('cajaC', 'CartClienController@caja')->name('cajaC');
     Route::get('comentariosI','ComentariosController@insertar')->name('comentariosI');
 
 });
@@ -100,4 +110,3 @@ Route::get('add/{producto}','cliente\CartController@add')->name('add');
 Route::get('delete/{producto}','cliente\CartController@delete')->name('delete'); 
 Route::get('updateS/{producto}/{quantity?}','cliente\CartController@update')->name('updateS'); 
 Route::post('update','cliente\CartController@update')->name('update');  
-Route::get('caja', 'cliente\CartController@caja')->name('caja');

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -81,10 +82,7 @@
 							<div class="header-ctn">
 								<!-- Wishlist -->
 								<div>
-									<a href="#">
-										<i class="fa fa-heart-o"></i>
-										<span>Tu lista de deseos</span>
-										<div class="qty">2</div>
+									<a >
 									</a>
 								</div>
 								<!-- /Wishlist -->
@@ -169,7 +167,7 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="{{route('home')}}">Inicio</a></li>
+						<li class="active"><a href="{{route('homeCliente')}}">Inicio</a></li>
 						<li><a href="#">Las mejores ofertas</a></li>
 						@yield('lista')
 					</ul>
@@ -352,6 +350,7 @@
 		<!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->
+
 		<!-- jQuery Plugins -->
 		<script src="\assets\usu-tienda\js\jquery.min.js"></script>
 		<script src="\assets\usu-tienda\js\bootstrap.min.js"></script>
@@ -360,5 +359,9 @@
 		<script src="\assets\usu-tienda\js\jquery.zoom.min.js"></script>
 		<script src="\assets\usu-tienda\js\main.js"></script>
 		@yield('scripts')
+<<<<<<< HEAD
+	</body>
+=======
 	</body> 
+>>>>>>> 303e5e39f83654c210646abbe7128ba14b21bba2
 </html>

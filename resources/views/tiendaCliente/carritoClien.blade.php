@@ -1,6 +1,6 @@
-@extends('layouts.app-usu')
+@extends('layouts.app-client')
 @section('iniciarsesion')
-<li><a href="{{route('loginC')}}"><i class="fa fa-user-o"></i> Iniciar sesión </a></li>
+<li><a href="#"><i class="fa fa-user-o"></i> {{session()->get('email') ?? 'Invitado'}} </a> <a href="{{route('logoutC')}}" class="btn btn-xs btn-danger">Salir</a></li>
 @endsection
 @section('category')
     @foreach ( $datosC as $item )
@@ -76,7 +76,7 @@
                                         <span id="subt{{$item->id_producto}}">{{$item->quantity*$item->precio_iva }}</span>
                                     </td>
                                     <td class="project-actions text-right">
-                                        <a  href="{{route('delete',''.$item->nombre_p.'')}}">
+                                        <a  href="{{route('deleteC',''.$item->nombre_p.'')}}">
                                       <button  class="btn btn-danger btn-sm delete_user" >
                                             <i class="fas fa-trash"></i> Eliminar
                                       </button>
@@ -135,7 +135,7 @@
                         </div> 
                         
                 </div>
-                <a href="{{route('loginC')}}" class="primary-btn order-submit">Iniciar sesión</a>
+                <a href="{{route('cajaC')}}" class="primary-btn order-submit">Pasar por caja</a>
             </div>
             <!-- /Order Details -->
         </div>
@@ -146,10 +146,12 @@
 <!-- /SECTION -->
 
 @endsection
-
+@section('nuemeroProductosCarrito')
+    <span id="totalproductoscarrito">{{$totalproductos}}</span>
+@endsection
 
 @section('scripts')
-    <script src="{{ asset('js/cart.js') }}"></script>
+    <script src="{{ asset('js/cartC.js')}}"></script>
  
     <script  type="text/javascript">
         $(document).ready(function () {
