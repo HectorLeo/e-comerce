@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transportista extends Model
 {
     protected $table = 'transportistas';   // si no funciona habilitar esto para crearla la conexion hacia a la tabla
-    protected $fillable = ['envio_gratis','nombre_transporte','estado_transporte','logotipo_transporte','retraso_transporte','facturacion','impuestos','estado_impuesto','fuera_rango','r_mayorigual','r_menor','anchura','altura','profundidad','peso'];
+    protected $fillable = ['envio_gratis','nombre_transporte','estado_transporte','logotipo_transporte','retraso_transporte','facturacion','impuestos','estado_impuesto','fuera_rango','r_mayorigual','r_menor','anchura','altura','profundidad','peso','precio_t'];
 
     public function scopeId($query, $id){
         if($id){

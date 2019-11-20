@@ -23,7 +23,7 @@ class Transportecontroller extends Controller
     ->retraso($retraso)
     ->estado($estado)
     ->envio($envio)
-    ->paginate(4);
+    ->paginate(10);
   //$datostransportes = DB::table('transportistas')->get();
   return view('admin.admin.ConsultarTransporte', compact('datostransportes'));
 }
@@ -40,7 +40,8 @@ class Transportecontroller extends Controller
       request()->validate([
         'nombre_transporte' => 'required',
         'retraso_transporte' =>'required',
-        'imagen_logotipo' =>'required|image'
+        'imagen_logotipo' =>'required|image',
+        'costo_transporte' =>'required'
 
       ]);
        
@@ -81,6 +82,7 @@ class Transportecontroller extends Controller
         'logotipo_transporte'=> $url,
         'envio_gratis'=> $envio_g,
         'estado_transporte'=> $estado,
+        'precio_t'=> request('costo_transporte')
         //'mostrado_c'=> $estado
       ]);
       $vector = array();
@@ -107,7 +109,7 @@ class Transportecontroller extends Controller
           ]);
         
       }
-      return redirect()->route('editarTransporte');
+      return redirect()->route('transporteC');
      
     }
 
@@ -132,6 +134,7 @@ class Transportecontroller extends Controller
       $profundidad = "";
       $peso = "";
       $estado_im="";
+      $precio_t="";
       foreach($datos as $item){
         $nombre_t = $item->nombre_transporte;
         $envio =  $item->envio_gratis;
@@ -148,6 +151,7 @@ class Transportecontroller extends Controller
         $profundidad =  $item->profundidad;
         $peso =  $item->peso;
         $estado_im = $item->estado_impuesto;
+        $precio_t = $item->precio_t;
       }
       
       $roles = DB::select("select * from transporte_rol where (id_transporte = $id and activo = 1)");
@@ -158,7 +162,7 @@ class Transportecontroller extends Controller
       //return $roles ;
       //$datos = Producto::get();
       return view('admin.admin.EditarTransporte', compact('datosroles','nombre_t','envio','estado_t','logotipo','retraso','facturacion',
-      'impuestos','frango','rmayor','rmenor','anchura','altura','profundidad','peso','id','estado_im','roles'));
+      'impuestos','frango','rmayor','rmenor','anchura','altura','profundidad','peso','id','estado_im','roles','precio_t'));
     }
 
     public function modificarbd($id)
@@ -208,12 +212,13 @@ class Transportecontroller extends Controller
         $logotipo_transporte = $url;
         $envio_gratis = $envio_g;
         $estado_transporte=$estado;
+        $precio_t = request('costo_transporte');
       //request()->file('imagen_categoria')->store('public');
       DB::update("update transportistas set nombre_transporte = '$nombre_transporte', retraso_transporte = '$retraso_transporte',
        facturacion =$facturacion, estado_impuesto=$estado_impuesto, impuestos=$impuestos  , fuera_rango=$fuera_rango
        , r_mayorigual=$r_mayorigual, r_menor=$r_menor, anchura=$anchura, altura=$altura, profundidad=$profundidad
        , peso=$peso, logotipo_transporte='$logotipo_transporte', envio_gratis=$envio_gratis, estado_transporte=$estado_transporte
-       where id_transporte = $id"); 
+       , precio_t=$precio_t where id_transporte = $id"); 
       $datos = DB::table('rol')->where('clave_rol','!=','1')->get();
      
       

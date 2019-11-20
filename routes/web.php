@@ -78,7 +78,7 @@ Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  
     Route::get('tiendaCliente/{id}', 'UsuClienteController@tiendaC')->name('tCliente');
     Route::get('cliente', 'UsuClienteController@contenido' )->name('homeCliente'); 
     Route::get('clienteP/{id}', 'UsuClienteController@TiendaP' )->name('clienteP');
-    Route::post('clienteP/{id}', 'UsuClienteController@TiendaP' )->name('clienteInsertComentario');
+    Route::get('comentariosI','ComentariosController@insertar')->name('comentariosI');
 
 });
 

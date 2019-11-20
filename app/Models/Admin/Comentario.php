@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comentario extends Model
 {
-    //protected $table = 'categorias';   // si no funciona habilitar esto para crearla la conexion hacia a la tabla
-    protected $fillable = ['nombre_c','tipo_categoria','imagen_c','descripcion','mostrado_c'];
+    protected $table = 'comentarios';   // si no funciona habilitar esto para crearla la conexion hacia a la tabla
+    protected $fillable = ['id_usuario','id_producto','calificacion','comentario','estado'];
     
     public function scopeId($query, $id){
         if($id){

@@ -70,6 +70,22 @@
                                     </button>
                                   </div>') !!} 
                         </div>
+                        <div class="col-lg-6">
+                                <label >Costo del transporte</label>
+                                <div class="input-group ">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text " >$</span>
+                                    </div>
+                                    <input type="text" class="form-control {!! $errors->first('costo_transporte','is-invalid') !!}" id="costo_transporte" name="costo_transporte" placeholder="costo del transporte" value="{{$precio_t}}">
+                                </div>
+                                <!-- /input-group -->
+                            </div>
+                        {!! $errors->first('costo_transporte','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>:message</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>') !!} 
                     </div>
                      <!-- /.card-body -->
 

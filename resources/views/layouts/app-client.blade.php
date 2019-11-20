@@ -94,7 +94,16 @@
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
 										<span>Tu carrito</span>
-										<div class="qty">@yield('nuemeroProductosCarrito','0')</div>
+										<div class="qty">@yield('nuemeroProductosCarrito')
+											@php
+												$totalproductos2=0;
+											@endphp
+											@foreach ($cart as $item)
+												@php
+													$totalproductos2 = $totalproductos2 + $item->quantity;
+												@endphp
+											@endforeach
+											<span id="totalproductoscarrito">{{$totalproductos2}}</span></div>
 									</a>
 									<div class="cart-dropdown">
 										<div class="cart-list">
@@ -350,6 +359,6 @@
 		<script src="\assets\usu-tienda\js\nouislider.min.js"></script>
 		<script src="\assets\usu-tienda\js\jquery.zoom.min.js"></script>
 		<script src="\assets\usu-tienda\js\main.js"></script>
-		
-	</body>
+		@yield('scripts')
+	</body> 
 </html>

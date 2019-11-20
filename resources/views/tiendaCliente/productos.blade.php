@@ -1,4 +1,4 @@
-@extends('layouts.app-usu')
+@extends('layouts.app-client')
 @section('iniciarsesion')
 <li><a href="#"><i class="fa fa-user-o"></i> {{session()->get('email') ?? 'Invitado'}} </a> <a href="{{route('logoutC')}}" class="btn btn-xs btn-danger">Salir</a></li>
 @endsection
@@ -171,6 +171,59 @@
                                             </div>
                                         </div>
                                         <ul class="rating">
+                                            @php
+                                                $total_c=0;
+                                                $valor_c1=0;
+                                                $valor_c2=0;
+                                                $valor_c3=0;
+                                                $valor_c4=0;
+                                                $valor_c5=0;
+                                                $porcentaje1=0;
+                                                $porcentaje2=0;
+                                                $porcentaje3=0;
+                                                $porcentaje4=0;
+                                                $porcentaje5=0;
+                                            @endphp
+                                            @foreach ($datosComen as $item)
+                                                @php
+                                                    $total_c = $total_c + 1;
+                                                    if($item->calificacion == 1){
+                                                        $valor_c1 = $valor_c1 + 1;
+                                                    }
+                                                    if($item->calificacion == 2){
+                                                        $valor_c2 = $valor_c2 + 1;
+                                                    }
+                                                    if($item->calificacion == 3){
+                                                        $valor_c3 = $valor_c3 + 1;
+                                                    }
+                                                    if($item->calificacion == 4){
+                                                        $valor_c4 = $valor_c4 + 1;
+                                                    }
+                                                    if($item->calificacion == 5){
+                                                        $valor_c5 = $valor_c5 + 1;
+                                                    }
+                                                    
+                                                @endphp
+                                                
+                                            @endforeach
+                                            @php
+                                                if($valor_c1 != 0){
+                                                    $porcentaje1 = ($valor_c1 * 100) / $total_c; 
+                                                }
+                                                if($valor_c2 != 0){
+                                                    $porcentaje2 = ($valor_c2 * 100) / $total_c; 
+                                                }
+                                                if($valor_c3 != 0){
+                                                    $porcentaje3 = ($valor_c3 * 100) / $total_c; 
+                                                }
+                                                if($valor_c4 != 0){
+                                                    $porcentaje4 = ($valor_c4 * 100) / $total_c; 
+                                                }
+                                                if($valor_c5 != 0){
+                                                    $porcentaje5 = ($valor_c5 * 100) / $total_c; 
+                                                }
+                                                
+                                            @endphp
                                             <li>
                                                 <div class="rating-stars">
                                                     <i class="fa fa-star"></i>
@@ -180,9 +233,9 @@
                                                     <i class="fa fa-star"></i>
                                                 </div>
                                                 <div class="rating-progress">
-                                                    <div style="width: 80%;"></div>
+                                                <div style="width: {{$porcentaje5}}%;"></div>
                                                 </div>
-                                                <span class="sum">3</span>
+                                            <span class="sum">{{$valor_c5}}</span>
                                             </li>
                                             <li>
                                                 <div class="rating-stars">
@@ -193,9 +246,9 @@
                                                     <i class="fa fa-star-o"></i>
                                                 </div>
                                                 <div class="rating-progress">
-                                                    <div style="width: 60%;"></div>
+                                                    <div style="width: {{$porcentaje4}}%;"></div>
                                                 </div>
-                                                <span class="sum">2</span>
+                                                <span class="sum">{{$valor_c4}}</span>
                                             </li>
                                             <li>
                                                 <div class="rating-stars">
@@ -206,9 +259,9 @@
                                                     <i class="fa fa-star-o"></i>
                                                 </div>
                                                 <div class="rating-progress">
-                                                    <div></div>
+                                                    <div style="width: {{$porcentaje3}}%;"></div>
                                                 </div>
-                                                <span class="sum">0</span>
+                                                <span class="sum">{{$valor_c3}}</span>
                                             </li>
                                             <li>
                                                 <div class="rating-stars">
@@ -219,9 +272,9 @@
                                                     <i class="fa fa-star-o"></i>
                                                 </div>
                                                 <div class="rating-progress">
-                                                    <div></div>
+                                                    <div style="width: {{$porcentaje2}}%;"></div>
                                                 </div>
-                                                <span class="sum">0</span>
+                                                <span class="sum">{{$valor_c2}}</span>
                                             </li>
                                             <li>
                                                 <div class="rating-stars">
@@ -232,9 +285,9 @@
                                                     <i class="fa fa-star-o"></i>
                                                 </div>
                                                 <div class="rating-progress">
-                                                    <div></div>
+                                                    <div style="width: {{$porcentaje1}}%;"></div>
                                                 </div>
-                                                <span class="sum">0</span>
+                                                <span class="sum">{{$valor_c1}}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -284,11 +337,11 @@
                                 <!-- Review Form -->
                                 <div class="col-md-3">
                                     <div id="review-form">
-                                     <form class="review-form"  method="POST" action="{{ route('transporte') }}" >
+                                     <form class="review-form"  >
                                             @csrf
-                                            <input class="input" type="text" id="id_usuario" name="id_usuario" value="{{session()->get('id')}}" readonly>
+                                            <input type="hidden" id="id_producto" name="id_producto" value="{{$id}}">
                                             <input class="input" type="email" id="email_usuario" name="email_usuario" value="{{session()->get('email')}}" readonly>
-                                            <textarea class="input" id="comentarios" rows="3" name="comentarios" placeholder="Tu Comentario"></textarea>
+                                            <textarea class="input" id="comentario" rows="3" name="comentario" placeholder="Agrega tu Comentario"></textarea>
                                             <div class="input-rating">
                                                 <span>Tu Calificación: </span>
                                                 <div class="stars">
@@ -299,8 +352,9 @@
                                                     <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
                                                 </div>
                                             </div>
-                                            <button class="primary-btn">Aceptar</button>
-                                    </form>
+                                            
+                                        </form>
+                                        <button class="primary-btn insertar_coment">Aceptar</button>
                                     </div>
                                 </div>
                                 <!-- /Review Form -->
@@ -389,9 +443,19 @@
 <!-- /Section -->
 @endsection
 <!-- jQuery Plugins -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/jquery.zoom.min.js"></script>
-<script src="js/main.js"></script>
+@section('scripts')
+    <script src="{{ asset('js/comentarios.js') }}"></script>
+    <script  type="text/javascript">
+        $(document).ready(function () {
+             
+             $(".insertar_coment").on( 'click', function() {
+                $("#comentario").val('');
+                for( i=1;i<6;i++){
+                    $("#star"+i).attr('checked', false);
+                }
+             });
+             
+         });
+         
+     </script>
+@endsection

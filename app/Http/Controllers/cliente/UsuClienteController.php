@@ -11,17 +11,19 @@ class UsuClienteController extends Controller
     
     public function contenido()
     {
+      $cart = \Session::get('cart');
       $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       $datosPNuevos = DB::table('productos')->where([['estado','=','1'],['nuevo','=','1']])->get();
       $datosPOfertas = DB::table('productos')->where([['estado','=','1'],['oferta','=','1']])->get();
       $datosPExclusivo = DB::table('productos')->where([['estado','=','1'],['exclusivo','=','1']])->get();
       $datoscomentarios = DB::table('comentarios')->where([['estado','=','1']])->get();
       $datosdescuentos = DB::table('descuentos')->get();
-      return view('tiendaCliente.homecliente', compact('datosC','datosPNuevos','datosPOfertas','datosPExclusivo','datoscomentarios','datosdescuentos'));
+      return view('tiendaCliente.homecliente', compact('cart','datosC','datosPNuevos','datosPOfertas','datosPExclusivo','datoscomentarios','datosdescuentos'));
     }
 
     public function tiendaC($id)
     {
+      $cart = \Session::get('cart');
       $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       $datosCP= DB::table('categorias')->where([['id_categoria','=',''.$id.'']])->get();
     
@@ -43,11 +45,12 @@ class UsuClienteController extends Controller
       $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo_ch.''],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       $datosPr= DB::table('productos')->where([['id_categoria','=',''.$id.'']])->get();
 
-      return view('tiendaCliente.tiendaClien', compact('datosDes','datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
+      return view('tiendaCliente.tiendaClien', compact('cart','datosDes','datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
     }
 
     public function TiendaP($id)
     {
+      $cart = \Session::get('cart');
       $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       $datosP = DB::table('productos')->where([['id_producto','=',''.$id.'']])->get();
       $datosComen = DB::table('comentarios')->where([['id_producto','=',''.$id.''],['estado','=','1']])->get();
@@ -107,18 +110,18 @@ class UsuClienteController extends Controller
       }
 
       $datosclientes = DB::table('clientes')->get();
-      $datosCat = DB::table('categorias')->where([['id_categoria','=',''.$categoria.''],['tipo_categoria','!=','3']])->get();
+      $datosCat = DB::table('categorias')->where([['id_categoria','=',''.$categoria.''],['tipo_categoria','!=','1']])->get();
       if((count($datosCat))!=0){
         $tipo="";
         foreach($datosCat as $item){
           $tipo=$item->tipo_categoria;
         }
-        $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo.''],['id_categoria','!=','3'],['tipo_categoria','=','3']])->orWhere([['id_categoria','=',''.$categoria.'']])->get();
+        $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo.''],['id_categoria','!=','1'],['tipo_categoria','=','1']])->orWhere([['id_categoria','=',''.$categoria.'']])->get();
       }else{
-        $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$categoria.''],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
+        $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$categoria.''],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       }
       $datosP3  = DB::table('productos')->where([['id_categoria','=',''.$categoria.''],['id_producto','!=',''.$id.'']])->get();
-      return view('tiendaCliente.productos', compact('datosDes','datosP3','datosP2','precioD','datosComen','datosclientes','datosC','prom','nombre','precioN','existencias','descripcion','resumen','marca','imagen'));
+      return view('tiendaCliente.productos', compact('cart','datosDes','datosP3','datosP2','precioD','datosComen','datosclientes','datosC','prom','nombre','precioN','existencias','descripcion','resumen','marca','imagen','id'));
     }
 
     
