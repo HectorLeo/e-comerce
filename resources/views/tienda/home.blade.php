@@ -110,7 +110,9 @@
                                                             <i class="fa fa-star"></i>
                                                         </div>
                                                         <div class="product-btns">
+                                                            <a data-toggle="modal" data-target="loginModal">
                                                             <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                     <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
@@ -155,7 +157,9 @@
                                                         <i class="fa fa-star"></i>
                                                     </div>
                                                     <div class="product-btns">
-                                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
+                                                            <a data-toggle="modal" data-target="loginModal">
+                                                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
+                                                            </a>
                                                     </div>
                                                 </div>
                                                 <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}">
@@ -199,7 +203,9 @@
                                                         <i class="fa fa-star"></i>
                                                     </div>
                                                     <div class="product-btns">
-                                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
+                                                            <a data-toggle="modal" data-target="loginModal">
+                                                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
+                                                            </a>
                                                     </div>
                                                 </div>
                                                 <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
@@ -397,3 +403,6 @@
         <!-- SECTION -->
    
 @endsection 
+@section('modal')
+
+@endsection
