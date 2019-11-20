@@ -146,9 +146,7 @@
 <!-- /SECTION -->
 
 @endsection
-@section('nuemeroProductosCarrito')
-    <span id="totalproductoscarrito">{{$totalproductos}}</span>
-@endsection
+
 
 @section('scripts')
     <script src="{{ asset('js/cart.js') }}"></script>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\cliente;
 
 use App\Http\Controllers\Controller;
 use DB;
@@ -59,9 +59,12 @@ class ComentariosController extends Controller
         $comentario = $request->comentario;
         $id_producto = $request->id_producto;
         $datos = DB::table('usuarios')->where('email',''.$correo.'')->get();
-        //$id = $datos->id;
+        
+        foreach($datos as $item){
+          $id = $item->id;
+        }
         $cont=$request->cont;
-        /*Comentario:: create([
+        Comentario:: create([
         
           'id_usuario'=> $id,
           'id_producto'=> $id_producto,
@@ -69,12 +72,12 @@ class ComentariosController extends Controller
           'comentario'=> $comentario,
           'estado'=> 0
   
-        ]);*/
+        ]);
 
 
         $guardado="activo";
         
-        return response()->json(['guardado' => $guardado], 200);
+        return response()->json(['guardado' => $id], 200);
        
       }
 }

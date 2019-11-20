@@ -15,7 +15,7 @@ class CartController extends Controller
    }
    //show cart
    public function show(){
-        $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
+        $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
        $cart = \Session::get('cart');
        return view('tienda.carrito', compact('cart','datosC'));
    }

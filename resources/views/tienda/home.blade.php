@@ -87,7 +87,7 @@
                                                             {{$item_C->nombre_c}}
                                                             @endif
                                                         @endforeach</p>
-                                                        <h3 class="product-name"><a href="#">{{$item->nombre_p}}</a></h3>
+                                                        <h3 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
                                                         @php
                                                             $band=false;
                                                         @endphp
@@ -145,7 +145,7 @@
                                                         {{$item_C->nombre_c}}
                                                         @endif
                                                     @endforeach</p>
-                                                    <h3 class="product-name"><a href="#">{{$item->nombre_p}}</a></h3>
+                                                    <h3 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
                                                     <h4 class="product-price">${{$item->precio_neto}}
                                                     <div class="product-rating">
                                                         <i class="fa fa-star"></i>
@@ -189,7 +189,7 @@
                                                         {{$item_C->nombre_c}}
                                                         @endif
                                                     @endforeach</p>
-                                                    <h3 class="product-name"><a href="#">{{$item->nombre_p}}</a></h3>
+                                                    <h3 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
                                                     <h4 class="product-price">${{$item->precio_neto}}
                                                     <div class="product-rating">
                                                         <i class="fa fa-star"></i>

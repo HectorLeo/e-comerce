@@ -13,7 +13,8 @@ class UsuarioController extends Controller
 {
     public function index()
     {
-        return view('tienda.registroC');
+        $cart = \Session::get('cart');
+        return view('tienda.registroC',compact('cart'));
     }
 
     public function crear()

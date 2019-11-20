@@ -14,8 +14,10 @@
 @endsection
 @section('content')
 <!-- Aqui va ell contenido> 
-
      shop -->
+    @php
+     $email=session()->get('email');   
+    @endphp
     @foreach ($datosC as $item)
     <div class="col-md-4 col-xs-6">
         <div class="shop">
@@ -38,7 +40,7 @@
         <div class="container">
             <!-- row -->
             <div class="row">
-
+                
                 <!-- section title -->
                 <div class="col-md-12">
                     <div class="section-title">
@@ -83,7 +85,7 @@
                                                         {{$item_C->nombre_c}}
                                                         @endif
                                                     @endforeach</p>
-                                                    <h3 class="product-name"><a href="{{route('clienteP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
+                                                    <h3 class="product-name"><a href="{{route('clienteP', ''.$item->id_producto.'',''.$email.'')}}">{{$item->nombre_p}}</a></h3>
                                                     @foreach ($datosdescuentos as $item_d)
                                                         @if ($item->id_producto == $item_d->id_producto)
                                                             <h4 class="product-price">${{$item->precio_iva}}

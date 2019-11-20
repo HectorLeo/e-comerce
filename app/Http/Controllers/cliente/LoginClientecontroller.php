@@ -17,7 +17,8 @@ class LoginClientecontroller extends Controller
     }
     
     public function index(){
-        return view('tienda.login-tienda');
+        $cart = \Session::get('cart');
+        return view('tienda.login-tienda',compact('cart'));
     }
 
     protected function authenticated(Request $request, $user){
