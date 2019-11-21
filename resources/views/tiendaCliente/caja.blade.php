@@ -27,28 +27,28 @@
 								<h3 class="title">Dirección de envio</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="calle" placeholder="Calle">
+								<input class="input" type="text" name="calle" placeholder="Calle" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="codigo" placeholder="Codigo Postal">
+								<input class="input" type="text" name="codigo" placeholder="Codigo Postal" required>
                             </div>
                             <div class="form-group">
-								<input class="input" type="text" name="localidad" placeholder="Localidad">
+								<input class="input" type="text" name="localidad" placeholder="Localidad" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="ciudad" placeholder="Ciudad">
+								<input class="input" type="text" name="ciudad" placeholder="Ciudad" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="municipio" placeholder="Municipio">
+								<input class="input" type="text" name="municipio" placeholder="Municipio" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="numero_e" placeholder="Numero Exterior">
+								<input class="input" type="text" name="numero_e" placeholder="Numero Exterior" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="numero_i" placeholder="Numero Interior">
+								<input class="input" type="text" name="numero_i" placeholder="Numero Interior" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="tel" name="telefono" placeholder="Telefono">
+								<input class="input" type="tel" name="telefono" placeholder="Telefono" required>
 							</div>
 						</div>
 						<!-- /Billing Details -->

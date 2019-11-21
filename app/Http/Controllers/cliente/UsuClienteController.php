@@ -11,6 +11,7 @@ class UsuClienteController extends Controller
     
     public function contenido()
     {
+      $cart = \Session::get('cart');
       $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
       $datosPNuevos = DB::table('productos')->where([['estado','=','1'],['nuevo','=','1']])->get();
       $datosPOfertas = DB::table('productos')->where([['estado','=','1'],['oferta','=','1']])->get();
@@ -22,6 +23,7 @@ class UsuClienteController extends Controller
 
     public function tiendaC($id)
     {
+      $cart = \Session::get('cart');
       $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
       $datosCP= DB::table('categorias')->where([['id_categoria','=',''.$id.'']])->get();
     
@@ -48,6 +50,7 @@ class UsuClienteController extends Controller
 
     public function TiendaP($id)
     {
+      $cart = \Session::get('cart');
       $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
       $datosP = DB::table('productos')->where([['id_producto','=',''.$id.'']])->get();
       $datosComen = DB::table('comentarios')->where([['id_producto','=',''.$id.''],['estado','=','1']])->get();
