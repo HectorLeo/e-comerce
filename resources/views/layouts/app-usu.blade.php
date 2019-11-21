@@ -287,7 +287,7 @@
 				<!-- /container -->
 			</div>
 			<!-- /top footer -->
-
+			@yield('modal')
 			<!-- bottom footer -->
 			<div id="bottom-footer" class="section">
 				<div class="container">

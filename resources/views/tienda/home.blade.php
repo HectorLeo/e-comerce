@@ -111,8 +111,11 @@
                                                         </div>
                                                         <div class="product-btns">
                                                             <a data-toggle="modal" data-target="loginModal">
-                                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
+                                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
                                                             </a>
+                                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+                                                                    Launch Default Modal
+                                                                  </button>
                                                         </div>
                                                     </div>
                                                     <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
@@ -159,6 +162,7 @@
                                                     <div class="product-btns">
                                                             <a data-toggle="modal" data-target="loginModal">
                                                                     <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
+                                                                    
                                                             </a>
                                                     </div>
                                                 </div>
@@ -206,6 +210,7 @@
                                                             <a data-toggle="modal" data-target="loginModal">
                                                                     <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
                                                             </a>
+                                                            
                                                     </div>
                                                 </div>
                                                 <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
@@ -404,5 +409,36 @@
    
 @endsection 
 @section('modal')
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" id="loginModal">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" name="button" class="close"></button>
+                        </div>
+                </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title">Default Modal</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <p>One fine body…</p>
 
+            
+            </div>
+            <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
