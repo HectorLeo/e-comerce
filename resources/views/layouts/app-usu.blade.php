@@ -90,7 +90,7 @@
 							<div class="header-ctn">
 								<!-- Cart -->
 								<div>
-									<a>
+									
 									<a href="{{route('carrito')}}" >
 										<i class="fa fa-shopping-cart"></i>
 										<span>Tu carrito</span>
@@ -105,7 +105,7 @@
 											@endforeach
 											<span id="totalproductoscarrito">{{$totalproductos2}}</span></div>
 									</a>
-									</a>
+									
 								</div>
 								<!-- /Cart -->
 
