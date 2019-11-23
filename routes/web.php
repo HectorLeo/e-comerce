@@ -90,6 +90,10 @@ Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  
     Route::get('cajaC', 'CartClienController@caja')->name('cajaC');
     Route::get('comentariosI','ComentariosController@insertar')->name('comentariosI');
 
+    Route::get('pago', 'PaypalController@postPagar')->name('pago');
+    //Route::get('pago/{status?}',array('as'=>'pago1.status', 'users'=>'PaypalController@getPaymentStatus',));
+    Route::get('pago/status', 'PaypalController@getPaymentStatus')->name('pago.status');
+
 });
 
 /* Rustas de Usuario */
