@@ -17,6 +17,8 @@
 		<div class="section">
 			<!-- container -->
 			<div class="container">
+				<form action="{{route('pago')}}" method="GET" enctype="multipart/form-data">
+					@csrf
 				<!-- row -->
 				<div class="row">
 
@@ -26,29 +28,30 @@
 							<div class="section-title">
 								<h3 class="title">Dirección de envio</h3>
 							</div>
+							<input class="input" type="hidden" name="email" id="email" value="{{session()->get('email')}}" required>
 							<div class="form-group">
-								<input class="input" type="text" name="calle" placeholder="Calle" required>
+								<input class="input" type="text" name="calle" id="calle" placeholder="Calle" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="codigo" placeholder="Codigo Postal" required>
+								<input class="input" type="text" name="codigo" id="codigo" placeholder="Codigo Postal" required>
                             </div>
                             <div class="form-group">
-								<input class="input" type="text" name="localidad" placeholder="Localidad" required>
+								<input class="input" type="text" name="localidad" id="localidad" placeholder="Localidad" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="ciudad" placeholder="Ciudad" required>
+								<input class="input" type="text" name="ciudad" id="ciudad" placeholder="Ciudad" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="municipio" placeholder="Municipio" required>
+								<input class="input" type="text" name="municipio" id="municipio" placeholder="Municipio" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="numero_e" placeholder="Numero Exterior" required>
+								<input class="input" type="text" name="numero_e" id="numero_e placeholder="Numero Exterior" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="numero_i" placeholder="Numero Interior" required>
+								<input class="input" type="text" name="numero_i" id="numero_i" placeholder="Numero Interior">
 							</div>
 							<div class="form-group">
-								<input class="input" type="tel" name="telefono" placeholder="Telefono" required>
+								<input class="input" type="tel" name="telefono" id="telefono" placeholder="Telefono" required>
 							</div>
 						</div>
 						<!-- /Billing Details -->
@@ -141,7 +144,7 @@
 						</div>
 						
 						<div class="input-checkbox">
-							<input type="checkbox" id="terms">
+							<input type="checkbox" id="terms" required>
 							<label for="terms">
 								<span></span>
 								He leído y acepto los <a href="#"> términos y condiciones</a>
@@ -149,7 +152,9 @@
 						</div>
 						<div class="payment-method">
 							<label for="">Realizar pago:</label>
-								<img class=" lazyloaded" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" data-src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal" style="width: auto; height: auto;">
+							
+							<button type="submit">	<img class=" lazyloaded" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" data-src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal" style="width: auto; height: auto;"></button>
+							
 						</div>
 					</div>
 					<!-- /Order Details -->
@@ -157,6 +162,7 @@
 				<!-- /row -->
 			</div>
 			<!-- /container -->
+		</form>
 		</div>
 		<!-- /SECTION -->
 @endsection
