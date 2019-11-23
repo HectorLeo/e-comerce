@@ -93,15 +93,29 @@
                                                         @endphp
                                                         @foreach ($datosdescuentos as $item_d)
                                                             @if ($item->id_producto == $item_d->id_producto)
-                                                                <h4 class="product-price">${{$item->precio_iva}}
+                                                                
+                                                                        <h3 class="product-price 1">${{$item_d->precio_descuento}} <del class="product-old-price"> ${{$item->precio_iva}}</del></h3>
                                                                     @php
                                                                         $band=true;
                                                                     @endphp
                                                             @endif
                                                         @endforeach
+                                                            
                                                         @if($band==false)
                                                             <h4 class="product-price">${{$item->precio_iva}}
                                                         @endif
+                                                        <div class="product-label">
+                                                            @foreach ($datosdescuentos as $item_D)
+                                                                @if($item->id_producto == $item_D->id_producto )
+                                                                    @if($item_D->porcentaje_d != 0.00)
+                                                                        <span class="product-price">Ahorras: {{$item_D->porcentaje_d}}%</span>
+                                                                    @endif
+                                                                    @if($item_D->porcentaje_d == 0.00)
+                                                                        <span class=" product-price">Ahorras: ${{$item_D->peso_d}}</span>
+                                                                    @endif
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
                                                         <div class="product-rating">
                                                             <i class="fa fa-star"></i>
                                                             <i class="fa fa-star"></i>
@@ -110,12 +124,9 @@
                                                             <i class="fa fa-star"></i>
                                                         </div>
                                                         <div class="product-btns">
-                                                            <a data-toggle="modal" data-target="loginModal">
-                                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
-                                                            </a>
-                                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                                                                    Launch Default Modal
-                                                                  </button>
+                                                            <button type="button" class="btn btn-default ventana_popup" data-toggle="modal" data-target="#modal-default" id_ventanapopup="{{$item->id_producto}}">
+                                                                <i class="fa fa-eye"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                     <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
@@ -150,8 +161,36 @@
                                                         {{$item_C->nombre_c}}
                                                         @endif
                                                     @endforeach</p>
+
                                                     <h3 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
-                                                    <h4 class="product-price">${{$item->precio_neto}}
+                                                    @php
+                                                            $band=false;
+                                                        @endphp
+                                                        @foreach ($datosdescuentos as $item_d)
+                                                            @if ($item->id_producto == $item_d->id_producto)
+                                                                
+                                                                        <h3 class="product-price 1">${{$item_d->precio_descuento}} <del class="product-old-price"> ${{$item->precio_iva}}</del></h3>
+                                                                    @php
+                                                                        $band=true;
+                                                                    @endphp
+                                                            @endif
+                                                        @endforeach
+                                                            
+                                                        @if($band==false)
+                                                            <h4 class="product-price">${{$item->precio_iva}}
+                                                        @endif
+                                                    <div class="product-label">
+                                                            @foreach ($datosdescuentos as $item_D)
+                                                                @if($item->id_producto == $item_D->id_producto )
+                                                                    @if($item_D->porcentaje_d != 0.00)
+                                                                        <span class="product-price">Ahorras: {{$item_D->porcentaje_d}}%</span>
+                                                                    @endif
+                                                                    @if($item_D->porcentaje_d == 0.00)
+                                                                        <span class=" product-price">Ahorras: ${{$item_D->peso_d}}</span>
+                                                                    @endif
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
                                                     <div class="product-rating">
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
@@ -160,12 +199,14 @@
                                                         <i class="fa fa-star"></i>
                                                     </div>
                                                     <div class="product-btns">
-                                                            <a data-toggle="modal" data-target="loginModal">
-                                                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
-                                                                    
-                                                            </a>
+                                                            <button type="button" class="btn btn-default ventana_popup" data-toggle="modal" data-target="#modal-default" id_ventanapopup="{{$item->id_producto}}">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </button>
                                                     </div>
                                                 </div>
+                                                @php
+                                                    $nombre_producto = $item->nombre_p;
+                                                @endphp
                                                 <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}">
                                                     {{ csrf_field() }}
                                                     <button class="add-to-cart-btn" ><i class="fa fa-shopping-cart"></i>añaAAAAdir al carrito</button>
@@ -187,8 +228,16 @@
                                                 <div class="product-img">
                                                     <img width="100" height="250" src="{{Storage::url($item->imagen_p)}}" alt="Imagen del producto">
                                                     <div class="product-label">
-                                                        <!--span class="sale">-30%</span-->
-                                                        <span class="new">OFERTA</span>
+                                                        @if ($item->oferta == 1)
+                                                            <span class="new">OFERTA</span>
+                                                        
+                                                        @else
+                                                            @if ($item->nuevo == 1)
+                                                                <span class="new">NUEVO</span>
+                                                                
+                                                            @endif
+                                                        @endif
+                                                       
                                                     </div>
                                                 </div>
                                                 <div class="product-body">
@@ -199,6 +248,18 @@
                                                     @endforeach</p>
                                                     <h3 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
                                                     <h4 class="product-price">${{$item->precio_neto}}
+                                                    <div class="product-label">
+                                                        @foreach ($datosdescuentos as $item_D)
+                                                            @if($item->id_producto == $item_D->id_producto )
+                                                                @if($item_D->porcentaje_d != 0.00)
+                                                                    <span class="product-price">Ahorras: {{$item_D->porcentaje_d}}%</span>
+                                                                @endif
+                                                                @if($item_D->porcentaje_d == 0.00)
+                                                                    <span class=" product-price">Ahorras: ${{$item_D->peso_d}}</span>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                    </div>
                                                     <div class="product-rating">
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
@@ -207,12 +268,13 @@
                                                         <i class="fa fa-star"></i>
                                                     </div>
                                                     <div class="product-btns">
-                                                            <a data-toggle="modal" data-target="loginModal">
-                                                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rápida</span></button>
-                                                            </a>
+                                                            <button type="button" class="btn btn-default ventana_popup" data-toggle="modal" data-target="#modal-default" id_ventanapopup="{{$item->id_producto}}">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </button>
                                                             
                                                     </div>
                                                 </div>
+
                                                 <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
                                                     {{ csrf_field() }}
                                                     <button class="add-to-cart-btn" ><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
@@ -344,9 +406,9 @@
 @endsection
 
 @section('comentarios')
-<div class="section " >
-    <!-- Product tab -->
-    <div class="col-md-12 "  >
+    <div class="section " >
+        <!-- Product tab -->
+        <div class="col-md-12 "  >
             <div id="product-tab">
                 <!-- product tab nav -->
                 <ul class="tab-nav" >
@@ -409,36 +471,65 @@
    
 @endsection 
 @section('modal')
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" id="loginModal">
-        <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" name="button" class="close"></button>
-                        </div>
-                </div>
-        </div>
-    </div>
+    
     <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h4 class="modal-title">Default Modal</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
+               
+                <div   id="nombre_popup"></div>
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
             <div class="modal-body">
-            <p>One fine body…</p>
-
-            
+                
+                <div class="row">
+                    <!-- Product details -->
+                    <div class="col-md-7 ">
+                        
+                            <div class="product-preview" id="imagen_popup"></div>
+                            
+                    </div>
+                    
+                    <div class="col-md-5" >
+                        <div class="product-details">
+                            <h5> Precio: </h5>
+                            <div id="precio_popup"></div>
+                            <h5> Descripción: </h5>
+                            <div id="resumen_popup"></div>
+                            <div class="add-to-cart">
+                                <div class="qty-label">
+                                    <h5> Cantidad: </h5>
+                                    <div class="number" id="existencias_popup"> </div>
+                                </div>
+                            </div>
+                            <ul class="product-links">
+                                <li>Share:</li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                            </ul>
+        
+                        </div>
+                        
+                    </div>
+                    <!-- /Product details -->
+                    
+                </div>
             </div>
             <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
         </div>
+       
         <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
     </div>
+@endsection
+@section('scripts')
+    <script src="{{ asset('js/popup.js') }}"></script>
 @endsection

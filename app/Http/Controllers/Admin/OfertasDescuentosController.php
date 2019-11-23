@@ -109,10 +109,18 @@ class OfertasDescuentosController extends Controller
       }else{
         $hora_fin = request("hora_fin");
       }
+
+     if(request("porcentaje_d")!=0){
+        $precio_descuento= request("precio_producto")-((request("porcentaje_d") * request("precio_producto"))/ 100);
+     }else{
+        $precio_descuento=  request("precio_producto") - request("peso_d");
+     }
+     $total_descuento= round($precio_descuento, 2);
       Descuento:: create([
         'id_producto'=> $id,
         'porcentaje_d'=> request("porcentaje_d"),
         'peso_d'=> request("peso_d"),
+        'precio_descuento'=> $total_descuento,
         'fecha_inicio'=> $fecha_inicio,
         'fecha_fin'=> $fecha_fin,
         'hora_inicio'=> $hora_inicio,
@@ -236,10 +244,15 @@ class OfertasDescuentosController extends Controller
       }else{
         $peso_d = request("peso_d");
       }
-     
+      if(request("porcentaje_d")!=0){
+          $precio_descuento= request("precio_producto")-((request("porcentaje_d") * request("precio_producto"))/ 100);
+      }else{
+          $precio_descuento=  request("precio_producto") - request("peso_d");
+      }
+      $total_descuento= round($precio_descuento, 2);
       //request()->file('imagen_categoria')->store('public');
       DB::update("update productos set oferta=$oferta ,exclusivo=$exclusivo, nuevo=$nuevo where id_producto = $id"); 
-      DB::update("update descuentos set fecha_inicio='$fecha_inicio', hora_inicio='$hora_inicio', fecha_fin='$fecha_fin',
+      DB::update("update descuentos set fecha_inicio='$fecha_inicio', hora_inicio='$hora_inicio',precio_descuento='$total_descuento', fecha_fin='$fecha_fin',
        hora_fin='$hora_fin', porcentaje_d=$porcentaje_d, peso_d=$peso_d   where id_producto = $id"); 
       
       

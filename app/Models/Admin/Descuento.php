@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Descuento extends Model
 {
     protected $table = 'descuentos';   // si no funciona habilitar esto para crearla la conexion hacia a la tabla
-    protected $fillable = ['id_producto','porcentaje_d','peso_d','fecha_inicio','fecha_fin','hora_inicio','hora_fin'];
+    protected $fillable = ['id_producto','porcentaje_d','peso_d','precio_descuento','fecha_inicio','fecha_fin','hora_inicio','hora_fin'];
 
     /*public function scopeId($query, $id){
         if($id){

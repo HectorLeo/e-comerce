@@ -34,8 +34,8 @@
     <!-- /shop -->
 @endsection
 @section('content2')
-<!-- SECTION -->
-<div class="section">
+    <!-- SECTION -->
+    <div class="section">
         <!-- container -->
         <div class="container">
             <!-- row -->
@@ -321,7 +321,7 @@
 @endsection
 
 @section('comentarios')
-<div class="section " >
+    <div class="section " >
     <!-- Product tab -->
     <div class="col-md-12 "  >
             <div id="product-tab">

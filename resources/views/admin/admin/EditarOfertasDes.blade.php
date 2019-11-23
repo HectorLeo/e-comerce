@@ -129,7 +129,10 @@
                             </div>
                             <hr>
                             
-                            
+                            <div class="form-group" align="center">
+                                <label >Precio del Producto: </label>
+                                <input type="text"style="text-align:center" class="form-control" id="precio_producto" name="precio_producto" value="{{$precio_iva}}"  readonly>
+                            </div>
                                 
                                 
                             <label >Descuento por porcentaje %:</label>

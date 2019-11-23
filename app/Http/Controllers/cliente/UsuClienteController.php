@@ -12,7 +12,7 @@ class UsuClienteController extends Controller
     public function contenido()
     {
       $cart = \Session::get('cart');
-      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
+      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       $datosPNuevos = DB::table('productos')->where([['estado','=','1'],['nuevo','=','1']])->get();
       $datosPOfertas = DB::table('productos')->where([['estado','=','1'],['oferta','=','1']])->get();
       $datosPExclusivo = DB::table('productos')->where([['estado','=','1'],['exclusivo','=','1']])->get();
@@ -24,7 +24,7 @@ class UsuClienteController extends Controller
     public function tiendaC($id)
     {
       $cart = \Session::get('cart');
-      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
+      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       $datosCP= DB::table('categorias')->where([['id_categoria','=',''.$id.'']])->get();
     
       $datosCH= DB::table('categorias')->where([['tipo_categoria','=',''.$id.'']])->get();
@@ -42,7 +42,7 @@ class UsuClienteController extends Controller
         $imagen_ch = $item->imagen_c;
         $descripcion_ch = $item->descripcion;
       }
-      $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo_ch.''],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
+      $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo_ch.''],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       $datosPr= DB::table('productos')->where([['id_categoria','=',''.$id.'']])->get();
 
       return view('tiendaCliente.tiendaClien', compact('cart','datosDes','datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
@@ -51,7 +51,7 @@ class UsuClienteController extends Controller
     public function TiendaP($id)
     {
       $cart = \Session::get('cart');
-      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
+      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       $datosP = DB::table('productos')->where([['id_producto','=',''.$id.'']])->get();
       $datosComen = DB::table('comentarios')->where([['id_producto','=',''.$id.''],['estado','=','1']])->get();
       $datosDescuentos = DB::table('descuentos')->where([['id_producto','=',''.$id.'']])->get();

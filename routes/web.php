@@ -110,3 +110,6 @@ Route::get('add/{producto}','cliente\CartController@add')->name('add');
 Route::get('delete/{producto}','cliente\CartController@delete')->name('delete'); 
 Route::get('updateS/{producto}/{quantity?}','cliente\CartController@update')->name('updateS'); 
 Route::post('update','cliente\CartController@update')->name('update');  
+
+/* ventana pop-up */
+Route::get('ventana_PopUp', 'PaginasController@ventena_PopUp')->name('ventana_PopUp');
