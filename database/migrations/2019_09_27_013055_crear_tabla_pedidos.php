@@ -20,7 +20,7 @@ class CrearTablaPedidos extends Migration
             $table->unsignedInteger('id_transporte');
             $table->foreign('id_transporte', 'fk_pedidos_transportistas')->references('id_transporte')->on('transportistas')->onDelete('no action')->onUpdate('no action');
             $table->unsignedInteger('id_usuario');
-            $table->foreign('id_usuario', 'fk_pedidos_usuarios')->references('id_usuario')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('id_usuario', 'fk_pedidos_usuarios')->references('id')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedInteger('id_direccion');
             $table->foreign('id_direccion', 'fk_pedidos_direcciones')->references('id_direccion')->on('direcciones')->onDelete('restrict')->onUpdate('restrict');
             $table->float('cantidad_ped');

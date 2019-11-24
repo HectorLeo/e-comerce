@@ -30,6 +30,7 @@ class CrearTablaTransportistas extends Migration
             $table->float('profundidad');
             $table->float('peso');     
             $table->boolean('estado_impuesto');
+            $table->float('precio_t');
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class CrearTablaClientes extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             $table->Increments('usuario_id');
             //$table->integer('id_usuario');
-            $table->foreign('usuario_id_usuario', 'fk_clientes_usuarios')->references('id_usuario')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('usuario_id', 'fk_clientes_usuarios')->references('id')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
             //$table->primary('correo');
             $table->string('nombre', 30);
             $table->string('a_paterno', 30);

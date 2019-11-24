@@ -22,7 +22,7 @@ class CrearTablaDirecciones extends Migration
             $table->string('telefono', 10);
             $table->string('municipio', 50);
             $table->unsignedInteger('id_usuario');
-            $table->foreign('id_usuario', 'fk_direcciones_usuarios')->references('id_usuario')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('id_usuario', 'fk_direcciones_usuarios')->references('id')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
             $table->string('numero_exterior_d', 3);
             $table->string('numero_interior', 3);
             $table->timestamps();

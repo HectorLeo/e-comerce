@@ -223,7 +223,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="hot-deal">
-							<img src="assets\usu-tienda\css\Herramientas.png" alt="imagen sobre herrmientas">
+							<img src="\assets\usu-tienda\css\Herramientas.png" alt="imagen sobre herrmientas">
 						</div>
 					</div>
 				</div>

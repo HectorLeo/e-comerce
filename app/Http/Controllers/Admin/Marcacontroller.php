@@ -38,7 +38,7 @@ class Marcacontroller extends Controller
       ]);
 
       
-      if(request('estado')){
+      if(request('estado_product')){
         $estado = 1;
       }else{
         $estado = 0;

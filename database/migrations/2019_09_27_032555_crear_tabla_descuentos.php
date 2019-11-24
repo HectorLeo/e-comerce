@@ -19,6 +19,7 @@ class CrearTablaDescuentos extends Migration
             $table->foreign('id_producto', 'fk_descuentos_productos')->references('id_producto')->on('productos')->onDelete('restrict')->onUpdate('restrict');
             $table->float('porcentaje_d');
             $table->float('peso_d');
+            $table->float('precio_descuento');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->time('hora_inicio');

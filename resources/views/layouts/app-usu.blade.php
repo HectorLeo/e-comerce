@@ -64,7 +64,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="./img/logo.png" alt="">
+									<img width="110" height="60" src="\assets\usu-tienda\css\Logo_Crystal_Media.png" alt="Logo de CrystalMedia">
 								</a>
 							</div>
 						</div>
