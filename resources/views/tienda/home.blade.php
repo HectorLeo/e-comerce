@@ -9,7 +9,7 @@
 @endsection
 @section('lista')
     @foreach ( $datosC as $item )
-        <li><a href="#">{{$item->nombre_c}}</a></li>
+        <li><a href="{{route('tiendaC', ''.$item->id_categoria.'')}}">{{$item->nombre_c}}</a></li>
     @endforeach 
 @endsection
 @section('content')
@@ -42,13 +42,12 @@
                 <!-- section title -->
                 <div class="col-md-12">
                     <div class="section-title">
-                        <h3 class="title">Nuevos Productos</h3>
+                        <h3 class="title" id="tab_titulo">Productos Nuevos</h3>
                         <div class="section-nav">
                             <ul class="section-tab-nav tab-nav">
-                                <li class="active"><a data-toggle="tab" href="#tab1">Nuevos</a></li>
-                                <li><a data-toggle="tab" href="#tab2">Oferta</a></li>
-                                <li><a data-toggle="tab" href="#tab3">Exclusivos</a></li>
-                                <li><a data-toggle="tab" href="#tab4">Los más vendidos</a></li>
+                                <li class="active" id="tab_1"><a data-toggle="tab"  href="#tab1">Nuevos</a></li>
+                                <li id="tab_2"><a data-toggle="tab"  href="#tab2">Oferta</a></li>
+                                <li id="tab_3"><a data-toggle="tab"  href="#tab3">Exclusivos</a></li>
                             </ul>
                         </div>
                         
@@ -131,7 +130,7 @@
                                                     </div>
                                                     <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
                                                         {{ csrf_field() }}
-                                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
+                                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
                                                     </a>
                                                 </div>
                                             @endif
@@ -168,7 +167,6 @@
                                                         @endphp
                                                         @foreach ($datosdescuentos as $item_d)
                                                             @if ($item->id_producto == $item_d->id_producto)
-                                                                
                                                                         <h3 class="product-price 1">${{$item_d->precio_descuento}} <del class="product-old-price"> ${{$item->precio_iva}}</del></h3>
                                                                     @php
                                                                         $band=true;
@@ -209,7 +207,7 @@
                                                 @endphp
                                                 <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}">
                                                     {{ csrf_field() }}
-                                                    <button class="add-to-cart-btn" ><i class="fa fa-shopping-cart"></i>añaAAAAdir al carrito</button>
+                                                    <button class="add-to-cart-btn" ><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
                                                 </a>
                                             </div>
                                             @endforeach
@@ -277,7 +275,7 @@
 
                                                 <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
                                                     {{ csrf_field() }}
-                                                    <button class="add-to-cart-btn" ><i class="fa fa-shopping-cart"></i>añadir al carrito</button>
+                                                    <button class="add-to-cart-btn" ><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
                                                 </a>
                                             </div>
                                             @endforeach
@@ -532,4 +530,23 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('js/popup.js') }}"></script>
+    <script  type="text/javascript">
+        $(document).ready(function () {
+            
+             $("#tab_1").on( 'click', function() {
+                 $("#tab_titulo").text('Productos Nuevos');
+                 
+             });
+             $("#tab_2").on( 'click', function() {
+                 $("#tab_titulo").text('Productos en Oferta');
+                 
+             });
+             $("#tab_3").on( 'click', function() {
+                 $("#tab_titulo").text('Productos Exclusivos');
+                 
+             });
+             
+         });
+         
+     </script>
 @endsection

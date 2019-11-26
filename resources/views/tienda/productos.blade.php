@@ -9,7 +9,7 @@
 @endsection
 @section('lista')
     @foreach ( $datosC as $item_C )
-        <li><a href="#">{{$item_C->nombre_c}}</a></li>
+        <li><a href="{{route('tiendaC', ''.$item_C->id_categoria.'')}}">{{$item_C->nombre_c}}</a></li>
     @endforeach 
 @endsection
 @section('encabezadoC')
@@ -369,10 +369,3 @@
 </div>
 <!-- /Section -->
 @endsection
-<!-- jQuery Plugins -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/jquery.zoom.min.js"></script>
-<script src="js/main.js"></script>

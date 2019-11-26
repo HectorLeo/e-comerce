@@ -482,7 +482,9 @@
                                         <label>
                                             Seleccione el estado del producto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <input type="checkbox" data-toggle="toggle" name="estado_product" id="estado_product" 
-                                            >
+                                            @if ($estado==1)
+                                                checked
+                                            @endif>
                                             
                                         </label>
                                     </div>

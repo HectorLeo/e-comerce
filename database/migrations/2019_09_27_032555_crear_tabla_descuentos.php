@@ -20,8 +20,8 @@ class CrearTablaDescuentos extends Migration
             $table->float('porcentaje_d');
             $table->float('peso_d');
             $table->float('precio_descuento');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
+            $table->string('fecha_inicio',10); 
+            $table->string('fecha_fin',10);
             $table->time('hora_inicio');
             $table->time('hora_fin');
             $table->timestamps();

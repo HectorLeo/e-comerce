@@ -167,9 +167,8 @@
                     <aside class="main-sidebar sidebar-dark-primary elevation-4">
                       <!-- Brand Logo -->
                       <a href="#" class="brand-link">
-                        <img   class="brand-image img-circle elevation-3"
-                             style="opacity: .8">
-                        <span class="brand-text font-weight-light">Crystal Media</span>
+                        <img width="140" height="60"  style="opacity: .8" src="\assets\usu-tienda\css\Logo_Crystal_Media.png" alt="Logo de CrystalMedia">
+                        
                       </a>
                   
                       <!-- Sidebar -->
@@ -182,7 +181,7 @@
                         </div>
                         <div class=pull-left>
                           <a href="{{route('logoutA')}}" class="btn btn-xs btn-danger btn-block">Salir</a>
-                          </div>
+                        </div>
                         <!-- Sidebar Menu -->
                         <nav class="mt-2">
                           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

@@ -117,3 +117,4 @@ Route::post('update','cliente\CartController@update')->name('update');
 
 /* ventana pop-up */
 Route::get('ventana_PopUp', 'PaginasController@ventena_PopUp')->name('ventana_PopUp');
+Route::post('BuscarProducto', 'PaginasController@buscarProductos')->name('BuscarProducto');

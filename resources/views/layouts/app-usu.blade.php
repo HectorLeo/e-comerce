@@ -27,14 +27,6 @@
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css\style.css"/>
 
-
-		
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
     </head>
 	<body>
 		<!-- HEADER -->
@@ -43,7 +35,7 @@
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone">(222)693 4056</i> </a></li>
+						<li><a href="#"><i class="fa fa-phone"></i> (222)693 4056 </a></li>
 						<li><a href="#"><i class="fa fa-envelope-o"></i> info@crystalmedia.mx</a></li>
 						<li><a href="#"><i class="fa fa-map-marker"></i> 16 Sep. 1911-201B El Carmen, Puebla.</a></li>
 					</ul>
@@ -63,8 +55,8 @@
 						<!-- LOGO -->
 						<div class="col-md-3">
 							<div class="header-logo">
-								<a href="#" class="logo">
-									<img width="110" height="60" src="\assets\usu-tienda\css\Logo_Crystal_Media.png" alt="Logo de CrystalMedia">
+								<a href="{{route('home')}}" class="logo">
+									<img width="140" height="60" src="\assets\usu-tienda\css\Logo_Crystal_Media.png" alt="Logo de CrystalMedia">
 								</a>
 							</div>
 						</div>
@@ -73,12 +65,9 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
-									<select  style="width:120px" class="input-select">
-										<option value="0">Categorias</option>
-										@yield('category')
-									</select>
-									<input class="input" placeholder="Buscar aquí">
+								<form method="POST" action="{{ route('BuscarProducto') }}">
+									@csrf
+									<input class="input" id="buscar_producto" name="buscar_producto" placeholder="Buscar Producto">
 									<button class="search-btn">Buscar</button>
 								</form>
 							</div>
@@ -138,7 +127,6 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="{{route('home')}}">Inicio</a></li>
-						<li><a href="#">Las mejores ofertas</a></li>
 						@yield('lista')
 					</ul>
 					<!-- /NAV -->
@@ -226,61 +214,50 @@
 			<!-- top footer -->
 			<div class="section">
 				<!-- container -->
-				<div class="container">
+				<div class="container" >
 					<!-- row -->
 					<div class="row">
-						<div class="col-md-3 col-xs-6">
+						<div class="col-md-4 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">Acerca de nostros</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+								<p>Crystal Media:</p>
+								<p>Somos un equipo de multidisciplinarios creativos integrando una empresa de Consultoría eBusiness. </p>
+										
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i> (222)693 4056</a></li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i> info@crystalmedia.mx</a></li>
+									<li><a href="#"><i class="fa fa-map-marker"></i> 16 Sep. 1911-201B El Carmen, Puebla.</a></li>
 								</ul>
 							</div>
 						</div>
 
-						<div class="col-md-3 col-xs-6">
+						<div class="col-md-4 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">Categorias</h3>
 								<ul class="footer-links">
-									<li><a href="#">Hot deals</a></li>
-									<li><a href="#">Laptops</a></li>
-									<li><a href="#">Smartphones</a></li>
-									<li><a href="#">Cameras</a></li>
-									<li><a href="#">Accessories</a></li>
+									@foreach ( $datosC as $item )
+										<li><a href="{{route('tiendaC', ''.$item->id_categoria.'')}}">{{$item->nombre_c}}</a></li>
+									@endforeach 
 								</ul>
 							</div>
 						</div>
 
 						<div class="clearfix visible-xs"></div>
 
-						<div class="col-md-3 col-xs-6">
+						<div class="col-md-4 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">Información</h3>
 								<ul class="footer-links">
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Contact Us</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="#">Orders and Returns</a></li>
-									<li><a href="#">Terms & Conditions</a></li>
+									<li><a href="https://crystalmedia.mx/quelogramos.html">Que logramos</a></li>
+									<li><a href="https://crystalmedia.mx/quehacemos.html">Que hacemos</a></li>
+									<li><a href="https://crystalmedia.mx/exito.html">Casos de éxito</a></li>
+									<li><a href="https://crystalmedia.mx/conocenos.html">Conocenos</a></li>
+									<li><a href="https://crystalmedia.mx/contacto.html">Contacto</a></li>
 								</ul>
 							</div>
 						</div>
 
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Servicio</h3>
-								<ul class="footer-links">
-									<li><a href="#">My Account</a></li>
-									<li><a href="#">View Cart</a></li>
-									<li><a href="#">Wishlist</a></li>
-									<li><a href="#">Track My Order</a></li>
-									<li><a href="#">Help</a></li>
-								</ul>
-							</div>
-						</div>
+						
 					</div>
 					<!-- /row -->
 				</div>
@@ -294,20 +271,7 @@
 					<!-- row -->
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<ul class="footer-payments">
-								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-							</ul>
-							<span class="copyright">
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							</span>
-
+							<span class="copyright" >Copyright &copy; 2019 All rights reserved | Designed by <a href="https://crystalmedia.mx" >Crystal Media</a></span>
 
 						</div>
 					</div>
