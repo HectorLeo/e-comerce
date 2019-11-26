@@ -9,7 +9,7 @@
 @endsection
 @section('lista')
     @foreach ( $datosC as $item )
-        <li><a href="#">{{$item->nombre_c}}</a></li>
+        <li><a href="{{route('tCliente', ''.$item->id_categoria.'')}}">{{$item->nombre_c}}</a></li>
     @endforeach 
 @endsection
 @section('content')

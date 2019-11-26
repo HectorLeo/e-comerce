@@ -76,7 +76,7 @@
                                 <div class="product-img">
                                     <img width="100" height="250" src="{{Storage::url($item->imagen_p)}}" alt="imagen del producto">
                                     <div class="product-label">
-                                            @foreach ($datosDes as $item_D)
+                                        @foreach ($datosDes as $item_D)
                                             @if($item->id_producto == $item_D->id_producto )
                                                 @if($item_D->porcentaje_d != 0.00)
                                                     <span class="sale">-{{$item_D->porcentaje_d}}%</span>
@@ -86,6 +86,11 @@
                                                 @endif
                                             @endif
                                         @endforeach
+                                        @if ($item->exclusivo == 1)
+                                        <span class="exclusivo">OFERTA</span>
+                                        @elseif ($item->nuevo == 1)
+                                        <span class="new">NUEVO</span>
+                                        @endif 
                                     </div>
                                 </div>
                                 <div class="product-body">
@@ -100,10 +105,15 @@
                                             <h4 class="product-price 1">${{$item_D->precio_descuento}} <del class="product-old-price"> ${{$item->precio_iva}}</del></h4>
                                         @endif
                                     @endforeach
-                                    @if(($item->nuevo==0) && ($item->oferta==0))
+                                    @if(($item->oferta==0))
                                             <h4 class="product-price 2">${{$item->precio_iva}}<del class="product-old-price"></del></h4>
                                     @endif
                                     <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
                                     </div>
                                     <div class="product-btns">
                                         <button type="button" class="btn btn-default ventana_popup2" data-toggle="modal" data-target="#modal-default" id_ventanapopup="{{$item->id_producto}}">
@@ -111,9 +121,10 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"  href="{{route('add', $item->nombre_p)}}"> ><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
-                                </div>
+                                <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
+                                    {{ csrf_field() }}
+                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
+                                </a>
                             </div>
                         </div>
                         @endforeach

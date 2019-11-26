@@ -21,11 +21,11 @@ $(document).ready(function () {
                 var enviar_reporte = resul.guardado;
 
                 if(enviar_reporte == 'activo'){
-                    alert("Transporte Activado");
+                    alert("Transportista Activado");
                     location.reload();
                 }else{ 
                     if(enviar_reporte == 'desactivo'){
-                        alert("Transporte Desactivado");
+                        alert("Transportista Desactivado");
                         location.reload();
                     } 
                 }    

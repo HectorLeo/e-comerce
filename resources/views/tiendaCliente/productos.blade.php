@@ -8,8 +8,8 @@
     @endforeach 
 @endsection
 @section('lista')
-    @foreach ( $datosC as $item_C )
-        <li><a href="{{route('tiendaC', ''.$item_C->id_categoria.'')}}">{{$item_C->nombre_c}}</a></li>
+    @foreach ( $datosC as $item )
+        <li><a href="{{route('tCliente', ''.$item->id_categoria.'')}}">{{$item->nombre_c}}</a></li>
     @endforeach 
 @endsection
 @section('encabezadoC')
@@ -106,7 +106,7 @@
                                 @endif
                             </div>
                         </div>
-                        <a href="{{route('add',''.$nombre.'')}}">
+                        <a href="{{route('addC',''.$nombre.'')}}">
                         <button class="add-to-cart-btn"  href="{{route('add',''.$nombre.'')}}"><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
                         </a>
                     </div>

@@ -6,8 +6,8 @@
 @endsection
 
 @section('titulonavegacion')
-    <li class="breadcrumb-item active"><a href="{{ route('transporteC') }}">Transporte</a></li>
-    <li class="breadcrumb-item active">Agregar transporte</li>
+    <li class="breadcrumb-item active"><a href="{{ route('transporteC') }}">Transportista</a></li>
+    <li class="breadcrumb-item active">Agregar transportista</li>
 @endsection
 @section('ActiveTrans') nav-link active @endsection
 @section('Activetransporte') nav-item has-treeview menu-open @endsection
@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="etiqueta_producto">Nombre del Transportista</label>
-                            <input type="text" class="form-control {!! $errors->first('nombre_transporte','is-invalid') !!}" id="nombre_transporte" name="nombre_transporte" placeholder="Transporte">
+                            <input type="text" class="form-control {!! $errors->first('nombre_transporte','is-invalid') !!}" id="nombre_transporte" name="nombre_transporte" placeholder="Transportista">
                         </div>
                         {!! $errors->first('nombre_transporte','<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <strong>:message</strong>
@@ -68,7 +68,7 @@
                         </div>
                         
                         <div class="col-lg-6">
-                                <label >Costo del transporte</label>
+                                <label >Costo del transportista</label>
                                 <div class="input-group ">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text " >$</span>
@@ -248,7 +248,7 @@
                                 <div class="checkbox">
                                     
                                     <label>
-                                        Seleccione el estado del transporte&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Seleccione el estado del transportista&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <input type="checkbox" data-toggle="toggle" name="estado" id="estado">
                                        
                                     </label>
@@ -256,7 +256,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Agregar Transporte</button>
+                                    <button type="submit" class="btn btn-primary">Agregar Transportista</button>
                                     <a class="btn btn-danger" href="{{ route('transporteC') }}">  Cancelar</a>
                     
                                 </div>

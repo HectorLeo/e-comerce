@@ -2,12 +2,12 @@
 
 
 @section('titulohome')
-    <h1 class="m-0 text-dark">Transporte</h1>
+    <h1 class="m-0 text-dark">Transportista</h1>
 @endsection
 
 @section('titulonavegacion')
-    <li class="breadcrumb-item active"><a href="{{ route('transporteC') }}">Transporte</a></li>
-    <li class="breadcrumb-item active">Editar transporte</li>
+    <li class="breadcrumb-item active"><a href="{{ route('transporteC') }}">Transportista</a></li>
+    <li class="breadcrumb-item active">Editar transportista</li>
 @endsection
 @section('ActiveTrans') nav-link active @endsection
 @section('Activetransporte') nav-item has-treeview menu-open @endsection
@@ -71,7 +71,7 @@
                                   </div>') !!} 
                         </div>
                         <div class="col-lg-6">
-                                <label >Costo del transporte</label>
+                                <label >Costo del transportista</label>
                                 <div class="input-group ">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text " >$</span>
@@ -285,7 +285,7 @@
                                 <div class="checkbox">
                                     
                                     <label>
-                                        Seleccione el estado del transporte&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Seleccione el estado del transportista&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <input type="checkbox" data-toggle="toggle" name="estado" id="estado" 
                                         @if ($estado_t==1)
                                             checked
@@ -296,7 +296,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Modificar Transporte</button>
+                                    <button type="submit" class="btn btn-primary">Modificar Transportista</button>
                                     <a class="btn btn-danger" href="{{ route('transporteC') }}">  Cancelar</a>
                     
                                 </div>

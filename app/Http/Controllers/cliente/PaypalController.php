@@ -45,24 +45,16 @@ class PaypalController extends Controller
 		$subtotal = 0;
 		$cart = \Session::get('cart');
 		$currency = 'MXN';
-		
-		\Session::put('array', array());
-		$array=[
-			'calle' => request('calle'),
-			'codigo' => request('codigo'),
-			'localidad' => request('localidad'),
-			'ciudad' => request('ciudad'),
-			'municipio' => request('municipio'),
-			'numero_e' => request('numero_e'),
-			'numero_i' => request('numero_i'),
-			'telefono' => request('telefono'),
-		  ];
-		  \Session::put('array', $array);
-
+		$transporte = request('preciot');
 		  $idusuario = DB::table('usuarios')->where('email','=',request('email'))->get('id');
 			$id="";
 			foreach($idusuario as $item){
 				$id=$item->id;
+			}
+			$interior=0;
+			if(request('numero_i')!= null)
+			{
+				$interior=request('numero_i');
 			}
 		  Direcciones:: create([
 			'calle' => request('calle'),
@@ -72,7 +64,7 @@ class PaypalController extends Controller
 			'municipio' => request('municipio'),
 			'id_usuario' => $id,
 			'numero_exterior_d' => request('numero_e'),
-			'numero_interior' => request('numero_i'),
+			'numero_interior' => $interior,
 			'telefono' => request('telefono'),
 		]);
 
@@ -116,8 +108,8 @@ class PaypalController extends Controller
         //obtener el costo del tranporte
 		$details = new Details();
 		$details->setSubtotal($subtotal)
-		->setShipping(100);
-        $total = $subtotal + 100;
+		->setShipping($transporte);
+        $total = $subtotal + $transporte;
         
 
 		$amount = new Amount();
@@ -206,11 +198,13 @@ class PaypalController extends Controller
 			// Enviar correo a admin
 			// 
 			\Session::forget('cart');
-			\Session::forget('array');
-            return view('tiendaCliente.homeCliente', compact('cart','datosDes','datosC','datosPNuevos','datosPOfertas','datosPExclusivo','datoscomentarios','datosdescuentos'));
+			\Session::put('cart', array());
+			return \Redirect::route('homeCliente');
+            //return view('tiendaCliente.homeCliente', compact('cart','datosDes','datosC','datosPNuevos','datosPOfertas','datosPExclusivo','datoscomentarios','datosdescuentos'));
               
 		}
-        return view('tiendaCliente.homeCliente', compact('cart','datosDes','datosC','datosPNuevos','datosPOfertas','datosPExclusivo','datoscomentarios','datosdescuentos'));
+		return \Redirect::route('homeCliente');
+        //return view('tiendaCliente.homeCliente', compact('cart','datosDes','datosC','datosPNuevos','datosPOfertas','datosPExclusivo','datoscomentarios','datosdescuentos'));
           
 	}
 	private function saveOrder($cart)
