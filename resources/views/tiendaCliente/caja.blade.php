@@ -45,7 +45,7 @@
 								<input class="input" type="text" name="municipio" id="municipio" placeholder="Municipio" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="numero_e" id="numero_e placeholder="Numero Exterior" required>
+								<input class="input" type="text" name="numero_e" id="numero_e" placeholder="Numero Exterior" required>
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="numero_i" id="numero_i" placeholder="Numero Interior">

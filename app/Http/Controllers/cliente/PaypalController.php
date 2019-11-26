@@ -23,11 +23,12 @@ use App\Models\Admin\Direcciones;
 use App\Models\Admin\Pedido;
 use App\Models\Admin\DetallesPedido;
 use DB;
+use Session;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 class PaypalController extends Controller
 {
-    private $_api_context;
+	private $_api_context;
 	public function __construct()
 	{
 		// setup PayPal api context
@@ -40,11 +41,65 @@ class PaypalController extends Controller
 	{
 		$payer = new Payer();
 		$payer->setPaymentMethod('paypal');
-		$items = array();
+		$items = array(); 	
 		$subtotal = 0;
 		$cart = \Session::get('cart');
-        $currency = 'MXN';
-        
+		$currency = 'MXN';
+		
+		\Session::put('array', array());
+		$array=[
+			'calle' => request('calle'),
+			'codigo' => request('codigo'),
+			'localidad' => request('localidad'),
+			'ciudad' => request('ciudad'),
+			'municipio' => request('municipio'),
+			'numero_e' => request('numero_e'),
+			'numero_i' => request('numero_i'),
+			'telefono' => request('telefono'),
+		  ];
+		  \Session::put('array', $array);
+
+		  $idusuario = DB::table('usuarios')->where('email','=',request('email'))->get('id');
+			$id="";
+			foreach($idusuario as $item){
+				$id=$item->id;
+			}
+		  Direcciones:: create([
+			'calle' => request('calle'),
+			'codigo_postal' => request('codigo'),
+			'localidad' => request('localidad'),
+			'ciudad' => request('ciudad'),
+			'municipio' => request('municipio'),
+			'id_usuario' => $id,
+			'numero_exterior_d' => request('numero_e'),
+			'numero_interior' => request('numero_i'),
+			'telefono' => request('telefono'),
+		]);
+
+		$subtotal = 0;
+		$cantidad= 0;
+	    foreach($cart as $item){
+			$subtotal += $item->price * $item->quantity;
+			$cantidad += $cantidad + $item->quantity;
+		}
+
+		$iddireccion = DB::table('direcciones')->where([['id_usuario','=',''.$id.''],['calle','=',''.request('calle').'']])->get('id_direccion');
+		$id_direccion="";
+		  
+      	foreach($iddireccion as $item){
+        	$id_direccion=$item->id_direccion;
+		  }
+		
+		  $pedido = Pedido:: create([
+			'id_transporte' => 1,
+			'id_usuario' => $id,
+			'id_direccion' =>$id_direccion,
+			'cantidad_ped' => $cantidad,
+		  ]);
+
+		  foreach($cart as $item){
+	        $this->saveOrderItem($item, $pedido->id);
+	    }
 		foreach($cart as $producto){
 			$item = new Item();
 			$item->setName($producto->nombre_p)
@@ -75,8 +130,7 @@ class PaypalController extends Controller
 		$transaction->setAmount($amount)
 			->setItemList($item_list)
             ->setDescription('Pedido de prueba en mi Laravel App Store');
-        
-        
+		
 		$redirect_urls = new RedirectUrls();
 		$redirect_urls->setReturnUrl(\URL::route('pago.status'))
             ->setCancelUrl(\URL::route('pago.status'));
@@ -115,8 +169,8 @@ class PaypalController extends Controller
     }
     
     public function getPaymentStatus()
-	{
-        $cart = \Session::get('cart');
+	{		
+        	$cart = \Session::get('cart');
             $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
             $datosPNuevos = DB::table('productos')->where([['estado','=','1'],['nuevo','=','1']])->get();
             $datosPOfertas = DB::table('productos')->where([['estado','=','1'],['oferta','=','1']])->get();
@@ -151,9 +205,8 @@ class PaypalController extends Controller
 			// Enviar correo a user
 			// Enviar correo a admin
 			// 
-			return request('email');
-			$this->saveOrder(\Session::get('cart'));
 			\Session::forget('cart');
+			\Session::forget('array');
             return view('tiendaCliente.homeCliente', compact('cart','datosDes','datosC','datosPNuevos','datosPOfertas','datosPExclusivo','datoscomentarios','datosdescuentos'));
               
 		}
@@ -162,50 +215,12 @@ class PaypalController extends Controller
 	}
 	private function saveOrder($cart)
 	{
-		$subtotal = 0;
-		$cantidad= 0;
-	    foreach($cart as $item){
-			$subtotal += $item->price * $item->quantity;
-			$cantidad += $cantidad + $item->quantity;
-		}
-		$idusuario = DB::table('usuarios')->where('email','=',request('email'))->get('id');
-      	$id="";
-      	foreach($idusuario as $item){
-        	$id=$item->id;
-     	 }
-		Direcciones:: create([
-			'calle' => request('calle'),
-			'codigo' => request('codigo'),
-			'localidad' => request('localidad'),
-			'ciudad' => request('ciudad'),
-			'municipio' => request('municipio'),
-			'id_usuario' => $id,
-			'numero_e' => request('numero_e'),
-			'numero_i' => request('numero_i'),
-			'telefono' => request('telefono'),
-		  ]);
-		$iddireccion = DB::table('direcciones')->where(['id_usuario','=',''.$id.''],['calle','=',request('calle')])->get('id_direccion');
-		$id_direccion="";
-		  
-      	foreach($iddireccion as $item){
-        	$id_direccion=$item->id_direccion;
-		  }
 		
-		  $pedido = Pedido:: create([
-			'id_transporte' => request('calle'),
-			'id_usuario' => $id,
-			'id_direccion' =>$id_direccion,
-			'cantidad' => $cantidad,
-		  ]);
-
-		  foreach($cart as $item){
-	        $this->saveOrderItem($item, $pedido->id);
-	    }
 	}
 
 	private function saveOrderItem($item, $pedido_id)
 	{
-		$idproducto = DB::table('productos')->where(['id_usuario','=',''.$item->nombre_p.''])->get('id_producto');
+		$idproducto = DB::table('productos')->where('nombre_p','=',''.$item->nombre_p.'')->get('id_producto');
 		$id_producto="";
 		  
       	foreach($idproducto as $i){
