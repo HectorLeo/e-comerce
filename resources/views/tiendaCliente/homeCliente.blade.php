@@ -10,7 +10,7 @@
 @endsection
 @section('lista')
     @foreach ( $datosC as $item )
-        <li><a href="#">{{$item->nombre_c}}</a></li>
+        <li><a href="{{route('tCliente', ''.$item->id_categoria.'')}}">{{$item->nombre_c}}</a></li>
     @endforeach 
 @endsection
 @section('content')
@@ -51,7 +51,6 @@
                                 <li class="active"><a data-toggle="tab" href="#tab1">Nuevos</a></li>
                                 <li><a data-toggle="tab" href="#tab2">Oferta</a></li>
                                 <li><a data-toggle="tab" href="#tab3">Exclusivos</a></li>
-                                <li><a data-toggle="tab" href="#tab4">Los más vendidos</a></li>
                             </ul>
                         </div>
                         
@@ -77,7 +76,7 @@
                                                     <img width="100" height="250" src="{{Storage::url($item->imagen_p)}}" alt="Imagen del producto">
                                                     <div class="product-label">
                                                         <!--span class="sale">-30%</span-->
-                                                        <span class="new">NEW</span>
+                                                        <span class="new">NUEVO</span>
                                                     </div>
                                                 </div>
                                                 <div class="product-body">
@@ -385,4 +384,86 @@
         <!-- /product tab -->
         <!-- SECTION -->
      
+@endsection
+@section('modal')
+    
+    <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+               
+                <div   id="nombre_popup"></div>
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row">
+                    <!-- Product details -->
+                    <div class="col-md-7 ">
+                        
+                            <div class="product-preview" id="imagen_popup"></div>
+                            
+                    </div>
+                    
+                    <div class="col-md-5" >
+                        <div class="product-details">
+                            <h5> Precio: </h5>
+                            <div id="precio_popup"></div>
+                            <h5> Descripción: </h5>
+                            <div id="resumen_popup"></div>
+                            <div class="add-to-cart">
+                                <div class="qty-label">
+                                    <h5> Cantidad: </h5>
+                                    <div class="number" id="existencias_popup"> </div>
+                                </div>
+                            </div>
+                            <ul class="product-links">
+                                <li>Share:</li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                            </ul>
+        
+                        </div>
+                        
+                    </div>
+                    <!-- /Product details -->
+                    
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+        </div>
+       
+        <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+@endsection
+@section('scripts')
+    <script src="{{ asset('js/popup.js') }}"></script>
+    <script  type="text/javascript">
+        $(document).ready(function () {
+            
+             $("#tab_1").on( 'click', function() {
+                 $("#tab_titulo").text('Productos Nuevos');
+                 
+             });
+             $("#tab_2").on( 'click', function() {
+                 $("#tab_titulo").text('Productos en Oferta');
+                 
+             });
+             $("#tab_3").on( 'click', function() {
+                 $("#tab_titulo").text('Productos Exclusivos');
+                 
+             });
+             
+         });
+         
+     </script>
 @endsection

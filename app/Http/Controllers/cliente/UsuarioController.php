@@ -13,8 +13,9 @@ class UsuarioController extends Controller
 {
     public function index()
     {
+        $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
         $cart = \Session::get('cart');
-        return view('tienda.registroC',compact('cart'));
+        return view('tienda.registroC',compact('cart','datosC'));
     }
 
     public function crear()
@@ -24,6 +25,7 @@ class UsuarioController extends Controller
 
     public function guardar(ValidacionUsuario $request)
     {
+        
         $usuario = Usuario::create($request->all());
         $estado=1;
         $rol=3;

@@ -47,7 +47,7 @@ class PaginasController extends Controller
         $descripcion_ch = $item->descripcion;
       }
       $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo_ch.''],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
-      $datosPr= DB::table('productos')->where([['id_categoria','=',''.$id.'']])->get();
+      $datosPr= DB::table('productos')->where([['id_categoria','=',''.$id.''],['estado','=','1']])->get();
 
       return view('tienda.tiendaC', compact('cart','datosDes','datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
     }

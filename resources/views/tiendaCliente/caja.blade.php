@@ -9,7 +9,7 @@
 @endsection
 @section('lista')
     @foreach ( $datosC as $item )
-        <li><a href="#">{{$item->nombre_c}}</a></li>
+        <li><a href="{{route('tCliente', ''.$item->id_categoria.'')}}">{{$item->nombre_c}}</a></li>
     @endforeach 
 @endsection
 @section('content')
@@ -99,10 +99,12 @@
 													<div class="order-products">
 														<div class="order-col">
 															<div>{{$item->retraso_transporte}}</div>
-																@if(($item->envio_gratis)==1)
+																@if(($item->envio_gratis)==1 || ($item->precio_t)==0)
 																	<div>¡Gratis!</div>
+																		<input type="hidden" name="preciot" id="preciot" value="0">
 																@else
 																	<div>${{$item->precio_t}}</div>
+																	<input type="hidden" name="preciot" id="preciot" value="{{$item->precio_t}}">
 																	@php
 																		$total_t=$total+$item->precio_t;
 																	@endphp
@@ -124,8 +126,10 @@
 																			<div>{{$item->retraso_transporte}}</div>
 																			@if(($item->envio_gratis)==1)
 																				<div>¡Gratis!</div>
+																				<input type="hidden" name="preciot" id="preciot" value="{{$item->precio_t}}">
 																			@else
 																				<div>${{$item->precio_t}}</div>
+																				<input type="hidden" name="preciot" id="preciot" value="{{$item->precio_t}}">
 																				@php
 																					$total_t=$total;
 																				@endphp

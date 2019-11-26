@@ -2,11 +2,11 @@
 
 
 @section('titulohome')
-    <h1 class="m-0 text-dark">Transporte</h1>
+    <h1 class="m-0 text-dark">Transportistas</h1>
 @endsection
 
 @section('titulonavegacion')
-    <li class="breadcrumb-item active">Transporte</li>
+    <li class="breadcrumb-item active">Transportistas</li>
 @endsection
 @section('ActiveTrans') nav-link active @endsection
 @section('Activetransporte') nav-item has-treeview menu-open @endsection

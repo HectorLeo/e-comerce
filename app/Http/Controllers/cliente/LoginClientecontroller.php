@@ -18,8 +18,8 @@ class LoginClientecontroller extends Controller
     }
     
     public function index(){
-        $cart = \Session::get('cart');
         $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
+        $cart = \Session::get('cart');
         return view('tienda.login-tienda',compact('cart','datosC'));
     }
 

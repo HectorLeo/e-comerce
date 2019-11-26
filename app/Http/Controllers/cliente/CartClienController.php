@@ -15,7 +15,7 @@ class CartClienController extends Controller
     }
     //show cart
     public function show(){
-         $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
+         $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
         $cart = \Session::get('cart');
         return view('tiendaCliente.carritoClien', compact('cart','datosC'));
     }
@@ -66,7 +66,7 @@ class CartClienController extends Controller
  
     //caja
     public function caja(){
-         $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','3'],['tipo_categoria','=','3']])->get();
+         $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
          $cart = \Session::get('cart');
          $transportes=DB::table('transportistas')->where([['estado_transporte','=','1']])->get();
          return view('tiendaCliente.caja', compact('cart','datosC','transportes'));

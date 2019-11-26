@@ -5,6 +5,11 @@ Crear una cuenta
 @section('iniciarsesion')
 <li><a href="{{route('loginC')}}"><i class="fa fa-user-o"></i> Iniciar sesión </a></li>
 @endsection
+@section('lista')
+    @foreach ( $datosC as $item_C )
+        <li><a href="{{route('tiendaC', ''.$item_C->id_categoria.'')}}">{{$item_C->nombre_c}}</a></li>
+    @endforeach 
+@endsection
 @section('content')
 <!-- Aqui va ell contenido--> 
 <div class="section" align="center">
