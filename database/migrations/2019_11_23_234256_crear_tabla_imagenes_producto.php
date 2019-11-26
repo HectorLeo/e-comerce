@@ -14,6 +14,7 @@ class CrearTablaImagenesProducto extends Migration
     public function up()
     {
         Schema::create('imagenes_producto', function (Blueprint $table) {
+            $table-bigIncrements('id_imagen_producto');
             $table->unsignedInteger('id_producto');
             $table->foreign('id_producto', 'fk_imagenes_producto_producto')->references('id_producto')->on('productos')->onDelete('restrict')->onUpdate('restrict');
             $table->string('url', 200);
