@@ -5,6 +5,7 @@ namespace App\Http\Controllers\cliente;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use DB;
 
 class LoginClientecontroller extends Controller
 {
@@ -18,7 +19,8 @@ class LoginClientecontroller extends Controller
     
     public function index(){
         $cart = \Session::get('cart');
-        return view('tienda.login-tienda',compact('cart'));
+        $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
+        return view('tienda.login-tienda',compact('cart','datosC'));
     }
 
     protected function authenticated(Request $request, $user){

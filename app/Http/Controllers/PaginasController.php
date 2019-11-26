@@ -73,7 +73,7 @@ class PaginasController extends Controller
         }
         $precioD= $item->precio_descuento;
       }
-    }
+      }
       $idP="";
       $nombre = "";
       $precioN = "";
@@ -172,10 +172,32 @@ class PaginasController extends Controller
     public function buscarProductos(){
       
       $buscar_p=request('buscar_producto');
-
-      $datos_p = DB::table('productos')->where([['id_producto','like','%'.$buscar_p.'%']])->get();
+      $datos_p = DB::table('productos')->where('referencia','like','%'.$buscar_p.'%')->orWhere('nombre_p','like','%'.$buscar_p.'%')->get();
       
-      return $datos_p;
+      $datosPr = $datos_p;
+      $cart = \Session::get('cart');
+      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
+      $datosCP= DB::table('categorias')->where([['mostrado_c','=','1']])->get();
+    
+      $datosCH= DB::table('categorias')->where([['mostrado_c','=','1']])->get();
+      $datosDes = DB::table('descuentos')->get();
+
+      $idCate_CH="";
+      $nombre_ch = "";
+      $tipo_ch = "";
+      $imagen_ch = "";
+      $descripcion_ch = "";
+      foreach($datosCP as $item){
+        $idCate_CH = $item->id_categoria;
+        $nombre_ch = $item->nombre_c;
+        $tipo_ch = $item->tipo_categoria;
+        $imagen_ch = $item->imagen_c;
+        $descripcion_ch = $item->descripcion;
+      }
+      $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo_ch.''],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
+      //$datosPr= DB::table('productos')->where([['id_categoria','=',''.$id.'']])->get();
+
+      return  view('tienda.buscarProducto', compact('buscar_p','cart','datosDes','datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
     }
 
 }
