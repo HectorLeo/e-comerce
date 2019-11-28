@@ -67,7 +67,7 @@
 							<div class="header-search">
 								<form method="POST" action="{{ route('BuscarProducto') }}">
 									@csrf
-									<input class="input" id="buscar_producto" name="buscar_producto" placeholder="Buscar Producto">
+									<input class="input" id="buscar_producto" name="buscar_producto" placeholder="Buscar Producto" value="@yield('Buscar_dato')">
 									<button class="search-btn">Buscar</button>
 								</form>
 							</div>
