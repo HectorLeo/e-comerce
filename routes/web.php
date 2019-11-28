@@ -88,6 +88,7 @@ Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  
     Route::get('updateC1/{producto}/{quantity?}','CartClienController@update')->name('updateC1'); 
     Route::post('updateC','CartClienController@updateC')->name('updateC');  
     Route::get('cajaC', 'CartClienController@caja')->name('cajaC');
+    Route::get('terminos', 'CartClienController@terminos')->name('terminos');
     Route::get('comentariosI','ComentariosController@insertar')->name('comentariosI');
 
     Route::get('pago', 'PaypalController@postPagar')->name('pago');
