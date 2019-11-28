@@ -69,7 +69,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <input type="number" min="1" max="100" value="{{$item->quantity}}" id_aut="{{$item->id_producto}}" name="id_aut" class="quant" id="quant{{$item->id_producto}}">
+                                        <input type="number" class="form-control" min="1" max="100" value="{{$item->quantity}}" id_aut="{{$item->id_producto}}" name="id_aut" class="quant" id="quant{{$item->id_producto}}">
                                     </td>
                                     <td>
                                         <input type="hidden" value=" {{$item->precio_iva}}" id="subtotal{{$item->id_producto}}" name="subtotal" >

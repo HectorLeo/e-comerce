@@ -33,7 +33,7 @@ class PaginasController extends Controller
     
       $datosCH= DB::table('categorias')->where([['tipo_categoria','=',''.$id.'']])->get();
       $datosDes = DB::table('descuentos')->get();
-
+      $datoscomentarios = DB::table('comentarios')->where([['estado','=','1']])->get();
       $idCate_CH="";
       $nombre_ch = "";
       $tipo_ch = "";
@@ -49,7 +49,7 @@ class PaginasController extends Controller
       $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo_ch.''],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       $datosPr= DB::table('productos')->where([['id_categoria','=',''.$id.''],['estado','=','1']])->get();
 
-      return view('tienda.tiendaC', compact('cart','datosDes','datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
+      return view('tienda.tiendaC', compact('datoscomentarios','cart','datosDes','datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
     }
 
     public function TiendaP($id)
@@ -123,7 +123,9 @@ class PaginasController extends Controller
         $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$categoria.''],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       }
       $datosP3  = DB::table('productos')->where([['id_categoria','=',''.$categoria.''],['id_producto','!=',''.$id.'']])->get();
-      return view('tienda.productos', compact('cart','datosDes','datosP3','datosP2','precioD','datosComen','datosclientes','datosC','prom','nombre','precioN','existencias','descripcion','resumen','marca','imagen'));
+      $datoscomentarios = DB::table('comentarios')->where([['estado','=','1']])->get();
+      return view('tienda.productos', compact('datosDescuentos','cart','datosDes','datosP3','datosP2','precioD','datosComen','datosclientes',
+      'datosC','prom','nombre','precioN','existencias','descripcion','resumen','marca','imagen','id','datoscomentarios'));
     } 
 
 

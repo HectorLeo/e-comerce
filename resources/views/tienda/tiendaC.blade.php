@@ -76,20 +76,10 @@
                                 <div class="product-img">
                                     <img width="100" height="250" src="{{Storage::url($item->imagen_p)}}" alt="imagen del producto">
                                     <div class="product-label">
-                                        @foreach ($datosDes as $item_D)
-                                            @if($item->id_producto == $item_D->id_producto )
-                                                @if($item_D->porcentaje_d != 0.00)
-                                                    <span class="sale">-{{$item_D->porcentaje_d}}%</span>
-                                                @endif
-                                                @if($item_D->porcentaje_d == 0.00)
-                                                    <span class="sale">-${{$item_D->peso_d}}</span>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                        @if ($item->exclusivo == 1)
-                                        <span class="exclusivo">OFERTA</span>
+                                        @if ($item->oferta == 1)
+                                            <span class="new">OFERTA</span>
                                         @elseif ($item->nuevo == 1)
-                                        <span class="new">NUEVO</span>
+                                            <span class="new">NUEVO</span>
                                         @endif 
                                     </div>
                                 </div>
@@ -100,21 +90,62 @@
                                         @endif
                                     @endforeach
                                     <h3 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
-                                    @foreach ($datosDes as $item_D)
-                                        @if(($item_D->id_producto == $item->id_producto))
-                                            <h4 class="product-price 1">${{$item_D->precio_descuento}} <del class="product-old-price"> ${{$item->precio_iva}}</del></h4>
+                                    @php
+                                        $band=false;
+                                    @endphp
+                                    @foreach ($datosDes as $item_d)
+                                        @if ($item->id_producto == $item_d->id_producto)
+                                            
+                                                    <h3 class="product-price 1">${{$item_d->precio_descuento}} <del class="product-old-price"> ${{$item->precio_iva}}</del></h3>
+                                                @php
+                                                    $band=true;
+                                                @endphp
                                         @endif
                                     @endforeach
-                                    @if(($item->oferta==0))
-                                            <h4 class="product-price 2">${{$item->precio_iva}}<del class="product-old-price"></del></h4>
+                                        
+                                    @if($band==false)
+                                        <h4 class="product-price">${{$item->precio_iva}}
                                     @endif
-                                    <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
+                                    <div class="product-label">
+                                        @foreach ($datosDes as $item_D)
+                                            @if($item->id_producto == $item_D->id_producto )
+                                                @if($item_D->porcentaje_d != 0.00)
+                                                    <span class="product-price">Ahorras: {{$item_D->porcentaje_d}}%</span>
+                                                @endif
+                                                @if($item_D->porcentaje_d == 0.00)
+                                                    <span class=" product-price">Ahorras: ${{$item_D->peso_d}}</span>
+                                                @endif
+                                            @endif
+                                        @endforeach
                                     </div>
+                                    <div class="product-rating">
+                                            @php
+                                                $calitotal = 0;
+                                                $calicont=0;
+                                                $calipro=0;
+                                            @endphp
+                                            @foreach ($datoscomentarios as $item_c)
+                                                @if ($item->id_producto == $item_c->id_producto)
+                                                    @php
+                                                         $calitotal = $calitotal + $item_c->calificacion;
+                                                         $calicont++;
+                                                    @endphp
+                                                @endif
+                                                
+                                            @endforeach
+                                            @php
+                                                if($calicont!=0){
+                                                    $calipro=round(($calitotal/$calicont),0);
+                                                }
+                                            @endphp
+                                                @for($i=1;$i<6;$i++)
+                                                @if (($calipro)>=($i))
+                                                    <i class="fa fa-star"></i>
+                                                @else
+                                                    <i class="fa fa-star-o"></i>
+                                                @endif
+                                            @endfor
+                                        </div>
                                     <div class="product-btns">
                                         <button type="button" class="btn btn-default ventana_popup2" data-toggle="modal" data-target="#modal-default" id_ventanapopup="{{$item->id_producto}}">
                                             <i class="fa fa-eye"></i>
