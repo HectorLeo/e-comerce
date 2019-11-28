@@ -54,3 +54,6 @@ Crear una cuenta
 </div>
 
 @endsection
+@section('recaptcha')
+    {!! htmlScriptTagJsApi(['action' => 'homepage']) !!}
+@endsection

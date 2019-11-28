@@ -151,14 +151,13 @@
 							<input type="checkbox" id="terms" required>
 							<label for="terms">
 								<span></span>
-								He leído y acepto los <a href="#"> términos y condiciones</a>
+								He leído y acepto los <a href="{{route('terminos')}}"> términos y condiciones</a>
 							</label>
 						</div>
 						<div class="payment-method">
 							<label for="">Realizar pago:</label>
 							
 							<button type="submit">	<img class=" lazyloaded" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" data-src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal" style="width: auto; height: auto;"></button>
-							
 						</div>
 					</div>
 					<!-- /Order Details -->
@@ -188,3 +187,6 @@
         });
     </script>
  @endsection
+ @section('recaptcha')
+    {!! htmlScriptTagJsApi(['action' => 'homepage']) !!}
+@endsection

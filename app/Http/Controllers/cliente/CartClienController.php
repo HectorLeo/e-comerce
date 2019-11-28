@@ -71,4 +71,11 @@ class CartClienController extends Controller
          $transportes=DB::table('transportistas')->where([['estado_transporte','=','1']])->get();
          return view('tiendaCliente.caja', compact('cart','datosC','transportes'));
     }
+
+    public function terminos()
+    {
+        $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
+        $cart = \Session::get('cart');
+        return view('tiendaCliente.terminosCondiciones', compact('cart','datosC'));
+    }
 }

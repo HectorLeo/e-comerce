@@ -26,7 +26,7 @@
 
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="\assets\usu-tienda\css\style.css"/>
-
+		@yield('recaptcha')
     </head>
 	<body>
 		<!-- HEADER -->
