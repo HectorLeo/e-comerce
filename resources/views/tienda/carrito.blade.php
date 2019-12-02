@@ -8,8 +8,8 @@
     @endforeach 
 @endsection
 @section('lista')
-    @foreach ( $datosC as $item )
-        <li><a href="#">{{$item->nombre_c}}</a></li>
+    @foreach ( $datosC as $item_C )
+        <li><a href="{{route('tiendaC', ''.$item_C->id_categoria.'')}}">{{$item_C->nombre_c}}</a></li>
     @endforeach 
 @endsection
 @section('content')
@@ -69,7 +69,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control" min="1" max="100" value="{{$item->quantity}}" id_aut="{{$item->id_producto}}" name="id_aut" class="quant" id="quant{{$item->id_producto}}">
+                                    <input type="number" class="form-control quant" min="1" max="{{$item->existencias}}" value="{{$item->quantity}}" id_aut="{{$item->id_producto}}" name="id_aut"  id="quant{{$item->id_producto}}">
                                     </td>
                                     <td>
                                         <input type="hidden" value=" {{$item->precio_iva}}" id="subtotal{{$item->id_producto}}" name="subtotal" >
@@ -78,7 +78,7 @@
                                     <td class="project-actions text-right">
                                         <a  href="{{route('delete',''.$item->nombre_p.'')}}">
                                       <button  class="btn btn-danger btn-sm delete_user" >
-                                            <i class="fas fa-trash"></i> Eliminar
+                                             Eliminar
                                       </button>
                                         </a>
                                     </td>
@@ -171,16 +171,18 @@
                 var totalproductoscarrito = $("#totalproductoscarrito").text();
                 
                 var subtotal=precio*valor
-                $("#subt"+id+"").text(subtotal);
+                $("#subt"+id+"").text(parseFloat(subtotal).toFixed(2));
                 $("#totalproducto"+id+"").text(valor);
-                $("#totalprecio"+id+"").text(subtotal);
+                $("#totalprecio"+id+"").text(parseFloat(subtotal).toFixed(2));
 
                 var restaprecio =   subtotal - totalprecio;
                 var restaproducto =     valor - totalproducto ;
-
+                
                 var value = (parseFloat(sumatotal ) + parseFloat(restaprecio));
-                $("#sumatotal").text(value);
+                //var valuetotal=round(value,2);
+                $("#sumatotal").text(parseFloat(value).toFixed(2));
                 var value2 = (parseInt(totalproductoscarrito ) + parseInt(restaproducto));
+                
                 $("#totalproductoscarrito").text(value2);
             });
         });

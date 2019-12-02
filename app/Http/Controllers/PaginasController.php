@@ -122,7 +122,7 @@ class PaginasController extends Controller
       }else{
         $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$categoria.''],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       }
-      $datosP3  = DB::table('productos')->where([['id_categoria','=',''.$categoria.''],['id_producto','!=',''.$id.'']])->get();
+      $datosP3  = DB::table('productos')->where([['id_categoria','=',''.$categoria.''],['id_producto','!=',''.$id.''],['estado','=','1']])->get();
       $datoscomentarios = DB::table('comentarios')->where([['estado','=','1']])->get();
       return view('tienda.productos', compact('datosDescuentos','cart','datosDes','datosP3','datosP2','precioD','datosComen','datosclientes',
       'datosC','prom','nombre','precioN','existencias','descripcion','resumen','marca','imagen','id','datoscomentarios'));
@@ -174,7 +174,7 @@ class PaginasController extends Controller
     public function buscarProductos(){
       
       $buscar_p=request('buscar_producto');
-      $datos_p = DB::table('productos')->where('referencia','like','%'.$buscar_p.'%')->orWhere('nombre_p','like','%'.$buscar_p.'%')->get();
+      $datos_p = DB::table('productos')->where([['referencia','like','%'.$buscar_p.'%'],['estado','=','1']])->orWhere([['nombre_p','like','%'.$buscar_p.'%'],['estado','=','1']])->get();
       
       $datosPr = $datos_p;
       $cart = \Session::get('cart');

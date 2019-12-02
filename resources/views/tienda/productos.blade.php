@@ -604,7 +604,7 @@
     <script src="{{ asset('js/popup.js') }}"></script>
     <script  type="text/javascript">
        $(document).ready(function () {
-            $("#ag_eval").click(function () {
+            $("#ag_eval").click(function () { 
                 alert('Debes iniciar sesión para poder agreagr tu comentario.');
             
             });
