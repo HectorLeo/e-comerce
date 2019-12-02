@@ -64,11 +64,11 @@
 
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
-							<div class="header-search">
+							<div class="newsletter">
 								<form method="POST" action="{{ route('BuscarProducto') }}">
 									@csrf
-									<input class="input" id="buscar_producto" name="buscar_producto" placeholder="Buscar Producto" value="@yield('Buscar_dato')">
-									<button class="search-btn">Buscar</button>
+									<input class="input" type="text" id="buscar_producto" name="buscar_producto" placeholder="Buscar Producto">
+									<button class="newsletter-btn"></i> Buscar</button>
 								</form>
 							</div>
 						</div>

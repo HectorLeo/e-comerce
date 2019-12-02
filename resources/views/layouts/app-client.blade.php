@@ -35,7 +35,7 @@
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-							<li><a href="#"><i class="fa fa-phone">(222)693 4056</i> </a></li>
+							<li><a href="#"><i class="fa fa-phone"></i> (222)693 4056</a></li>
 							<li><a href="#"><i class="fa fa-envelope-o"></i> info@crystalmedia.mx</a></li>
 							<li><a href="#"><i class="fa fa-map-marker"></i> 16 Sep. 1911-201B El Carmen, Puebla.</a></li>
 					</ul>
@@ -64,14 +64,12 @@
 
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
-							<div class="header-search">
-								<form>
-									<select  style="width:120px" class="input-select">
-										<option value="0">Categorias</option>
-										@yield('category')
-									</select>
-									<input class="input" placeholder="Buscar aquí">
-									<button class="search-btn">Buscar</button>
+							
+							<div class="newsletter">
+								<form method="POST" action="{{ route('BuscarProducto_client') }}">
+									@csrf
+									<input class="input" type="text" id="buscar_producto" name="buscar_producto" placeholder="Buscar Producto">
+									<button class="newsletter-btn"></i> Buscar</button>
 								</form>
 							</div>
 						</div>
@@ -213,7 +211,7 @@
 					</div>
 				</div>
 				<!-- /row -->
-			</div>
+			</div> 
 			<!-- /container -->
 		</div>
 		<!-- /NEWSLETTER -->

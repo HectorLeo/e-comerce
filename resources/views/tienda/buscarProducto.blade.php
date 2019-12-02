@@ -48,16 +48,11 @@
                                 <div class="product-img">
                                     <img width="100" height="250" src="{{Storage::url($item->imagen_p)}}" alt="imagen del producto">
                                     <div class="product-label">
-                                            @foreach ($datosDes as $item_D)
-                                            @if($item->id_producto == $item_D->id_producto )
-                                                @if($item_D->porcentaje_d != 0.00)
-                                                    <span class="sale">-{{$item_D->porcentaje_d}}%</span>
-                                                @endif
-                                                @if($item_D->porcentaje_d == 0.00)
-                                                    <span class="sale">-${{$item_D->peso_d}}</span>
-                                                @endif
-                                            @endif
-                                        @endforeach
+                                        @if ($item->oferta == 1)
+                                            <span class="new">OFERTA</span>
+                                        @elseif ($item->nuevo == 1)
+                                            <span class="new">NUEVO</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="product-body">
@@ -68,6 +63,7 @@
                                     @endforeach
                                     <h3 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
                                     <h4 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">Ref.: {{$item->referencia}}</a></h4>
+                                    
                                     @foreach ($datosDes as $item_D)
                                         @if(($item_D->id_producto == $item->id_producto))
                                             <h4 class="product-price 1">${{$item_D->precio_descuento}} <del class="product-old-price"> ${{$item->precio_iva}}</del></h4>
@@ -76,6 +72,18 @@
                                     @if(($item->nuevo==0) && ($item->oferta==0))
                                             <h4 class="product-price 2">${{$item->precio_iva}}<del class="product-old-price"></del></h4>
                                     @endif
+                                    <div class="product-label">
+                                        @foreach ($datosDes as $item_D)
+                                            @if($item->id_producto == $item_D->id_producto )
+                                                @if($item_D->porcentaje_d != 0.00)
+                                                    <span class="product-price">Ahorras: {{$item_D->porcentaje_d}}%</span>
+                                                @endif
+                                                @if($item_D->porcentaje_d == 0.00)
+                                                    <span class=" product-price">Ahorras: ${{$item_D->peso_d}}</span>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    </div>
                                     <div class="product-rating">
                                     </div>
                                     <div class="product-btns">
@@ -84,9 +92,10 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"  href="{{route('add', $item->nombre_p)}}"> ><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
-                                </div>
+                                <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
+                                    {{ csrf_field() }}
+                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
+                                </a>
                             </div>
                         </div>
                         @endforeach

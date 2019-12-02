@@ -1,6 +1,6 @@
 @extends('layouts.app-usu')
 @section('iniciarsesion')
-<li><a href="{{route('loginC')}}"><i class="fa fa-user-o"></i> Iniciar sesión </a></li>
+    <li><a href="#"><i class="fa fa-user-o"></i> {{session()->get('email') ?? 'Invitado'}} </a> <a href="{{route('logoutC')}}" class="btn btn-xs btn-danger">Salir</a></li>
 @endsection
 @section('category')
     @foreach ( $datosC as $item )
@@ -12,36 +12,8 @@
         <li><a href="{{route('tiendaC', ''.$item->id_categoria.'')}}">{{$item->nombre_c}}</a></li>
     @endforeach 
 @endsection
-@section('encabezadoC')
-    <!-- BREADCRUMB -->
-		<div id="breadcrumb" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<ul class="breadcrumb-tree">
-                            @foreach ( $datosCP as $item )
-                                @if(count ($datosCH)== 0)
-                                    <li><a href="{{route('home')}}">Inicio</a></li>
-                                    @foreach ($datosP2 as $item)
-                                        <li><a href="{{route('tiendaC', ''.$item->id_categoria.'')}}">{{$item->nombre_c}}</a></li>
-                                    @endforeach
-                                    <li class="active">{{$nombre_ch}}</li>
-                                @endif
-                                @if(count ($datosCH)!= 0)
-                                    <li><a href="{{route('home')}}">Inicio</a></li>
-                                    <li class="active">{{$item->nombre_c}}</li>
-                                @endif
-                            @endforeach 
-						</ul>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /BREADCRUMB -->
+@section('Buscar_dato')
+    {{$buscar_p}} 
 @endsection
 
 @section('content')
@@ -80,7 +52,7 @@
                                             <span class="new">OFERTA</span>
                                         @elseif ($item->nuevo == 1)
                                             <span class="new">NUEVO</span>
-                                        @endif 
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="product-body">
@@ -90,21 +62,15 @@
                                         @endif
                                     @endforeach
                                     <h3 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">{{$item->nombre_p}}</a></h3>
-                                    @php
-                                        $band=false;
-                                    @endphp
-                                    @foreach ($datosDes as $item_d)
-                                        @if ($item->id_producto == $item_d->id_producto)
-                                            
-                                                    <h3 class="product-price 1">${{$item_d->precio_descuento}} <del class="product-old-price"> ${{$item->precio_iva}}</del></h3>
-                                                @php
-                                                    $band=true;
-                                                @endphp
+                                    <h4 class="product-name"><a href="{{route('TiendaP', ''.$item->id_producto.'')}}">Ref.: {{$item->referencia}}</a></h4>
+                                    
+                                    @foreach ($datosDes as $item_D)
+                                        @if(($item_D->id_producto == $item->id_producto))
+                                            <h4 class="product-price 1">${{$item_D->precio_descuento}} <del class="product-old-price"> ${{$item->precio_iva}}</del></h4>
                                         @endif
                                     @endforeach
-                                        
-                                    @if($band==false)
-                                        <h4 class="product-price">${{$item->precio_iva}}
+                                    @if(($item->nuevo==0) && ($item->oferta==0))
+                                            <h4 class="product-price 2">${{$item->precio_iva}}<del class="product-old-price"></del></h4>
                                     @endif
                                     <div class="product-label">
                                         @foreach ($datosDes as $item_D)
@@ -119,40 +85,14 @@
                                         @endforeach
                                     </div>
                                     <div class="product-rating">
-                                            @php
-                                                $calitotal = 0;
-                                                $calicont=0;
-                                                $calipro=0;
-                                            @endphp
-                                            @foreach ($datoscomentarios as $item_c)
-                                                @if ($item->id_producto == $item_c->id_producto)
-                                                    @php
-                                                         $calitotal = $calitotal + $item_c->calificacion;
-                                                         $calicont++;
-                                                    @endphp
-                                                @endif
-                                                
-                                            @endforeach
-                                            @php
-                                                if($calicont!=0){
-                                                    $calipro=round(($calitotal/$calicont),0);
-                                                }
-                                            @endphp
-                                                @for($i=1;$i<6;$i++)
-                                                @if (($calipro)>=($i))
-                                                    <i class="fa fa-star"></i>
-                                                @else
-                                                    <i class="fa fa-star-o"></i>
-                                                @endif
-                                            @endfor
-                                        </div>
+                                    </div>
                                     <div class="product-btns">
                                         <button type="button" class="btn btn-default ventana_popup2" data-toggle="modal" data-target="#modal-default" id_ventanapopup="{{$item->id_producto}}">
                                             <i class="fa fa-eye"></i>
                                         </button>
                                     </div>
                                 </div>
-                                <a class="add-to-cart"  href="{{route('add', ''.$item->nombre_p.'')}}" >
+                                <a class="add-to-cart"  href="{{route('addC', ''.$item->nombre_p.'')}}" >
                                     {{ csrf_field() }}
                                     <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
                                 </a>
@@ -165,7 +105,7 @@
 
                     <!-- store bottom filter -->
                     <div class="store-filter clearfix">
-                        <span class="store-qty">Mostrando {{count($datosPr)}} - {{count($datosPr)}} productos</span>
+                        <!-- span class="store-qty">Mostrando {{count($datosPr)}} - {{count($datosPr)}} productos</span-->
                         <ul class="store-pagination">
                             <li class="active">1</li>
                             <li><a href="#">2</a></li>
@@ -183,27 +123,7 @@
     @endif
 @endsection
 
-@section('content3')
-<!-- shop -->
-<div>
-    <h4>Subcategorías</h4>
-        @foreach ($datosCH as $item)
-        <div class="col-md-4 col-xs-6">
-            <div class="shop">
-                <div class="shop-img">
-                    <img width="100" height="250" src="{{Storage::url($item->imagen_c)}}" alt="imagen de la categoria">
-                </div>
-                <div class="shop-body">
-                    <h3>{{ $item->nombre_c }}</h3>
-                    <a href="{{route('tiendaC', ''.$item->id_categoria.'')}}" class="cta-btn">Compra ahora <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-        </div>
-        @endforeach
-        <!-- /shop -->
-    </div>
-    
-@endsection
+
 @section('modal')
     
     <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
@@ -266,5 +186,4 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('js/popup.js') }}"></script>
-    
 @endsection
