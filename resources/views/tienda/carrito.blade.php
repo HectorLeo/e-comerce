@@ -69,7 +69,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control" min="1" max="100" value="{{$item->quantity}}" id_aut="{{$item->id_producto}}" name="id_aut" class="quant" id="quant{{$item->id_producto}}">
+                                        <input type="number" class="form-control quant" min="1" max="{{$item->existencias}}" value="{{$item->quantity}}" id_aut="{{$item->id_producto}}" name="id_aut"  id="quant{{$item->id_producto}}">
                                     </td>
                                     <td>
                                         <input type="hidden" value=" {{$item->precio_iva}}" id="subtotal{{$item->id_producto}}" name="subtotal" >
@@ -78,7 +78,7 @@
                                     <td class="project-actions text-right">
                                         <a  href="{{route('delete',''.$item->nombre_p.'')}}">
                                       <button  class="btn btn-danger btn-sm delete_user" >
-                                            <i class="fas fa-trash"></i> Eliminar
+                                            Eliminar
                                       </button>
                                         </a>
                                     </td>
