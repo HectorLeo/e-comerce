@@ -120,8 +120,82 @@ class UsuClienteController extends Controller
       }else{
         $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$categoria.''],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
       }
+      $datoscomentarios = DB::table('comentarios')->where([['estado','=','1']])->get();
       $datosP3  = DB::table('productos')->where([['id_categoria','=',''.$categoria.''],['id_producto','!=',''.$id.'']])->get();
-      return view('tiendaCliente.productos', compact('cart','datosDes','datosP3','datosP2','precioD','datosComen','datosclientes','datosC','prom','nombre','precioN','existencias','descripcion','resumen','marca','imagen','id'));
+      return view('tiendaCliente.productos', compact('datoscomentarios','datosDescuentos','cart','datosDes','datosP3','datosP2','precioD','datosComen','datosclientes','datosC','prom','nombre','precioN','existencias','descripcion','resumen','marca','imagen','id'));
+    }
+    
+    public function ventena_PopUp_client(Request $request){ 
+      $id = $request->id;
+      $datosP = DB::table('productos')->where([['id_producto','=',''.$id.'']])->get();
+      
+      $datosDescuentos = DB::table('descuentos')->where([['id_producto','=',''.$id.'']])->get();
+      
+      $precioD=0;
+      $descuento="";
+      if((count($datosDescuentos)) != 0){
+        foreach($datosDescuentos as $item){
+          if(($item->porcentaje_d)!= 0.00){
+              $descuento = $item->peso_d;
+              $precioD= $item->precio_descuento;
+          }
+          else{
+            $descuento = $item->porcentaje_d;
+            $precioD= $item->precio_descuento;
+          }
+          
+        }
+      }
+      $nombre = "";
+      $precioN = "";
+      $resumen ="";
+      $imagen = "";
+      foreach($datosP as $item){
+        $idP = $item->id_producto;
+        $nombre = $item->nombre_p;
+        $precioN = $item->precio_iva;
+        $existencias = $item->existencias;
+        $descripcion = $item->descripcion_producto;
+        $resumen = $item->resumen_producto;
+        $imagen =  $item->imagen_p;
+      }
+      $imagen2 = substr($imagen, 7);
+      $imagen3 = '/storage/'.$imagen2; 
+
+      return response()->json(['nombre' => $nombre,'precioD' => $precioD,
+      'precioN' => $precioN,'existencias' => $existencias,'resumen' => $resumen,'imagen' => $imagen3], 200);
+     
+    }
+
+    public function buscarProductos_client(){
+      
+      $buscar_p=request('buscar_producto');
+      $datos_p = DB::table('productos')->where('referencia','like','%'.$buscar_p.'%')->orWhere('nombre_p','like','%'.$buscar_p.'%')->get();
+      
+      $datosPr = $datos_p;
+      $cart = \Session::get('cart');
+      $datosC = DB::table('categorias')->where([['mostrado_c','=','1'],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
+      $datosCP= DB::table('categorias')->where([['mostrado_c','=','1']])->get();
+    
+      $datosCH= DB::table('categorias')->where([['mostrado_c','=','1']])->get();
+      $datosDes = DB::table('descuentos')->get();
+
+      $idCate_CH="";
+      $nombre_ch = "";
+      $tipo_ch = "";
+      $imagen_ch = "";
+      $descripcion_ch = "";
+      foreach($datosCP as $item){
+        $idCate_CH = $item->id_categoria;
+        $nombre_ch = $item->nombre_c;
+        $tipo_ch = $item->tipo_categoria;
+        $imagen_ch = $item->imagen_c;
+        $descripcion_ch = $item->descripcion;
+      }
+      $datosP2= DB::table('categorias')->where([['id_categoria','=',''.$tipo_ch.''],['id_categoria','!=','1'],['tipo_categoria','=','1']])->get();
+      //$datosPr= DB::table('productos')->where([['id_categoria','=',''.$id.'']])->get();
+
+      return  view('tiendaCliente.buscarProducto_cliente', compact('buscar_p','cart','datosDes','datosC','datosCP','datosCH','datosPr','datosP2','nombre_ch','tipo_ch','imagen_ch','descripcion_ch'));
     }
 
     

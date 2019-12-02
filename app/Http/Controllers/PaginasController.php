@@ -129,7 +129,7 @@ class PaginasController extends Controller
     } 
 
 
-    public function ventena_PopUp(Request $request){
+    public function ventena_PopUp(Request $request){ 
       $id = $request->id;
       $datosP = DB::table('productos')->where([['id_producto','=',''.$id.'']])->get();
       

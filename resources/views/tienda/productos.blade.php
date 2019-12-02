@@ -19,7 +19,7 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12"> 
 						<ul class="breadcrumb-tree">
                             <li><a href="{{route('home')}}">Inicio</a></li>
                             @foreach ( $datosP2 as $item )
@@ -82,6 +82,9 @@
                         </div>
                         {{count($datosComen)}} Comentario(s) |<a class="review-link" href="#" id="ag_eval"> Agrega tu evaluación</a>
                     </div>
+                    <br/>
+                    <hr>
+                    <h5>PRECIO:</h5>
                     <div>
                         @if($precioD != 0)
                             <h3 class="product-price">${{$precioD}} <del class="product-old-price">${{$precioN}}</del></h3>
@@ -107,13 +110,14 @@
                                 @endif
                             @endforeach
                         </div>
+                        <hr>
                     <h5>RESUMEN:</h5>
                     <p>{{$resumen}}</p>
                     <hr>
                     <form method="GET" action="{{route('add', $nombre)}}" >
                         <div class="add-to-cart">
                             <div class="qty-label">
-                                <h5>Cantidad</h5>
+                                <h5>Cantidad:</h5>
                                 <div class="number">
                                     @if($existencias==0)
                                         <input type="number" class="form-control" value="0"  min="0" max="{{$existencias}}" id="existencias" name="existencias">
@@ -333,9 +337,9 @@
                                                         
                                                         @for ($i = 1; $i <= $cont; $i++)
                                                             @if ($i == 1)
-                                                                <li class="active" id="tab_{{$i}}"><a data-toggle="tab"  href="#tab{{$i}}">{{$i}}</a></li>
+                                                                <li class="active" id="tab_{{$i}}"><a data-toggle="tab"  href="#tab_{{$i}}">{{$i}}</a></li>
                                                             @else
-                                                                <li id="tab_{{$i}}"><a data-toggle="tab"  href="#tab{{$i}}">{{$i}}</a></li>
+                                                                <li id="tab_{{$i}}"><a data-toggle="tab"  href="#tab_{{$i}}">{{$i}}</a></li>
                                                             @endif
                                                             
                                                         @endfor
@@ -346,7 +350,7 @@
                                             </div>
                                             <!-- /section title -->
                                          <!-- Products tab & slick -->
-                                         <div class="col-md-9">
+                                         <div class="col-md-12">
                                                 
                                                     <div class="products-tabs">
                                                         @php
@@ -354,10 +358,10 @@
                                                         @endphp
                                                         @for ($i = 1; $i <= $cont; $i++)
                                                             <!-- tab -->
-                                                            <div id="tab{{$i}}" class="tab-pane active">
-                                                                <div class="products-slick" data-nav="#slick-nav-1">
+                                                            <div id="tab_{{$i}}" class="tab-pane active">
+                                                                <div  data-nav="#slick-nav-1">
                                                                     <!-- product -->
-                                                                    <div id="reviews">
+                                                                    
                                                                             <ul class="reviews">
 
                                                                                 @foreach ($datosComen as $item)
@@ -392,7 +396,7 @@
                                                                                 @endforeach
                                                                             </ul>
                                                                             
-                                                                        </div>
+                                                                        
                                                                         <!-- /product -->
                                                                 </div>
                                                                 <div id="slick-nav-1" class="products-slick-nav"></div>

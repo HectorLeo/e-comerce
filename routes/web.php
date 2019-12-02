@@ -95,6 +95,10 @@ Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  
     //Route::get('pago/{status?}',array('as'=>'pago1.status', 'users'=>'PaypalController@getPaymentStatus',));
     Route::get('pago/status', 'PaypalController@getPaymentStatus')->name('pago.status');
 
+    /* ventana pop-up */
+    Route::get('ventana_PopUp_client', 'UsuClienteController@ventena_PopUp_client')->name('ventana_PopUp_client');
+    Route::post('BuscarProducto_client', 'UsuClienteController@buscarProductos_client')->name('BuscarProducto_client');
+
 });
 
 /* Rustas de Usuario */
