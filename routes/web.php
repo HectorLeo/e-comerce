@@ -78,6 +78,7 @@ Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  
     Route::get('tiendaCliente/{id}', 'UsuClienteController@tiendaC')->name('tCliente');
     Route::get('cliente', 'UsuClienteController@contenido' )->name('homeCliente'); 
     Route::get('clienteP/{id}', 'UsuClienteController@TiendaP' )->name('clienteP');
+    Route::put('editarU/{id}', 'ClienteController@editar')->name('editarU');
 
     Route::get('carritoC', 'CartClienController@show')->name('carritoC');
     Route::bind('producto', function($slug){
@@ -95,6 +96,8 @@ Route::group(['prefix' => 'cliente', 'namespace' => 'Cliente', 'middleware' =>  
     //Route::get('pago/{status?}',array('as'=>'pago1.status', 'users'=>'PaypalController@getPaymentStatus',));
     Route::get('pago/status', 'PaypalController@getPaymentStatus')->name('pago.status');
 
+    Route::get('cuenta', 'ClienteController@cuenta')->name('cuenta');
+    Route::get('editarUsuario/{email}', 'ClienteController@editarUsuario')->name('editarUsuario');
     /* ventana pop-up */
     Route::get('ventana_PopUp_client', 'UsuClienteController@ventena_PopUp_client')->name('ventana_PopUp_client');
     Route::post('BuscarProducto_client', 'UsuClienteController@buscarProductos_client')->name('BuscarProducto_client');
@@ -107,6 +110,7 @@ Route::get('usuarioC', 'cliente\UsuarioController@index')->name('registroC');
 Route::post('usuarioC', 'cliente\UsuarioController@guardar' )->name('guardarC');
 Route::get('usuarioC/{id}', 'cliente\UsuarioController@actualizar')->name('editarC');
 Route::delete('usuarioC/{id}','cliente\UsuarioController@eliminar')->name('eliminarC');
+
 
 Route::get('tiendaC/{id}', 'PaginasController@tiendaC')->name('tiendaC');
 Route::get('tiendaP/{id}', 'PaginasController@TiendaP')->name('TiendaP');

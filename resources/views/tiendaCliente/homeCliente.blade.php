@@ -1,7 +1,7 @@
 @extends('layouts.app-client')
 
 @section('iniciarsesion')
-<li><a href="#"><i class="fa fa-user-o"></i> {{session()->get('email') ?? 'Invitado'}} </a> <a href="{{route('logoutC')}}" class="btn btn-xs btn-danger">Salir</a></li>
+<li><a  href="{{route('cuenta')}}"><i class="fa fa-user-o"></i> {{session()->get('email') ?? 'Invitado'}} </a> <a href="{{route('logoutC')}}" class="btn btn-xs btn-danger">Salir</a></li>
 @endsection
 @section('category')
     @foreach ( $datosC as $item )

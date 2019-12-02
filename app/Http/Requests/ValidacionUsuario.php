@@ -23,14 +23,27 @@ class ValidacionUsuario extends FormRequest
      */
     public function rules()
     {
-        return [
-            'nombre' => 'required|max:50',
-            'paterno' => 'required|max:50',
-            'materno' => 'required|max:50',
-            'email' => 'required|max:100|unique:usuarios,email,' . $this->route('id_usuario'),
-            'telefono' => 'required|max:50',
-            'password' => 'required|min:5',
-            're_password' => 'required|same:password'
-        ];
+        if($this->route('id_usuario'))
+        {
+            return [
+                'nombre' => 'required|max:50',
+                'paterno' => 'required|max:50',
+                'materno' => 'required|max:50',
+                'email' => 'required|max:100|unique:usuarios,email,' . $this->route('id_usuario'),
+                'telefono' => 'required|max:50',
+                'password' => 'nullable|min:5',
+                're_password' => 'nullable|min:5|same:password'
+            ];
+        }else{
+            return [
+                'nombre' => 'required|max:50',
+                'paterno' => 'required|max:50',
+                'materno' => 'required|max:50',
+                'email' => 'required|max:100|unique:usuarios,email,' . $this->route('id_usuario'),
+                'telefono' => 'required|max:50',
+                'password' => 'required|min:5',
+                're_password' => 'required|same:password'
+            ];
+        }
     }
 }
