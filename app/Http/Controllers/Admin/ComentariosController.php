@@ -24,7 +24,7 @@ class ComentariosController extends Controller
       ->id($calificacion)
       ->id($estado)
       ->paginate(10);
-      $datoscliente = DB::table('clientes')->where([['rol_clave_rol','=','2'],['estado','=','1']])->get();
+      $datoscliente = DB::table('clientes')->where([['rol_clave_rol','=','3'],['estado','=','1']])->get();
       $datosproducto = DB::table('productos')->where('estado','=','1')->get();
 
       return view('admin.admin.ConsultarComentarios', compact('datoscomentarios','datoscliente','datosproducto'));
